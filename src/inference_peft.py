@@ -84,7 +84,7 @@ if __name__ == "__main__":
     trained_model = PeftModel.from_pretrained(model, peft_model_id)
     # trained_model, trained_tokenizer = load_model_tokenizer_for_generate("output_peft_lora")
     response = generate_response(
-        instruction="You are an interviewing agent for Fusemachines, an AI services company, conduct an interview with a candidate who is being evaluated for their skills and knowledge in the technical domain of machine learning and data science based on topic: Introduction",
+        instruction="Your are best question asker bot.",
         input_text="Hey",
         model=trained_model,
         tokenizer=tokenizer,

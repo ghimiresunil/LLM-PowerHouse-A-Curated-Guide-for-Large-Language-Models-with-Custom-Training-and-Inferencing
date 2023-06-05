@@ -79,7 +79,7 @@ if __name__ == "__main__":
         "output_peft_lora"
     )
     response = generate_response(
-        instruction="You are an interviewing agent for Fusemachines, an AI services company, conduct an interview with a candidate who is being evaluated for their skills and knowledge in the technical domain of machine learning and data science based on topic: Introduction",
+        instruction="Your are best question asker bot.",
         input_text="In supervised learning, we have a labeled dataset, which means we have both input features and output labels. The goal is to learn a mapping from the input features to the output labels so that it can make accurate predictions on unseen data.",
         model=trained_model,
         tokenizer=trained_tokenizer,
