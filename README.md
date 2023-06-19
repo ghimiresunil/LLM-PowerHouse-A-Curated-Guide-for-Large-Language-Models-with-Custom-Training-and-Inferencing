@@ -2,6 +2,11 @@
 Allows for domain-specific knowledge, customized responses, enhanced creativity, improved conversational abilities, data privacy, local deployment, and research opportunities. It offers tailored and specialized AI applications by fine-tuning the model to specific preferences, guidelines, and subject matter expertise.
 
 # What I Learn
+
+After immersing myself in the recent GenAI text-based language model hype for nearly a month, I have made several observations about its performance on my specific tasks.
+
+Please note that these observations are subjective and specific to my own experiences, and your conclusions may differ.
+
 - We need a minimum of 7B parameter models (<7B) for optimal natural language understanding performance. Models with fewer parameters result in a significant decrease in performance. However, using models with more than 7 billion parameters requires a GPU with greater than 24GB VRAM (>24GB).
 - Benchmarks can be tricky as different LLMs perform better or worse depending on the task. It is crucial to find the model that works best for your specific use case. In my experience, MPT-7B is still the superior choice compared to Falcon-7B.
 - Prompts change with each model iteration. Therefore, multiple reworks are necessary to adapt to these changes. While there are potential solutions, their effectiveness is still being evaluated.
