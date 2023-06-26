@@ -1,6 +1,24 @@
 # Custom-Large-Language-Model
 Allows for domain-specific knowledge, customized responses, enhanced creativity, improved conversational abilities, data privacy, local deployment, and research opportunities. It offers tailored and specialized AI applications by fine-tuning the model to specific preferences, guidelines, and subject matter expertise.
 
+# Prompt Engineering
+
+Prompt engineering is a technique that can be used to improve the performance of LLMs on specific tasks. It involves crafting prompts that help the LLM to generate the desired output. This can be done by providing the model with additional information, such as examples of the desired output, or using specific language the model is likely to understand. 
+
+Prompt Engineering can be powerful tool, but it is important to note that it is not a silver bullet. LLMs can still generate incorrect or unexpected output even with the best prompts. As a result, it is important to test the output of LLMs carefully before using them in production. 
+
+# Fine Tuning
+In other hand, fine-tuing is adapting a pre-trained LLM to a specific task or domain by training it further on a smaller, task-specific dataset. This is done by adjusting the model's weights and parameters to minimize the loss function and improve its performance on the task.
+
+Fine-tuning can be more effective way to improve the performance of LLMs on specific tasks that prompt engineering. However, it is also more time-consuming and expensive. As a result, it is important to consider the cost and time involved in fine-tuning before deciding whether to use it. 
+
+# When to perform
+
+Fine-tuning is typically needed when the task is new or challenging or when the desired output is highly specific. In these cases, prompt engineering may not be able to provide the model with enough information to generate the desired output. 
+
+Prompt engineering is typically sufficient when the task is well-defined and the desired output could be more specific. In these cases, prompt engineering can provide the model with the information it needs to generate the desired output. 
+
+
 # What I am learning
 
 After immersing myself in the recent GenAI text-based language model hype for nearly a month, I have made several observations about its performance on my specific tasks.
