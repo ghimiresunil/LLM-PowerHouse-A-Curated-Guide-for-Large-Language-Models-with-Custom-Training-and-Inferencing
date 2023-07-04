@@ -57,7 +57,6 @@ Please note that these observations are subjective and specific to my own experi
 | Deployment Tools | Description | Resource |
 |------ | ---------- | :--------- |
 | SkyPilot | Run LLMs and batch jobs on any cloud. Get maximum cost savings, highest GPU availability, and managed execution -- all with a simple interface. | [🔗](https://github.com/skypilot-org/skypilot)|
-| SkyPilot | Run LLMs and batch jobs on any cloud. Get maximum cost savings, highest GPU availability, and managed execution -- all with a simple interface. | [🔗](https://github.com/skypilot-org/skypilot)|
 |vLLM | A high-throughput and memory-efficient inference and serving engine for LLMs | [🔗](https://github.com/vllm-project/vllm)|
 |Text Generation Inference | A Rust, Python and gRPC server for text generation inference. Used in production at HuggingFace to power LLMs api-inference widgets. | [🔗](https://github.com/huggingface/text-generation-inference)|
 | Haystack | an open-source NLP framework that allows you to use LLMs and transformer-based models from Hugging Face, OpenAI and Cohere to interact with your own data. | [🔗](https://haystack.deepset.ai/)|
