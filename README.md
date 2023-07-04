@@ -53,6 +53,17 @@ Please note that these observations are subjective and specific to my own experi
 |maxtext | A simple, performant and scalable Jax LLM! | [🔗](https://github.com/google/maxtext)|
 |gpt-neox | An implementation of model parallel autoregressive transformers on GPUs, based on the DeepSpeed library.| [🔗](https://github.com/EleutherAI/gpt-neox)|
 
-
+# Effective Deployment Strategies for Language Models
+| Deployment Tools | Description | Resource |
+|------ | ---------- | :--------- |
+| SkyPilot | Run LLMs and batch jobs on any cloud. Get maximum cost savings, highest GPU availability, and managed execution -- all with a simple interface. | [🔗](https://github.com/skypilot-org/skypilot)|
+| SkyPilot | Run LLMs and batch jobs on any cloud. Get maximum cost savings, highest GPU availability, and managed execution -- all with a simple interface. | [🔗](https://github.com/skypilot-org/skypilot)|
+|vLLM | A high-throughput and memory-efficient inference and serving engine for LLMs | [🔗](https://github.com/vllm-project/vllm)|
+|Text Generation Inference | A Rust, Python and gRPC server for text generation inference. Used in production at HuggingFace to power LLMs api-inference widgets. | [🔗](https://github.com/huggingface/text-generation-inference)|
+| Haystack | an open-source NLP framework that allows you to use LLMs and transformer-based models from Hugging Face, OpenAI and Cohere to interact with your own data. | [🔗](https://haystack.deepset.ai/)|
+| Sidekick |  Data integration platform for LLMs. | [🔗](https://github.com/psychic-api/psychic)|
+| LangChain |  Building applications with LLMs through composability | [🔗](https://github.com/hwchase17/langchain)|
+| wechat-chatgpt | Use ChatGPT On Wechat via wechaty | [🔗](https://github.com/fuergaosi233/wechat-chatgpt)|
+| promptfoo | Test your prompts. Evaluate and compare LLM outputs, catch regressions, and improve prompt quality. | [🔗](https://github.com/promptfoo/promptfoo)|
 
 
