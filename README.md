@@ -52,6 +52,8 @@ Please note that these observations are subjective and specific to my own experi
 |Mesh Tensorflow | Mesh TensorFlow: Model Parallelism Made Easier. | [🔗](https://github.com/tensorflow/mesh)|
 |maxtext | A simple, performant and scalable Jax LLM! | [🔗](https://github.com/google/maxtext)|
 |gpt-neox | An implementation of model parallel autoregressive transformers on GPUs, based on the DeepSpeed library.| [🔗](https://github.com/EleutherAI/gpt-neox)|
+|Trainer API| Provides an API for feature-complete training in PyTorch for most standard use cases | [🔗](https://huggingface.co/docs/transformers/main_classes/trainer)|
+| Lighting | Deep learning framework to train, deploy, and ship AI products Lightning fast | [🔗](https://github.com/Lightning-AI/lightning)|
 
 # Effective Deployment Strategies for Language Models
 | Deployment Tools | Description | Resource |
