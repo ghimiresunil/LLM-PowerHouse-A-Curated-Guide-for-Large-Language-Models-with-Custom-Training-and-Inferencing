@@ -26,6 +26,8 @@ Prompt engineering is typically sufficient when the task is well-defined and the
 | Input Conditioning	| Includes original context with randomly masked tokens	 | Includes preceding tokens in the sequence | 
 | Bidirectionality	| Bidirectional, considers entire context to predict masked tokens | Unidirectional, relies on preceding tokens | 
 | Use Cases	| Text completion, masked word prediction, text understanding	 | Text generation, story completion, language translation | 
+| Example Model	| BERT (Bidirectional Encoder Representations from Transformers) | GPT (Generative Pretrained Transformer) | 
+| Associated Task	| Natural Language Understanding (NLU) | Natural Language Generation (NLG) | 
 | Example Sentence	| "I want to __ a book." | "The cat sat on the __." | 
 | Masked Token | `[MASK]`	 | `[MASK]` | 
 | Objective | Predict missing word |  Predict next word in sequence | 
