@@ -63,6 +63,7 @@ Prompt engineering is typically sufficient when the task is well-defined and the
 | LangChain |  Building applications with LLMs through composability | [🔗](https://github.com/hwchase17/langchain)|
 | wechat-chatgpt | Use ChatGPT On Wechat via wechaty | [🔗](https://github.com/fuergaosi233/wechat-chatgpt)|
 | promptfoo | Test your prompts. Evaluate and compare LLM outputs, catch regressions, and improve prompt quality. | [🔗](https://github.com/promptfoo/promptfoo)|
+| Agenta | Easily build, version, evaluate and deploy your LLM-powered apps | [🔗](https://github.com/agenta-ai/agenta)|
 
 # Courses about LLM
 | Courses| Link |
