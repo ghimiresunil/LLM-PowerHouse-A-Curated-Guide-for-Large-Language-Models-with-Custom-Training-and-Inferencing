@@ -48,3 +48,62 @@ Hyperparameters are adjustable parameters that govern the training process, and 
 - Fine-tuning large language models is essential for tailoring them to specific tasks and domains, enabling better performance and task-specific understanding.
 - Key steps in the fine-tuning process include data selection and preparation, pre-trained model selection, hyperparameter tuning, performance monitoring, and evaluation, all aimed at optimizing the model for the target task.
 - It is important to incorporate ethical considerations and address potential biases throughout the fine-tuning process to ensure the resulting model is not only accurate but also responsible and unbiased.
+
+
+## Codebase Explanation in Gist
+
+### 01. Data Collator For Completion Only LM
+```
+DataCollatorForCompletionOnlyLM(tokenizer=GPT2TokenizerFast(name_or_path='EleutherAI/gpt-neo-125M',
+                                vocab_size=50257,
+                                model_max_length=2048,
+                                is_fast=True,
+                                padding_side='right',
+                                truncation_side='right',
+                                special_tokens={'bos_token': AddedToken("<|endoftext|>",
+                                                              rstrip=False,
+                                                              lstrip=False,
+                                                              single_word=False,
+                                                              normalized=True),
+                                                'eos_token': AddedToken("<|endoftext|>",
+                                                              rstrip=False,
+                                                              lstrip=False,
+                                                              single_word=False,
+                                                              normalized=True),
+                                                'unk_token': AddedToken("<|endoftext|>",
+                                                              rstrip=False,
+                                                              lstrip=False,
+                                                              single_word=False,
+                                                              normalized=True),
+                                                'pad_token': '<|endoftext|>'
+                                                },
+                                clean_up_tokenization_spaces=True),
+                                mlm=False,
+                                mlm_probability=0.15,
+                                pad_to_multiple_of=8,
+                                tf_experimental_compile=False,
+                                return_tensors='pt')
+```
+- Tokenizer:
+  - The `GPT2TokenizerFast` is used to tokenize text data for input into the language model.
+  - `name_or_path='EleutherAI/gpt-neo-125M`': This specifies the pre-trained model to be used. In this case, it's "gpt-neo-125M" by EleutherAI.
+  - `vocab_size=50257`: The size of the vocabulary used by tokenizer.
+  - `model_max_length=2048`: The maximum length of the input text that the tokenizer can handle.
+  - `is_fast=True`: This indicates whether to use the fast version of the tokenizer, which is optimized for performance.
+- Special Tokens
+  -  Special tokens are added to the tokenizer to handle specific tasks like beginning of sequence, end of sequence, unknown tokens, etc.
+  -  `bos_token`, `eos_token`, `unk_token`: These are special tokens for beginning of sequence, end of sequence, and unknown tokens, respectively.
+  -  `'pad_token'`: The padding token is set to an empty string to avoid adding padding tokens during tokenization.
+-  Clean Up Tokenization Spaces:
+  -  `clean_up_tokenization_spaces=True`: This setting indicates whether to clean up the spaces in the tokenization process.
+- MLM (Masked Language Modeling):
+  - `mlm=False`: This specifies whether the language model will be trained using Masked Language Modeling. In this case, it's set to False, so the model is not trained with MLM.
+-  MLM Probability:
+  - `mlm_probability=0.15`: If MLM were set to True, this parameter would determine the probability of masking tokens during training.
+-  Pad to Multiple of 8:
+  - `pad_to_multiple_of=8`: This parameter ensures that the input length is a multiple of 8. It's helpful for optimizing memory usage during training.
+-   TensorFlow Experimental Compile:
+  - `pad_to_multiple_of=8`: This parameter ensures that the input length is a multiple of 8. It's helpful for optimizing memory usage during training.
+- Return Tensors:
+  - `return_tensors='pt'`: The data collator will return PyTorch tensors as output.
+
