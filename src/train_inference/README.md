@@ -94,16 +94,15 @@ DataCollatorForCompletionOnlyLM(tokenizer=GPT2TokenizerFast(name_or_path='Eleuth
   -  Special tokens are added to the tokenizer to handle specific tasks like beginning of sequence, end of sequence, unknown tokens, etc.
   -  `bos_token`, `eos_token`, `unk_token`: These are special tokens for beginning of sequence, end of sequence, and unknown tokens, respectively.
   -  `'pad_token'`: The padding token is set to an empty string to avoid adding padding tokens during tokenization.
--  Clean Up Tokenization Spaces:
+- Clean Up Tokenization Spaces:
   -  `clean_up_tokenization_spaces=True`: This setting indicates whether to clean up the spaces in the tokenization process.
 - MLM (Masked Language Modeling):
   - `mlm=False`: This specifies whether the language model will be trained using Masked Language Modeling. In this case, it's set to False, so the model is not trained with MLM.
--  MLM Probability:
-  - `mlm_probability=0.15`: If MLM were set to True, this parameter would determine the probability of masking tokens during training.
--  Pad to Multiple of 8:
+- MLM Probability
+  - mlm_probability=0.15`: If MLM were set to True, this parameter would determine the probability of masking tokens during training.
+- Pad to Multiple of 8:
   - `pad_to_multiple_of=8`: This parameter ensures that the input length is a multiple of 8. It's helpful for optimizing memory usage during training.
--   TensorFlow Experimental Compile:
-  - `pad_to_multiple_of=8`: This parameter ensures that the input length is a multiple of 8. It's helpful for optimizing memory usage during training.
+- TensorFlow Experimental Compile:
+  -  `tf_experimental_compile=False`: This setting indicates whether to use experimental compilation in TensorFlow. In this case, it's set to False.
 - Return Tensors:
   - `return_tensors='pt'`: The data collator will return PyTorch tensors as output.
-
