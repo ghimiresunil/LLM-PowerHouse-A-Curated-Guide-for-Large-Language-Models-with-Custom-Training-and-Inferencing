@@ -87,6 +87,8 @@ Prompt engineering is typically sufficient when the task is well-defined and the
 | `Class Central`  Large Language Models| [🔗](https://www.classcentral.com/subject/llm)|
 | `Rycolab` Large Language Models| [🔗](https://rycolab.io/classes/llm-s23/)|
 
+# Tutorials about LLM
+
 # What I am learning
 
 After immersing myself in the recent GenAI text-based language model hype for nearly a month, I have made several observations about its performance on my specific tasks.
