@@ -118,7 +118,7 @@ Prompt engineering is typically sufficient when the task is well-defined and the
 | GPT in 60 Lines of NumPy | Jay Mody | [🔗](https://jaykmody.com/blog/gpt-from-scratch/)|
 | Welcome to the "Big Model" Era: Techniques and Systems to Train and Serve Bigger Models | ICML 2022 | [🔗](https://icml.cc/virtual/2022/tutorial/18440)|
 | Foundational Robustness of Foundation Models | NeurIPS 2022 | [🔗](https://nips.cc/virtual/2022/tutorial/55796)|
-| Let's build GPT: from scratch, in code, spelled out | Andrej Karpathy | [🔗](https://www.youtube.com/watch?v=kCc8FmEb1nY)z [👨‍💻](https://github.com/karpathy/ng-video-lecture)|
+| Let's build GPT: from scratch, in code, spelled out | Andrej Karpathy | [🔗](https://www.youtube.com/watch?v=kCc8FmEb1nY) [👨‍💻](https://github.com/karpathy/ng-video-lecture)|
 | Prompt Engineering Guide | DAIR.AI | [🔗](https://github.com/dair-ai/Prompt-Engineering-Guide) |
 | Fine-tune FLAN-T5 XL/XXL using DeepSpeed & Hugging Face Transformers | Philipp Schmid | [🔗](https://www.philschmid.de/fine-tune-flan-t5-deepspeed) |
 | Illustrating Reinforcement Learning from Human Feedback (RLHF)  | HuggingFace | [🔗](https://huggingface.co/blog/rlhf) |
