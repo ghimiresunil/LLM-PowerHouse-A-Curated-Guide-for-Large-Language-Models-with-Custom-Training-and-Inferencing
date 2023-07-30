@@ -64,8 +64,8 @@ Prompt engineering is typically sufficient when the task is well-defined and the
 | Bloom | 2022/11 | Bloom | BLOOM: A 176B-Parameter Open-Access Multilingual Language Model | 176 | 2048 | OpenRAIL-M v1 | 
 | StableLM-Alpha | 2023/04 | StableLM-Alpha | Stability AI Launches the First of its StableLM Suite of Language Models | 3 - 65 | 4096 | CC BY-SA-4.0 | 
 | FastChat-T5 | 2023/04 | fastchat-t5-3b-v1.0 | We are excited to release FastChat-T5: our compact and commercial-friendly chatbot! | 3 | 512 | Apache 2.0 | 
-|  h2oGPT | 2023/05 | MPT-7B, MPT-7B-Instruct | Introducing MPT-7B: A New Standard for Open-Source, Commercially Usable LLMs | 7 | 84k (ALiBi) | Apache 2.0, CC BY-SA-3.0 | 
-|  h2oGPT | 2023/05 | MPT-7B, MPT-7B-Instruct | Introducing MPT-7B: A New Standard for Open-Source, Commercially Usable LLMs | 7 | 84k (ALiBi) | Apache 2.0, CC BY-SA-3.0 | 
+|  h2oGPT | 2023/05 | h2oGPT | Building the World’s Best Open-Source Large Language Model: H2O.ai’s Journey | 12 - 20 | 256 - 2048 | Apache 2.0 | 
+|  MPT-7B | 2023/05 | MPT-7B, MPT-7B-Instruct | Introducing MPT-7B: A New Standard for Open-Source, Commercially Usable LLMs | 7 | 84k (ALiBi) | Apache 2.0, CC BY-SA-3.0 | 
 | RedPajama-INCITE | 2023/05 | RedPajama-INCITE | Releasing 3B and 7B RedPajama-INCITE family of models including base, instruction-tuned & chat model | 3 - 7 | 2048 | Apache 2.0 | 
 | OpenLLaMA | 2023/05 | OpenLLaMA-7b-preview-300bt | OpenLLaMA: An Open Reproduction of LLaMA | 7 | 2048 | Apache 2.0 | 
 
