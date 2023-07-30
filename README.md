@@ -54,6 +54,20 @@ Prompt engineering is typically sufficient when the task is well-defined and the
 | T5 | 2019/10 | T5 & Flan-T5, Flan-T5-xxl (HF) | Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer | 0.06 - 11 | 512 | Apache 2.0 | 
 | UL2 | 2022/10 | UL2 & Flan-UL2, Flan-UL2 (HF) | UL2 20B: An Open Source Unified Language Learner | 20 | 512, 2048 | Apache 2.0 | 
 | Cerebras-GPT | 2023/03 | Cerebras-GPT | Cerebras-GPT: A Family of Open, Compute-efficient, Large Language Models (Paper) | 0.111 - 13 | 2048 | Apache 2.0 | 
+| Open Assistant (Pythia family) | 2023/03 | OA-Pythia-12B-SFT-8, OA-Pythia-12B-SFT-4, OA-Pythia-12B-SFT-1 | Democratizing Large Language Model Alignment | 12 | 2048 | Apache 2.0|
+| Pythia | 2023/04| pythia 70M - 12B | Pythia: A Suite for Analyzing Large Language Models Across Training and Scaling | 0.07 - 12 | 2048 | Apache 2.0|
+| Dolly | 2023/04 | dolly-v2-12b | Free Dolly: Introducing the World's First Truly Open Instruction-Tuned LLM | 3, 7, 12 | 2048 | MIT |
+| DLite | 2023/05 | dlite-v2-1_5b | Announcing DLite V2: Lightweight, Open LLMs That Can Run Anywhere | 0.124 - 1.5 | 1024 | Apache 2.0 |
+| RWKV | 2021/08 | RWKV, ChatRWKV | The RWKV Language Model (and my LM tricks) | 0.1 - 14 | infinity (RNN) | Apache 2.0 | 
+| GPT-J-6B | 2023/06 | GPT-J-6B, GPT4All-J | GPT-J-6B: 6B JAX-Based Transformer | 6 | 2048 | Apache 2.0 | 
+| GPT-NeoX-20B | 2022/04 | GPT-NEOX-20B | GPT-NeoX-20B: An Open-Source Autoregressive Language Model | 20 | 2048 | Apache 2.0 | 
+| Bloom | 2022/11 | Bloom | BLOOM: A 176B-Parameter Open-Access Multilingual Language Model | 176 | 2048 | OpenRAIL-M v1 | 
+| StableLM-Alpha | 2023/04 | StableLM-Alpha | Stability AI Launches the First of its StableLM Suite of Language Models | 3 - 65 | 4096 | CC BY-SA-4.0 | 
+| FastChat-T5 | 2023/04 | fastchat-t5-3b-v1.0 | We are excited to release FastChat-T5: our compact and commercial-friendly chatbot! | 3 | 512 | Apache 2.0 | 
+|  h2oGPT | 2023/05 | MPT-7B, MPT-7B-Instruct | Introducing MPT-7B: A New Standard for Open-Source, Commercially Usable LLMs | 7 | 84k (ALiBi) | Apache 2.0, CC BY-SA-3.0 | 
+|  h2oGPT | 2023/05 | MPT-7B, MPT-7B-Instruct | Introducing MPT-7B: A New Standard for Open-Source, Commercially Usable LLMs | 7 | 84k (ALiBi) | Apache 2.0, CC BY-SA-3.0 | 
+| RedPajama-INCITE | 2023/05 | RedPajama-INCITE | Releasing 3B and 7B RedPajama-INCITE family of models including base, instruction-tuned & chat model | 3 - 7 | 2048 | Apache 2.0 | 
+| OpenLLaMA | 2023/05 | OpenLLaMA-7b-preview-300bt | OpenLLaMA: An Open Reproduction of LLaMA | 7 | 2048 | Apache 2.0 | 
 
 # LLM Training Frameworks
 
