@@ -1,6 +1,21 @@
 # LLM-PowerHouse: A Curated Guide for Large Language Models with Custom Training and Inferencing
 Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potential of Large Language Models (LLMs) with custom training and inferencing. This GitHub repository is a comprehensive and curated guide designed to empower developers, researchers, and enthusiasts to harness the true capabilities of LLMs and build intelligent applications that push the boundaries of natural language understanding.
 
+# Table of contents 
+
+- [Prompt Engineering](#prompt-engineering)
+- [Fine Tuning](#fine-tuning)
+- [When to perform](#when-to-perform)
+- [Difference between Masked Language Model and Causal Language Model](#difference-between-masked-language-model-and-causal-language-model)
+- [Open Source LLM Space for Research Use](#open-source-llm-space-for-research-use)
+- [Open Source LLM Space for Commercial Use](#open-source-llm-space-for-commercial-use)
+- [LLM Training Frameworks](llm-training-frameworks)
+- [Effective Deployment Strategies for Language Models](#effective-deployment-strategies-for-language-models)
+- [Courses about LLM](#courses-about-llm)
+- [Tutorials about LLM ](#tutorials-about-llm)
+- [Tutorials about LLM ](#tutorials-about-llm)
+- [What I am learning](#what-i-am-learning)
+  
 # Prompt Engineering
 
 Prompt engineering is a technique that can be used to improve the performance of LLMs on specific tasks. It involves crafting prompts that help the LLM to generate the desired output. This can be done by providing the model with additional information, such as examples of the desired output, or using specific language the model is likely to understand. 
@@ -18,7 +33,7 @@ Fine-tuning is typically needed when the task is new or challenging or when the 
 
 Prompt engineering is typically sufficient when the task is well-defined and the desired output could be more specific. In these cases, prompt engineering can provide the model with the information it needs to generate the desired output. 
 
-# Difference between Masked Language Model (MLM)	and Causal Language Model (CLM)
+# Difference between Masked Language Model and Causal Language Model
 
 |  | Masked Language Model (MLM)	 | Causal Language Model (CLM) |
 |------ | ---------- | --------- |
@@ -142,7 +157,7 @@ Prompt engineering is typically sufficient when the task is well-defined and the
 | Why did all of the public reproduction of GPT-3 fail?  | Jingfeng Yang | [🔗](https://jingfengyang.github.io/gpt) |
 | Pure Rust implementation of a minimal Generative Pretrained Transformer  | Keyvan Kambakhsh | [🔗](https://github.com/keyvank/femtoGPT) |
 
-# What I am learning 📚
+# What I am learning
 
 After immersing myself in the recent GenAI text-based language model hype for nearly a month, I have made several observations about its performance on my specific tasks.
 
