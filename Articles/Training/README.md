@@ -5,7 +5,7 @@
 
 # Why Do We Fine-tune Models?
 - When confronted with a Deep Learning task, like training a Long Short-Term Memory (LSTM) network on a textual dataset, our initial instinct might be to begin training the network from scratch. However, in practice, LSTMs and other deep neural networks have a substantial number of parameters, often reaching millions, and training them on a small dataset (which is smaller than the number of parameters) can greatly affect the network's ability to generalize, often resulting in overfitting.
-- n practical situations, it is a common practice to fine-tune pre-existing Long Short-Term Memory (LSTM) networks that were initially trained on a large dataset, such as a vast collection of textual data. This fine-tuning involves further training the LSTM using back-propagation on a smaller dataset. If our dataset is not substantially different from the original dataset (e.g., the large textual dataset), the pre-trained LSTM model will already have acquired relevant learned features suitable for our specific text classification task.
+- In practical situations, it is a common practice to fine-tune pre-existing Long Short-Term Memory (LSTM) networks that were initially trained on a large dataset, such as a vast collection of textual data. This fine-tuning involves further training the LSTM using back-propagation on a smaller dataset. If our dataset is not substantially different from the original dataset (e.g., the large textual dataset), the pre-trained LSTM model will already have acquired relevant learned features suitable for our specific text classification task.
 
 # When to Fine-tune Models?
 
