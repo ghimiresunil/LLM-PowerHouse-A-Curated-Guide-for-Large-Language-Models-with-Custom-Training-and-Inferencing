@@ -1,5 +1,6 @@
 # Background 
 
+
 - This readme file provides a thorough examination of fine-tuning, a widely used practice in Deep Learning.
 - The file will outline the reasons for fine-tuning and the associated techniques.
 
@@ -22,3 +23,18 @@ The usual approach involves removing the last layer (softmax layer) of the pre-t
     - Suppose our task involves classifying 10 categories, the pre-trained network's new softmax layer will have 10 categories instead of the original 1000 categories. Subsequently, we perform backpropagation on the network to fine-tune the pre-trained weights while ensuring cross-validation is carried out to promote good generalization.
 - **Use a smaller learning rate to train the network**: Considering that we anticipate the pre-trained weights to be substantially better compared to randomly initialized weights, we aim to avoid distorting them too rapidly or excessively. Therefore, it is a common practice to set the initial learning rate 10 times smaller than the one used for training from scratch.
 - **Freeze the weights of the first few layers**: Freezing the weights of the initial layers in a pre-trained network is a common approach. These early layers capture fundamental features such as curves and edges, which remain essential for our new task. By preserving these weights, we allow the network to concentrate on learning specific features from our dataset in the subsequent layers.
+
+# Can the user fine-tune an LLM (Language Model) to enhance performance on a predictive task such as classification or regression?
+
+![finetune_an_LLMs](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/a7babace-c277-49a7-8915-41c238f106ed)
+
+By now, it might be well-known that fine-tuning serves the purpose of teaching "style" rather than imparting "facts." This is particularly applicable to tasks like question answering and other generative tasks, but it may not hold true for predictive tasks.
+
+When individuals consider fine-tuning a Language Model (LLM) to tackle classification or regression tasks, they often have the initial inclination to fine-tune both the LLM "encoder" responsible for generating embeddings and the "decoder" responsible for generating text. However, this approach can be excessive for a couple of reasons:
+
+- Generating text output is slow
+- Generating text can lead to overly verbose output and hallucinations
+
+Instead, one can opt to remove the decoder (language model head) and replace it with a task-specific head, typically a multi-layer perceptron. This adjustment ensures that the learning objective aligns more suitably with the task at hand (for example, enabling the use of softmax cross-entropy for the loss function), and as a result, it can significantly accelerate the training process.
+
+On the other hand, a task-specific classifier typically requires a larger number of examples for fine-tuning. Therefore, if you only possess a limited dataset of around 10 to 100 examples, it might be more advantageous to consider in-context learning or fine-tuning solely the language model head. Hence, having multiple options available for exploration based on your specific task and available data is crucial.
