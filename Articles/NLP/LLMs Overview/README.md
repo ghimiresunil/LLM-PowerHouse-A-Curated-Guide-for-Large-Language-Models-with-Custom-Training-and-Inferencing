@@ -74,12 +74,13 @@ $$u . v = |u||v|Cos\theta$$
 - When vector $u$ is orthogonal to vector $v$, the projection of $u$ onto $v$ results in a vector with zero length, leading to a product of zero. If you imagine all potential rotations of vector $u$ while keeping vector $v$ unchanged, the dot product provides:
     - When vectors u and v are orthogonal, the projection of $u$ onto $v$ results in a vector with a length of zero. This aligns with the idea of zero similarity.
     - The maximum value $∥u∥∥v∥$ occurs when vectors u and v are aligned in the same direction.
-    - The minimum value -$∥u∥∥v∥$ occurs when vectors u and v are aligned in the opposite direction.
+    - The minimum value $-∥u∥∥v∥$ occurs when vectors u and v are aligned in the opposite direction.
 - The division of $u⋅v$ by the product of their magnitudes $(∥u∥∥v∥)$ constrains the output within the range of [-1, 1]. This ensures scale independence, which is the fundamental principle underlying cosine similarity.
 
 ## Cosine Similarity
 
-$$cosine\_similarity(u,v) = \frac{u⋅v}{∥u∥∥v∥} = \frac{\sum_{i=1}^{n}u_iv_i}{\sqrt{\sum_{i=1}^{n}u_i^{2}} \sqrt{\sum_{i=1}^{n}v_i^{2}}}$$ 
+
+$$cosine\textunderscore similarity(u,v) = \frac{u⋅v}{∥u∥∥v∥} = \frac{\sum\nolimits_{i=1}^n u_iv_i}{\sqrt{\sum\nolimits_{i=1}^nu_i^2} \sqrt{\sum\nolimits_{i=1}^nv_i^2}}$$ 
 
 - where
     - $u$ and $v$ are the two vectors being compared.
