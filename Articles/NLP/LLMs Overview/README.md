@@ -52,4 +52,46 @@ At a high level, training LLMs involves the following steps:
 4. Neural Network Training:  Train a neural network model on the input tokens
     -  For encoder models such as BERT and its variants, their training involves learning to predict the context of a given word, which is masked, through the Masked Language Modeling task (Cloze task) and the Next Sentence Prediction objective.
     - In decoder models like GPT-x, LLaMA, etc., the training process involves predicting the subsequent token in the sequence based on the preceding context of tokens.
- 
+
+
+# Computing Similarity Between Embeddings
+- Encoder models yield contextualized embeddings at their output, which can be subjected to arithmetic operations for tasks like understanding the similarity between two words or identify word analogies and many more. 
+- When aiming to measure word similarity, one can utilize the contextualized embeddings of the words. Conversely, for assessing sentence similarity, one can employ the output from the **[CLS]** token or average the word embeddings of all tokens. To achieve the highest effectiveness in tasks involving sentence similarity, the favored option is to use encoder model variations such as [Sentence BERT](https://sbert.net/).
+- Word or sentence similarity refers to how closely two words or sentences align in their semantic meaning.
+- The following are the two most prevalent methods for gauging similarity between words or sentences (it's important to note that neither of these are considered "distance metrics").
+
+## Dot Product Similarity
+- The dot product of two vectors u and v is defined as:
+$$u . v = |u||v|Cos\theta$$
+- It’s perhaps easiest to visualize its use as a similarity measure when $||v||=1$, as in the diagram [Source](https://math.stackexchange.com/questions/689022/how-does-the-dot-product-determine-similarity) below where cos $\theta$ = $\frac{u.v}{||u||.||v||}$ = $\frac{u.v}{||u||}$.
+- Here you can see that when $\theta$ = 0 and cos $\theta$ =1, i.e., the vectors are colinear, the dot product is the element-wise product of the vectors. When $\theta$ is a right angle, and cos $\theta$ =0 , i.e. the vectors are orthogonal, the dot product is $\theta$. In general, cos $\theta$ tells you the similarity in terms of the direction of the vectors (it is -1 when they point in opposite directions). This holds as the number of dimensions is increased, and cos $\theta$ thus has important uses as a similarity measure in multidimensional space, which is why it is arguably the most commonly used similarity metric.
+
+## Geometric Intuition
+- The dot product between vectors $u$ and $v$ can be understood as projecting vector $u$ onto vector $v$ (or the reverse), and then multiplying the length of the projected $u$ $(∥u∥)$ with the length of $v$ $(∥v∥)$.
+- When vector $u$ is orthogonal to vector $v$, the projection of $u$ onto $v$ results in a vector with zero length, leading to a product of zero. If you imagine all potential rotations of vector $u$ while keeping vector $v$ unchanged, the dot product provides:
+    - When vectors u and v are orthogonal, the projection of $u$ onto $v$ results in a vector with a length of zero. This aligns with the idea of zero similarity.
+    - The maximum value $∥u∥∥v∥$ occurs when vectors u and v are aligned in the same direction.
+    - The minimum value -$∥u∥∥v∥$ occurs when vectors u and v are aligned in the opposite direction.
+- The division of $u⋅v$ by the product of their magnitudes $(∥u∥∥v∥)$ constrains the output within the range of [-1, 1]. This ensures scale independence, which is the fundamental principle underlying cosine similarity.
+
+## Cosine Similarity
+
+$$cosine\_similarity(u,v) = \frac{u⋅v}{∥u∥∥v∥} = \frac{\sum_{i=1}^{n}u_iv_i}{\sqrt{\sum_{i=1}^{n}u_i^{2}} \sqrt{\sum_{i=1}^{n}v_i^{2}}}$$ 
+
+- where
+    - $u$ and $v$ are the two vectors being compared.
+    - . represents the dot product
+    - $||u||$ and $||v||$ represent the magnitudes (or norms) of the vectors, and $n$ is the number of dimensions in the vectors.
+- As previously stated, the step involving length normalization (dividing $u⋅v$ by the magnitudes of $u$ and $v$, denoted as $∥u∥∥v∥$) constrains the range to [−1, 1], thereby ensuring scale invariant.
+
+## Cosine Similarity vs. Dot Product Similarity
+| Aspect | Cosine Similarity | Dot Product Similarity|
+| ------- | ----------------- | ---------------------|
+| Definition | Measures the cosine of the angle between vectors. | Measures the sum of element-wise products of vectors.|
+| Angle Consideration | Only considers the angle between vectors. | Considers both angle and magnitude of vectors.|
+| Magnitude Consideration| Ignores magnitude, focuses on direction.|Considers both magnitude and direction.| 
+| Scale Invariance	| Scale invariant, suitable for diverse data samples.| data samples.	Sensitive to magnitude, may need normalization|
+| Value Range | Ranges from -1 (opposite directions) to 1 (same direction).| Ranges from negative to positive values.|
+| Use Cases	| 	Often used in text/document similarity, recommendation systems.| Commonly used in machine learning and neural networks.|
+| Comparison within Varying Length Data	| Well-suited for comparing data with varying lengths.| May produce different values for different magnitudes.| 
+| Complexity and Implementation	| Requires normalization, potentially more operations.	| Simpler to compute, fewer operations.|
