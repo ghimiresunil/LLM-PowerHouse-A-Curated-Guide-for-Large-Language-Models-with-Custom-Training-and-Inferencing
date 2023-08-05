@@ -64,6 +64,9 @@ At a high level, training LLMs involves the following steps:
 - The dot product of two vectors u and v is defined as:
 $$u . v = |u||v|Cos\theta$$
 - It’s perhaps easiest to visualize its use as a similarity measure when $||v||=1$, as in the diagram [Source](https://math.stackexchange.com/questions/689022/how-does-the-dot-product-determine-similarity) below where cos $\theta$ = $\frac{u.v}{||u||.||v||}$ = $\frac{u.v}{||u||}$.
+
+![dot product of two vectors](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/64f831b1-13c7-4539-8200-dbc3be3c3d95)
+
 - Here you can see that when $\theta$ = 0 and cos $\theta$ =1, i.e., the vectors are colinear, the dot product is the element-wise product of the vectors. When $\theta$ is a right angle, and cos $\theta$ =0 , i.e. the vectors are orthogonal, the dot product is $\theta$. In general, cos $\theta$ tells you the similarity in terms of the direction of the vectors (it is -1 when they point in opposite directions). This holds as the number of dimensions is increased, and cos $\theta$ thus has important uses as a similarity measure in multidimensional space, which is why it is arguably the most commonly used similarity metric.
 
 ## Geometric Intuition
