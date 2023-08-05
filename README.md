@@ -13,7 +13,7 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
 - [Effective Deployment Strategies for Language Models](#effective-deployment-strategies-for-language-models)
 - [Courses about LLM](#courses-about-llm)
 - [Tutorials about LLM ](#tutorials-about-llm)
-- [Codebase Mastery: Building with Perfection](#codebase-mastery-building-with-perfection)
+- [Codebase Mastery: Building with Perfection with In-Depth Articles](#codebase-mastery-building-with-perfection-with-in-depth-articles)
 - [What I am learning](#what-i-am-learning)
 
 # Prompt Engineering
@@ -159,13 +159,14 @@ Prompt engineering is typically sufficient when the task is well-defined and the
 | Why did all of the public reproduction of GPT-3 fail?  | Jingfeng Yang | [🔗](https://jingfengyang.github.io/gpt) |
 | Pure Rust implementation of a minimal Generative Pretrained Transformer  | Keyvan Kambakhsh | [🔗](https://github.com/keyvank/femtoGPT) |
 
-# Codebase Mastery: Building with Perfection
+# Codebase Mastery: Building with Perfection with In-Depth Articles 
 | Title | Repository | 
 | ------- | :--------:|
 | Instruction based data prepare using OpenAI | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/main/src/data_generate_prepare)|
 | Optimal Fine-Tuning using the Trainer API: From Training to Model Inference| [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/main/src/train_inference)|
 | Efficient Fine-tuning and inference LLMs with PEFT and LoRA| [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/main/src/train_inference_peft_lora)|
 | Efficient Fine-tuning and inference LLMs Accelerate| [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/main/src/train_inference_accelerate)|
+| Curated list of of articles | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/main/Articles)|
 
 # What I am learning
 
