@@ -13,9 +13,9 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
 - [Effective Deployment Strategies for Language Models](#effective-deployment-strategies-for-language-models)
 - [Courses about LLM](#courses-about-llm)
 - [Tutorials about LLM ](#tutorials-about-llm)
-- [Tutorials about LLM ](#tutorials-about-llm)
+- [Codebase Mastery: Building with Perfection](#codebase-mastery-building-with-perfection)
 - [What I am learning](#what-i-am-learning)
-  
+
 # Prompt Engineering
 
 Prompt engineering is a technique that can be used to improve the performance of LLMs on specific tasks. It involves crafting prompts that help the LLM to generate the desired output. This can be done by providing the model with additional information, such as examples of the desired output, or using specific language the model is likely to understand. 
