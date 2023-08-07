@@ -45,6 +45,12 @@ If you are working on an NLP task that requires a large language model, PEFT is 
 - Model tuning requires storing a separate copy of the pre-trained model for each task, while prompt tuning only requires storing a small task-specific prompt. This makes prompt tuning much more efficient, as it requires 11 billion fewer parameters per task. For example, a T5 “XXL” model with a prompt length of 5 tokens would only require 20,480 parameters.
 - Model tuning requires storing a separate copy of the pre-trained model for each task, while prompt tuning only requires storing a small task-specific prompt, and enables mixed-task inference using the original pretrained model. Each instance of the fine-tuned, T5 “XXL” model requires 11 billion parameters per copy, while our tuned prompts require only 20,480 parameters per task, reducing the count by more than five orders of magnitude, assuming a prompt length of 5 tokens.
 
+<hr/>
+
+![PromptTuning](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/fba637df-f99e-4399-858a-288cecc562cb)
+
+<hr/>
+
 # Adapter
 - Adapters are a parameter-efficient fine-tuning technique that achieves similar performance to tuning the top layers, while requiring as few as two orders of magnitude fewer parameters. They are small neural network modules that are inserted into LLMs to adapt them for executing new tasks. During fine-tuning, only the weights of the adapter are learned. I believe there might be some confusion regarding a few of the terms used here. 
 - Adapter-based tuning is a technique that inserts new modules called "adapter modules" between the layers of a pre-trained language model. The full pre-trained model is frozen during fine-tuning, and only the adapter modules are optimized. This means that only a few parameters are introduced per task, resulting in "compact" models. 
@@ -74,6 +80,11 @@ Let's look the implementation of the adapter module within the transformer archi
 
 - The size of the adapter module (m) determines the number of optimizable parameters, which affects the trade-off between model size and performance.
 - The original paper found that the performance of the model is consistent across different adapter sizes m. Therefore, a fixed adapter size can be used for all downstream tasks.
+<hr/>
+
+![adapter](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/4bddef4a-4a2e-46e1-9de3-3d833d8d8551)
+
+<hr/>
 
 # LOw Rank Adaptation (LoRA)
 
@@ -91,6 +102,12 @@ Heavily Parameterized Large Language Models + Basic Linear Algebra Theorem = Sav
 - LoRA, a PEFT technique that utilizes a straightforward concept of decomposing non-full rank matrices. LoRA, short for low rank adaptation of LLMs, focuses on parameter efficiency in fine-tuning.
 - LoRA hypothesizes that “change in weights” during adaptation has a “low intrinsic rank”. $ΔW$ is non-full rank and so can be written as $ΔW=BA$
     - A matrix is rank-deficient if it has a rank less than the lesser of its number of rows and columns. For more, reference [Wikipedia: Rank](https://en.wikipedia.org/wiki/Rank_(linear_algebra))
+<hr/>
+
+![1683516728965](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/834d8d79-83f0-41eb-8c8b-97dbf2b52609)
+
+<hr/>
+
 - The concept of "low intrinsic rank" is inspired by the idea of "low intrinsic dimensionality" in over-parameterized pre-trained models. This is also why fine-tuning only a part of the full model can yield good results, instead of fine-tuning the entire model.
 - During training, the outputs from $W$ and $ΔW$ are added component wise, like so:
 $$h = Wx + BAx$$
@@ -106,9 +123,6 @@ $$h = Wx + BAx$$
     - LoRA achieves performances comparable to and sometimes even better than fine-tuning the full model.
 
 Note: “Low intrinsic rank” is inspired by the idea of “low intrinsic dimensionality” that these over-parameterized pre-trained models are seen to reside on, and that’s also the explanation behind why fine-tuning only a part of the full model rather than full fine-tuning can yield good results.
-
-# Which Technique Should I Choose?
-- Choosing a PEFT method is all about aligning with your objectives.
 
 # Prompt Tuning 
 
@@ -141,6 +155,15 @@ Note: “Low intrinsic rank” is inspired by the idea of “low intrinsic dimen
 | Description | A fine-tuning technique for pre-trained language models (LLMs) that modifies the attention mechanism of the model by introducing a low-rank matrix factorization. This allows the model to learn task-specific attention patterns without having to retrain the entire model.|
 | When to use | When you want to fine-tune a pre-trained LLM for a specific downstream task that requires task-specific attention patterns. It is also useful when you have limited computational resources and want to reduce the number of trainable parameters in the model.| 
 | Benefits | LoRa is more efficient than traditional fine-tuning, as it only requires fine-tuning a small number of parameters. It is also more flexible, as it can be used to learn task-specific attention patterns for a particular task.| 
+
+# Which Technique Should I Choose?
+- Choosing a PEFT method is all about aligning with your objectives.
+
+<hr/>
+
+![peft](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/9a23575d-0e30-4168-8154-7cf1a9d01f77)
+
+<hr/>
 
 # References
 
