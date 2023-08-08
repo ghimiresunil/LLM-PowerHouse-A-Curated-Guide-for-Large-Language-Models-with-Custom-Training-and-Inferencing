@@ -52,7 +52,7 @@ If you are working on an NLP task that requires a large language model, PEFT is 
 <hr/>
 
 # Adapter
-- Adapters are a parameter-efficient fine-tuning technique that achieves similar performance to tuning the top layers, while requiring as few as two orders of magnitude fewer parameters. They are small neural network modules that are inserted into LLMs to adapt them for executing new tasks. During fine-tuning, only the weights of the adapter are learned. I believe there might be some confusion regarding a few of the terms used here. 
+- Adapters are a parameter-efficient fine-tuning technique that achieves similar performance to tuning the top layers, while requiring as few as two orders of magnitude fewer parameters. They are small neural network modules that are inserted into LLMs to adapt them for executing new tasks. During fine-tuning, only the weights of the adapter are learned. 
 - Adapter-based tuning is a technique that inserts new modules called "adapter modules" between the layers of a pre-trained language model. The full pre-trained model is frozen during fine-tuning, and only the adapter modules are optimized. This means that only a few parameters are introduced per task, resulting in "compact" models. 
 
 I believe there might be some confusion regarding a few of the terms used here. I would be glad to provide an explanation for each term.
