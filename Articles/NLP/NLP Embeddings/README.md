@@ -253,7 +253,7 @@ In TF-IDF, we would calculate the term frequency (TF) and inverse document frequ
 
 As you can see, the TF-IDF values are not binary like they are in BOW. Instead, they are decimal values that indicate the importance of a word in a sentence.
 
-Word2Vec works differently than BOW and TF-IDF. It creates a vector representation for each word in the vocabulary. These vectors are real numbers, and they are trained on a corpus of text. The vectors for words that are semantically similar will be close together in vector space. For example, the vectors for the words BOY and GIRL would be close together, as would the vectors for the words KING and QUEE
+Word2Vec works differently than BOW and TF-IDF. It creates a vector representation for each word in the vocabulary. These vectors are real numbers, and they are trained on a corpus of text. The vectors for words that are semantically similar will be close together in vector space. For example, the vectors for the words BOY and GIRL would be close together, as would the vectors for the words KING and QUEEN.
 
 In above example, the vectors for the words BOY and GIRL would be close together because they are both nouns that refer to people. Similarly, the vectors for the words KING and QUEEN would be close together because they are both nouns that refer to royalty.
 
