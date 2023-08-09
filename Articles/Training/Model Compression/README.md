@@ -1,0 +1,5 @@
+# Enhancing Model Compression: Inference and Training Optimization Strategies
+
+- Are you familiar with the implementation of model compression techniques for both training and inference in various machine learning and deep learning models? If not then you will acquire knowledge about various model compression and optimization concepts applicable during both model training and inference. These concepts encompass quantization/binarization, pruning, knowledge distillation, mixed precision training, and quantization-aware training.
+- The exponential increase in the number of parameters in machine learning and deep learning models have become larger and larger, the computational requirements for training and inferencing them have also increased exponentially. This can make them impractical for use in edge environments or for serving to customers at scale.
+- This article highlights state-of-the-art techniques developed by researchers and practitioners to enhance the efficiency of machine learning and deep learning models, enabling them to run more swiftly and with reduced memory consumption on edge devices 
