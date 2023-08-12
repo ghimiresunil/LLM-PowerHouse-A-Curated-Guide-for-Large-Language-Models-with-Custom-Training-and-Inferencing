@@ -57,3 +57,38 @@
     - Reduced overhead: Transitions between different precision levels with minimal overhead.
     - Customizable trade-offs: Practitioners can adjust the balance between precision and performance.
 
+## Definition
+- Quantization involves reducing the bit precision of model parameters (**weights** and often **activations**) from high precision (32 or 64 bits) to lower bit representations (like 16 or 8 bits), resulting in a speedup of around 2-4 times, particularly noticeable in networks with convolutional operations. Furthermore, quantization achieves around 4x model compression
+- Quantization can cause a model to lose accuracy. "Quantization-aware training" fine-tunes the model after quantization to regain accuracy. "Post-training quantization" skips fine-tuning and applies heuristics to the quantized weights to try to preserve accuracy. Both methods aim to shrink model size with minimal impact on accuracy. Fine-tuning counteracts the performance drops caused by reduced precision, making quantization a valuable model optimization.
+- Deep learning models can be made faster and more memory efficient by using fewer bits to represent their weights. This is because there are fewer bits to compute when using fewer bits to represent the weights. For example, using `torch.qint8`, which is an 8-bit integer type, instead of `torch.float32`, which is a 32-bit floating-point type, can make a deep learning model 4 times faster and 4 times more memory efficient.
+
+> Potential downsides involve situations where certain operations you require—like particular convolutional processes or even simple tasks like transposition—might not be available due to the degree of quantization you're aiming for. Additionally, accuracy may drop too much when quantization is used. This can make quantized models less useful for certain applications.
+- From TensorFlow Document [Source](https://www.tensorflow.org/model_optimization/guide/quantization/post_training#:~:text=training%20float16%20quantization-,Quantizing%20weights,bit%20integer%20for%20CPU%20execution.&text=At%20inference%2C%20the%20most%20critically,bits%20instead%20of%20floating%20point.)
+> We generally recommend 16-bit floats for GPU acceleration and 8-bit integer for CPU execution.
+
+## Quantization with PyTorch
+- PyTorch supports quantized tensors, which are tensors that store data in a more compact format, such as 8 or 16 bits. This can be useful, but it is important to understand how this works in order to ensure that the model still performs well. If your neural network has a sigmoid activation function, then you can use a quantization method that is specifically designed for the output range of 0 to 1. To quantize a neural network, you need to collect data about how the network performs on a set of representative inputs. This data will be used to choose the best quantization method for the network. Quantization is typically performed by rounding $x * scalar$, where $scalar$ is a learned parameter, similar to $BatchNorm$.
+
+> PyTorch supports quantized operations through external libraries, such as FBGEMM and QNNPACK. These libraries provide efficient implementations of quantized operations that can be loaded as needed, similar to BLAS and MKL. 
+
+- Quantization can introduce numerical instability, especially if the input data has a large exponent. In these cases, it is often better to accumulate in higher precision data types to improve stability. Choosing the right precision for each operation in a PyTorch neural network can be difficult. The `torch.cuda.amp` package provides automatic mixed precision (AMP) functionality to help you cast different parts of your network to half precision `(torch.float16)` where it is possible. This can improve performance without sacrificing accuracy. If you want to manually choose the precision for each operation in your PyTorch neural network, you can find some helpful guidance on the [PyTorch: Automated Mixed Precision page](https://pytorch.org/docs/stable/amp.html).
+
+> You can try running your existing model `torch.flot32` in mixed precision using `torch.cuda.amp` to see if it still maintains its accuracy Half-precision support is not widely available in consumer GPUs, but it is supported by the V100, P100, and A100 GPUs,
+
+- There are three levels of manual quantization available in PyTorch, called eager mode quantization. These levels offer different levels of control and flexibility, depending on your needs. If you want to deploy your model to a non-CUDA environment or have more control over the quantization process, you can use eager mode quantization.
+
+| Quantization Method |	When to Use	 | Pros | Cons| 
+| -------------------- | -------------|-------------|-------------|
+| Dynamic quantization | When you need to quantize a model quickly and easily, without sacrificing too much accuracy. | Simple to implement, requires no changes to the model training process. | Can lead to loss of accuracy for models with large activations. | 
+| Static quantization | When you need to achieve the highest possible accuracy after quantization. | Can achieve higher accuracy than dynamic quantization, especially for models with large activations. | Requires a calibration step after training, which can be time-consuming. | 
+| Static quantization-aware training | When you want to combine the benefits of dynamic quantization and static quantization. | Can achieve high accuracy with faster training times than static quantization. | Requires more complex training process than dynamic quantization. | 
+
+- For a more comprehensive overview of the tradeoffs between quantization types, please see the PyTorch blog post "[Introduction to Quantization](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/)".
+
+> The coverage of layers and operators (such as Linear, Conv, RNN, LSTM, GRU, and Attention) for dynamic and static quantization differs, as shown in the table below. FX quantization also supports the corresponding functionals.
+
+
+
+
+
+
