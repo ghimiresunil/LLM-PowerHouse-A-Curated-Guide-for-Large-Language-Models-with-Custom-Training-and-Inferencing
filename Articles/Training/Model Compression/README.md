@@ -87,6 +87,96 @@
 
 > The coverage of layers and operators (such as Linear, Conv, RNN, LSTM, GRU, and Attention) for dynamic and static quantization differs, as shown in the table below. FX quantization also supports the corresponding functionals.
 
+## Dynamic/Runtime Quantization
+
+- Dynamic quantization is a simple and effective way to quantize models in PyTorch. Dynamic quantization in PyTorch involves converting the weights to int8, as with other quantization methods, but it also converts the activations to `int8` on the fly, just before the computation is performed. The computations will be performed using efficient `int8` matrix multiplication and convolution implementations, which will result in faster compute. However, the activations will be read and written to memory in floating point format.
+- The network's weights are stored in a specified quantization format. At runtime, the activations are dynamically converted to the same quantization format, combined with the quantized weights, and then written to memory in full precision. The output of each layer in a quantized neural network is quantized and then combined with the quantized weights of the next layer. This process is repeated for each layer in the network, until the final output is produced. I am confused why this happens, my understanding is that `scalars` could be dynamically determined from the data, which would mean that this is a data-free method.
+- To quantize a model in PyTorch, we can use the `torch.quantization.quantize_dynamic` API. This API takes in a model and a few other arguments, and returns a quantized model. For an example of how to use this API, see this [end-to-end](https://pytorch.org/tutorials/intermediate/dynamic_quantization_bert_tutorial.html) tutorial on quantizing a BERT model.
+
+```python
+# quantize the LSTM and Linear parts of our network
+# and use the torch.qint8 type to quantize
+
+quantized_model = torch.quantization.quantize_dynamic(
+    model, {nn.LSTM, nn.Linear}, dtype=torch.qint8
+)
+```
+- There are many ways to improve your model by adjusting its hyperparameters. More details can be found in this [blog post](https://pytorch.org/tutorials/recipes/recipes/dynamic_quantization.html).
+- For more information on the function, please see the documentation [here](https://pytorch.org/docs/stable/quantization.html#torch.quantization.quantize_dynamic). For an end-to-end example, please see tutorials [here](https://pytorch.org/tutorials/advanced/dynamic_quantization_tutorial.html) and [here](https://pytorch.org/tutorials/intermediate/dynamic_quantization_bert_tutorial.html).
+
+## Post-Training Static Quantization
+- Converting activations to full precision and back at runtime is computationally expensive. However, we can avoid this cost if we know the distribution of activations, which can be determined by recording real data flowing through the network. 
+- Neural networks can be made to perform faster (in terms of latency) by converting them to use bot integer arithmetic and `int8` memory accesses. Static quantization involves feeding batches of data through the network to compute the distribution of activations. This is done by inserting observer modules at different points in the network to record the distributions.The information is used to determine how to quantize the activations at inference time. We can use a simple method that divides the activations into 256 levels, or we can use a more sophisticated method.
+- By quantizing the values, we can avoid the overhead of converting them to floats and then back to ints, which can significantly improve performance.
+- Users can use the following features to optimize their static quantization models for better performance.
+    - **Observers**: By customizing observer modules, you can control how statistics are collected prior to quantization, which can lead to more accurate and efficient quantization of your data.
+        - Observers are inserted using `torch.quantization.prepare`.
+    - **Operator fusion**: PyTorch can inspect your model and implement additional optimizations, such as quantized operator fusion, when you have access to data flowing through your network. This can save on memory access and improve the operation's numerical accuracy by fusing multiple operations into a single operation.
+        - To fuse modules, use `torch.quantization.fuse_modules`.
+    - **Per-channel quantization**: By quantizing the weights of a convolution or linear layer independently for each output channel, we can achieve higher accuracy with almost the same speed.
+        - Quantization itself is done using `torch.quantization.convert`.
+- Below is an example of how to set up observers, run them with data, and export a new statically quantized model.
+
+```python
+# this is a default quantization config for mobile-based inference (ARM)
+model.qconfig = torch.quantization.get_default_qconfig('qnnpack')
+# or set quantization config for server (x86)
+# model.qconfig = torch.quantization.get_default_config('fbgemm')
+
+# this chain (conv + batchnorm + relu) is one of a few sequences 
+# that are supported by the model fuser 
+model_fused = torch.quantization.fuse_modules(model, [['conv', 'bn', 'relu']])
+
+# insert observers
+model_with_observers = torch.quantization.prepare(model_fused)
+
+# calibrate the model and collect statistics
+model_with_observers(example_batch)
+
+# convert to quantized version
+quantized_model = torch.quantization.convert(model_with_observers)
+
+```
+## Static Quantization-aware Training (QAT)
+- Quantization-aware training (QAT) is the third method for quantization, and it typically achieves the highest accuracy. In QAT, weights and activations are "fake quantized" i.e. rounded to `int8` values during both the forward and backward passes of training, while computations are still done with floating point numbers. This allows the model to be trained with the knowledge/aware that it will be quantized, resulting in higher accuracy than other methods.
+- QAT tells the model about its limitations in advance, and the model learns to adapt to these limitations by rounding its activations to the chosen quantization during the forward and backward passes. This helps the model to learn to be more robust to quantization, resulting in higher accuracy after quantization.
+> During QAT, the backpropagation (gradient descent of the weights) is performed in full precision. This is important because it ensures that the model is able to learn the correct weights, even though the activations are being rounded to a lower precision.
+- To quantize a model, `torch.quantization.prepare_qat` first inserts fake quantization modules to the model. Then, `torch.quantization.convert` quantizes the model once training is complete, mimicking the static quantization API.
+- In the [end-to-end example](https://pytorch.org/tutorials/advanced/static_quantization_tutorial.html), we load a pre-trained model into a variable called qat_model. Then, we perform quantization-aware training on the model using the below code:
+```python
+# specify quantization config for QAT
+qat_model.qconfig=torch.quantization.get_default_qat_qconfig('fbgemm')
+
+# prepare QAT
+torch.quantization.prepare_qat(qat_model, inplace=True)
+
+# convert to quantized version, removing dropout, to check for accuracy on each
+epochquantized_model=torch.quantization.convert(qat_model.eval(), inplace=False)
+```
+> It is recommended to read the helpful tips under the “[Model Preparation for Quantization](https://pytorch.org/docs/stable/quantization.html)” section of the PyTorch documentation before using PyTorch quantization.
+
+# Device and Operator Support
+- Quantization support is limited to a subset of operators, depending on the quantization method. For a list of supported operators, please see the [documentation](https://pytorch.org/docs/stable/quantization.html).
+- The set of operators and quantization methods available for quantized models depends on the backend used to run them. Currently, quantized operators are only supported for CPU inference on the x86 and ARM backends. The quantization configuration and quantized kernels are also backend dependent. To specify the backend, you can use:
+
+```python
+import torchbackend='fbgemm'
+
+# 'fbgemm' for server, 'qnnpack' for mobile
+my_model.qconfig = torch.quantization.get_default_qconfig(backend)
+
+# prepare and convert model
+# Set the backend on which the quantized kernels need to be run
+torch.backends.quantized.engine=backend
+```
+- Quantization-aware training is a process that trains CNN models in full floating point, and can be run on either GPU or CPU. It is typically used when post-training quantization does not yield sufficient accuracy, such as with models that are highly optimized to achieve small size.
+
+# Integration in Torchvision
+- PyTorch has made it easier to quantize popular models in [torchvision](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/) by providing quantized versions of the models, a quantization API, and a quantization tutorial. This makes it possible to deploy quantized models to production with less effort.
+    - Quantized versions of the models, which are pre-trained and ready to use.
+    - Quantization-ready model definitions are provided so that you can quantize a model after training (post-training quantization) or quantize a model during training (quantization aware training).
+    - Quantization aware training is a technique that can be used to improve the accuracy of any model, but we found it to be especially beneficial for Mobilenet
+    - You can find a [tutorial](https://pytorch.org/tutorials/intermediate/quantized_transfer_learning_tutorial.html) on that demonstrates how to do transfer learning with quantization using a torchvision model.
 
 
 
