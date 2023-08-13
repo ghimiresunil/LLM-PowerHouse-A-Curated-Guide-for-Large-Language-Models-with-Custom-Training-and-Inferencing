@@ -178,7 +178,127 @@ torch.backends.quantized.engine=backend
     - Quantization aware training is a technique that can be used to improve the accuracy of any model, but we found it to be especially beneficial for Mobilenet
     - You can find a [tutorial](https://pytorch.org/tutorials/intermediate/quantized_transfer_learning_tutorial.html) on that demonstrates how to do transfer learning with quantization using a torchvision model.
 
+# Choosing an Approach
+- The decision of which scheme to use is dependent by a variety of factors.
+    - **Model/Target requirements**: Some models are more sensitive to quantization than others, and may require quantization-aware training to maintain accuracy.
+    - **Operator/Backend support**: There are backends that only work with fully quantized operators.
+- The number of quantized operators available in PyTorch is currently limited, which may impact the choices you can make from the table below. This table, from PyTorch: Introduction to Quantization on PyTorch, provides some guidance.
 
+# Performance Reults
+- Quantization can reduce the model size by 4x and speed up inference by 2x to 3x, depending on the hardware platform and the model being benchmarked. The table below from the [PyTorch documentation on quantization on PyTorch](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/) provides some sample results of the technique.
 
+# Accuracy Results
+- The tables in [PyTorch's Introduction to Quantization on PyTorch](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/) document compare the accuracy of quantized models to floating-point models on the ImageNet, as well as we compared the F1 score of BERT on the GLUE benchmark for MRPC.
 
+## Computer Vision Model Accuracy
+## Speech and NLP Model Accuracy
 
+# Conclusion
+- The [PyTorch official website](https://pytorch.org/tutorials/#model-optimization) has tutorials that can help you get started with quantizing your models in PyTorch.
+- If you are working with sequence data, start with…
+    - [Dynamic quantization for LSTM](https://pytorch.org/tutorials/advanced/dynamic_quantization_tutorial.html) or 
+    [Dynamic quantization for BERT](https://pytorch.org/tutorials/intermediate/dynamic_quantization_bert_tutorial.html)
+- If you are working with image data, you can start by learning about [transfer learning with quantization](https://pytorch.org/tutorials/intermediate/quantized_transfer_learning_tutorial.html). Once you have a good understanding of that, you can explore s[tatic post-training quantization](https://pytorch.org/tutorials/advanced/static_quantization_tutorial.html).
+    - If you are not satisfied with the accuracy of your model after post-training quantization, you can try [quantization aware training](https://pytorch.org/tutorials/advanced/static_quantization_tutorial.html) to improve accuracy.
+
+# Quantization in Other Frameworks: TensorFlow and CoreML
+- PyTorch quantization may not work in all production environments, such as when converting a model to Apple's CoreML format, which requires 16-bit quantization. When deploying a model to an edge device, it is important to check that the device supports quantization. On Apple devices, the hardware already computes everything in `fp16`, so quantization is only useful for reducing the memory footprint of the model.
+- TensorFlow uses a similar set of steps as above, but the examples are focused on TFLite. 
+- The [post-training quantization](https://www.tensorflow.org/model_optimization/guide/quantization/post_training) page explains static and dynamic quantization, and the QAT page provides more information about quantization aware training. The tradeoffs between PyTorch and TensorFlow for quantization are similar, but there are some features that are not compatible between the two frameworks.
+
+# How Far Can We Go?
+- Researchers have been working on binary neural networks [for years](https://arxiv.org/abs/1909.13863), as they offer the potential for extreme speedups with only a small loss in accuracy. These networks use only 1 bit of precision for their weights and activations, which can be much faster to compute than traditional neural networks. Binary neural networks are still mostly research projects, but [XNOR-Net++](https://arxiv.org/abs/1909.13863) is a notable exception as it has been implemented in PyTorch. This makes it a more usable idea for practical applications.
+
+# Use-case
+- Quantization is a technique that can be used to increase the speed of model inference by reducing the precision of the model's parameters. In contrast, please reed Mixed Precision Training, Automatic Mixed Precision (AMP) is a technique that can be used to reduce the training time of a model by using lower precision numbers during training.
+
+# Further Reading
+- [PyTorch official documentation: Introduction to Quantization on PyTorch](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/)
+- [PyTorch official documentation: Advanced Quantization in PyTorch](https://pytorch.org/tutorials/advanced/static_quantization_tutorial.html)
+- [PyTorch official documentation: Quantization](https://pytorch.org/docs/stable/quantization.html)
+- [CoreML Tools documentation: Quantization](https://coremltools.readme.io/docs/quantization)
+
+# Knowledge Distillation
+- Knowledge distillation is a technique for transferring knowledge from a large model (teacher) to a smaller model (student), resulting in smaller and more efficient models. [Hinton et al., 2015](https://arxiv.org/abs/1503.02531)
+- "Knowledge distillation is a process of transferring knowledge from a large model (teacher) to a smaller model (student). The student model can learn to produce similar output responses (response-based distillation), reproduce similar intermediate layers (feature-based distillation), or reproduce the interaction between layers (relation-based distillation)." [aiedge.io](https://newsletter.theaiedge.io/)
+- The image below, which is sourced from [AiEdge.io](https://newsletter.theaiedge.io/), does an excellent job of visualizing the concept of knowledge distillation.
+- Knowledge distillation is a technique that allows us to deploy large deep learning models in production by training a smaller model (student) to mimic the performance of a larger model (teacher).
+> The key idea of knowledge distillation is to train the student model with the soft target of the teacher model's output probability distribution, instead of the same labeled data as the teacher.
+- During a standard training process, the teacher model learns to discriminate between many classes by maximizing the probability of the correct label. This side effect, where the model assigns smaller probabilities to other classes, can give us valuable insights into how the model generalizes. For example, an image of a cat is more likely to be mistaken for a tiger than a chair, even though the probability of both mistakes is low. We can use this knowledge to train a student model that is more accurate and robust.
+- The student model is typically a smaller version of the teacher model, with fewer parameters. However, it is recommended to use the same network structure as the teacher model, as this can help the student model to learn more effectively. For example, if we want to use BERT as a teacher model, we can use DistillBERT, which is a 40% smaller version of BERT with the same network structure.
+- The student model is trained to minimize a loss function that is a combination of the teacher's original training loss and a distillation loss. The distillation loss is calculated by taking the teacher's softmax output for the correct class, averaging it with the softmax output of the student model, and then scaling the result with a temperature parameter. The temperature parameter controls how soft the averaging is, with a higher temperature resulting in a softer averaging.
+-  The temperature parameter effectively smooths out the probability distribution, reducing the higher probabilities and increasing the smaller ones. This results in a softer distribution that contains more knowledge about the uncertainty of the prediction.
+- Knowledge distillation can significantly reduce the latency of a machine learning model, with only a small decrease in accuracy.
+- In practice, for a classification task, we can train a smaller student model $f_{\theta}$, where $\theta$ is the set of parameters, by using a large model or an ensemble of models (possibly even the same model trained with different initializations), which we call $F$. We train the student model with the following loss function:
+$$\mathcal{L} = \sum\nolimits_{i=1}^n KL(F(x_i),f_{\theta}(x_i))$$
+
+where, $F(x_i)$ = probability distribution over the labels created by passing example $x_i$
+ through the network
+ - You can optionally add the regular cross-entropy loss to the loss function by passing in the one-hot ground truth distribution to the student model as well. 
+ $$\mathcal{L} =  \sum\nolimits_{i=1}^n(KL(F(x_i), f_{\theta}) - \beta.\sum\nolimits_{=1}^K y_i[k] logf_{\theta}(x_i)[k])$$
+> Note: The second term in the loss function is the $KL$ Kullback-Leibler divergence from the one-hot distribution of the labels (the "true" distribution) to the student model's distribution, since the one-hot distribution is a special case of the softmax distribution.
+- There is no consensus on why knowledge distillation works, but the most compelling explanation is that it is a form of data augmentation. This paper, [Towards Understanding Ensemble, Knowledge Distillation and Self-Distillation in Deep Learning](https://arxiv.org/abs/2012.09816), provides a good explanation of why this is the case. The paper is focused on the idea of multiple views, and it provides some thought experiments that may help to explain what is happening at a deeper level.
+
+## Distillation Thought Experiment
+- A teacher model trained to classify images may have filters that are sensitive to pointy ears. These filters may fire even when the model is presented with an image of a Batman mask, which is not a cat. This suggests that the model thinks the Batman mask looks 10% like a cat.
+- A student model trained to match the probability distribution of the teacher will learn that the Batman mask has a 10% probability of being a cat. This information can help the student model recognize cat-like images, even if they are not labeled as cats. This is because the student model is able to learn from the teacher model's mistakes and identify images that are similar to cats, even if they do not have the exact same features. This logic also explains why the student model can sometimes outperform the teacher model, as the student model is able to learn from the teacher model's mistakes and make better predictions.
+
+## Ensembling Thought Experiment
+- Ensembles of models (even with the same architecture) can work well because they can learn different features from the same data. For example, in a dataset of cat images, one model might learn to identify cats with pointed ears, another model might learn to identify cats with whiskers, and a third model might learn to identify cats with both features. By combining the predictions of multiple models, ensembles can reduce the risk of overfitting and improve the overall accuracy of image classification.
+- Neural networks can learn to recognize features in data, but they may not learn all of the features that are important. For example, a neural network might learn to recognize feature A by seeing image 1. However, if the network only sees image 1 and image 3, it may not learn feature B, even though feature B is also present in image 3. This is because the network will not receive any gradient signal to learn feature B. A good neural network would learn both feature A and feature B, but this may not always happen.
+-  A neural network learns to classify data points more accurately, it may become less sensitive to small changes in the data. This is because the network is already able to classify the data points with high confidence, so it does not need to rely on every single data point to make a decision. As a result, the signal from some data points may decrease as the network becomes more accurate.
+
+# Distillation in Practice
+- Knowledge distillation is a rapidly growing research field with applications in defending against adversarial attacks, transferring knowledge between models, and protecting privacy.
+- In knowledge distillation, the student model learns from the teacher model by mimicking its predictions. Response-based distillation focuses on the final output layer of the teacher model, while feature-based and relation-based distillation focus on other parts of the teacher model.
+- The different types of distillation, such as offline distillation (where the student model is trained after the teacher model), online distillation (where the student and teacher models are trained together), and self-distillation (where the teacher model has the same architecture as the student model), can make it difficult to track distillation in practice. A set of ad hoc model-specific techniques may be the best general recommendation.
+- In Fact,
+    - [Cho & Hariharan (2019)](https://arxiv.org/abs/1910.01348) found that knowledge distillation can be harmful when the student model is too small. They also found that knowledge distillation papers rarely use ImageNet and so often don't work well on difficult problems.
+    - [Mirzadeh et al. (2019)](https://arxiv.org/abs/1902.03393) found that better teacher models don't always mean better distillation, and that the farther the student and teacher model's capacities are, the less effective distillation is.
+    - A recent investigation by [Tang et al. (2021)](https://arxiv.org/pdf/2002.03532.pdf) supports these findings.
+> Note: Knowledge distillation can be harmful when the student model is too small, and it is less effective when the student and teacher models have different capacities.
+- In Summary, knowledge distillation is a powerful technique for improving the performance of small models, but it is more difficult to implement than quantization and pruning. However, it can be worth the effort if you need to achieve a high level of accuracy with a small model.
+
+## Distillation As Semi-supervised Learning
+- A teacher model can be used to transfer knowledge to a student model. The teacher model is first trained on a large set of labeled data. Then, it is used to generate soft labels for a smaller set of unlabeled data. These soft labels can then be used to train the student model. This approach allows the student model to learn from the knowledge of the teacher model, even though it is not trained on as much data.
+- [Parthasarathi and Strom (2019)](https://arxiv.org/pdf/1904.01624.pdf) used a two-step approach to train an acoustic model for speech recognition. First, they trained a powerful teacher model on a small set of annotated data. This teacher model was then used to label a much larger set of unannotated data. Finally, they trained a leaner, more efficient student model on the combined dataset of annotated and unlabeled data.
+
+# Pruning
+- Pruning is a way to remove unnecessary weights or neurons from a neural network, making it smaller and faster without sacrificing accuracy. We can often prune up to [90% of the parameters](https://arxiv.org/abs/1506.02626) in a large deep neural network without any noticeable loss in performance.
+- Model pruning is a way to remove unnecessary weights from a neural network by understanding which weights are important to the model's performance. This can be done by analyzing the impact of each weight on the loss function, using regularization methods (L1 and L2), or removing entire neurons or layers. The goal of pruning is to create a smaller, more efficient model without sacrificing accuracy.
+- The [lottery ticket hypothesis](https://arxiv.org/abs/1803.03635) is a theory that explains why model pruning works. It states that every neural network contains a subnetwork that is capable of achieving the same accuracy as the original network, even if it is much smaller. This subnetwork is called a "winning ticket."
+    - For example: Let's say we have a tabular dataset with 100 features and 10 classes. We want to train a neural network to predict the class of each data point.
+
+        We could train a large neural network with 1000 neurons in the hidden layer. This network would have 100,000 parameters. However, according to the lottery ticket hypothesis, this network contains a subnetwork with only a few thousand parameters that can be trained to achieve the same accuracy as the original network.
+
+        We could find this subnetwork by using a technique called pruning. Pruning is a process of removing the less important parameters from a neural network. This can be done by iteratively removing the parameters with the smallest weights or by removing the parameters that have the least impact on the network's performance.
+
+        In this example, we could use pruning to remove 95% of the parameters from the original network. This would leave us with a smaller network with only 5000 parameters. However, this smaller network would still be able to achieve the same accuracy as the original network.
+
+    - Randomly initialized neural networks contain subnetworks that can be trained to achieve similar accuracy to the original network, even if they are much smaller. This is known as the lottery ticket hypothesis.
+
+> Large neural networks contain subnetworks that can be trained to achieve the same accuracy as the original network, even if they are much smaller.
+
+## Structured vs. Unstructured Pruning
+- Structured pruning removes neurons or chooses a subnetwork, while unstructured pruning sparsifies model weights using methods such as TensorFlow's `tensorflow_model_optimization` and PyTorch's `torch.nn.utils.prune`. This can save disk space using compression algorithms such as run-length encoding or [byte-pair encoding](https://en.wikipedia.org/wiki/Byte_pair_encoding) and it may also speed up inference when sparse model support is fully implemented in various frameworks because multiplying a sparse vector and a sparse matrix is faster than multiplying a dense vector and a dense matrix.
+- Structured pruning, a dynamic research field lacking a clear API, involves selecting a metric to assess the significance of each neuron. Subsequently, neurons with lower information content can be pruned, with potentially useful metrics encompassing the [Shapley value](https://christophm.github.io/interpretable-ml-book/shapley.html), a Taylor approximation measuring a neuron's impact on loss sensitivity, or even random selection. Notably, the [TorchPruner](https://github.com/marcoancona/TorchPruner) library automatically incorporates some of these metrics for `nn.Linear` and convolution modules, while the [Torch-Pruning](https://github.com/vainf/torch-pruning) library offers support for additional operations. Among the notable earlier contributions, one involves filter pruning in convnets using the L1 norm of filter weights.
+- Unstructured pruning is a technique for reducing the size of a neural network by zeroing out weights with small magnitudes. It can be done during or after training, and the target sparsity can be adjusted to achieve the desired balance between model size and accuracy. However, [there is some confusion](https://arxiv.org/abs/2003.03033) in this area, so it is important to consult the documentation for [TensorFlow](https://www.tensorflow.org/model_optimization/guide/pruning/) and [PyTorch](https://pytorch.org/tutorials/intermediate/pruning_tutorial.html) before using unstructured pruning.
+
+# Fine Tuning | [What is Fine Tuning](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/main/Articles/Training/Fine%20Tuning%20Models)
+- After pruning a neural network, it is [standard practice](https://arxiv.org/pdf/2003.02389.pdf) to retrain the network. The best method is to reset the learning rate to its original value and start training from scratch. Optionally, you can also reset the weights of the unpruned parts of the network to their values earlier in training. This is essentially training the lottery ticket subnetwork that we have identified.
+    - For example: let's say we have a neural network with 1000 weights. We use pruning to remove 90% of the weights, leaving us with 100 weights. We then retrain the network with a reset learning rate and the weights from the earlier training. This helps the lottery ticket subnetwork to learn how to perform the task at hand more effectively.
+
+>  If you are interested in network pruning, you can start by using [TorchPruner](https://github.com/marcoancona/TorchPruner) or [Torch-Pruning](https://github.com/vainf/torch-pruning) to prune the network. Then, you can fine-tune the resulting network with learning rate rewinding. However, it is not always clear how to trim the rest of the network around the pruned part, especially for architectures with skip connections like ResNets.
+
+# DeepSpeed and ZeRO-Offload
+- [DeepSpeed](https://www.deepspeed.ai/) is a library that optimizes the training of large and extremely large models on GPUs. It does this by using smart parallelism and better caching, which can lead to significant speedups and memory savings. DeepSpeed is an extension to PyTorch, so it is easy to use with existing PyTorch code.
+
+# Conclusion
+- Deep learning researchers have developed model-specific methods to distill large models into smaller, faster models with similar performance.
+- These distilled models can be used to gain performance without having to train a large model from scratch.
+- In NLP, [HuggingFace](https://huggingface.co/) provides pre-trained distilled models such as DistilBert and TinyBert.
+- In computer vision, [Facebook Research's d2go](https://github.com/facebookresearch/d2go) provides pre-trained mobile-ready models, some of which are distilled using DeiT methods.- 
+- The paper "[Well-Read Students Learn Better: On the Importance of Pre-training Compact Models](https://arxiv.org/abs/1908.08962)" recommends that the best approach for training BERT architectures is to use a pre-trained model with a small number of parameters, and then fine-tune the model on a specific task. This approach was found to be more effective than training a BERT model from scratch, or fine-tuning a large BERT model on a specific task.
+- One of the biggest advantages of the Pre-trained Distillation (PD) method is that it can be used with any NLP model architecture. This makes it a very versatile and powerful tool for training compact NLP models. If you are planning on using a compact NLP model in practice, I recommend reading the paper, especially section 6, which provides more details on the PD method.
+
+# 
