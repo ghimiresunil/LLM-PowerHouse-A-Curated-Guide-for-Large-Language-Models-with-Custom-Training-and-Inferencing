@@ -429,6 +429,26 @@ torch.cuda.amp.GradScaler(
 - To prevent the scale factor from interfering with the learning rate, it is necessary to unscale the `.grad` attribute of each parameter in PyTorch before the optimizer updates the parameters.
 
 ## `autocast` Context Manager
+- The `torch.cuda.amp.autocast` context manager is a powerful tool for improving the performance of PyTorch models. It automatically casts operations to fp16, which can significantly speed up training without sacrificing accuracy. However, not all operations are safe to run in fp16, so it is important to check the amp [module documentation](https://pytorch.org/docs/master/amp.html#autocast-op-reference) for a list of supported operations.
+- The list of operations that autocast can cast to fp16 is dominated by matrix multiplication and convolutions. The simple linear function is also supported.
+- The operations listed above are safe to use in `FP16`, and they have up-casting rules to ensure that they are not affected by a mixture of `FP16` and `FP32` inputs. These operations include two other fundamental linear algebraic operations: matrix/vector dot products and vector cross products.
+- The following operations are not safe to use in `FP16`: logarithms, exponents, trigonometric functions, normal functions, discrete functions, and large sums. These operations must be performed in `FP32` to avoid errors.
+- Convolutional layers are the most likely layers to benefit from autocasting, as they rely on safe FP16 operations. Activation functions, on the other hand, may not benefit as much from autocasting, as they often use unsafe FP16 operations.
+- To enable autocasting, you can simply wrap the forward pass of your model in the autocast context manager. This will cause all of the operations in the forward pass to be cast to `FP16`, except for those that are not safe to use in `FP16`.
+
+```python
+with torch.cuda.amp.autocast():
+    y_pred = model(X_batch).squeeze()
+    loss = self.loss_fn(y_pred, y_batch)
+```
+- When you wrap the forward pass of your model in the autocast context manager, autocasting will be automatically enabled on the backward pass as well(Example: `loss.backwards()`). This means that you only need to call autocast once, regardless of whether you are using the forward pass or the backward pass.
+- Autocasting is a powerful tool that can help you to improve the performance of your PyTorch models. However, it is important to follow best practices for using PyTorch, such as avoiding in-place operations, to ensure that autocasting works correctly.
+
+
+
+
+
+
 
 
 
