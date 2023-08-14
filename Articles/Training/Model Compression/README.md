@@ -301,4 +301,152 @@ where, $F(x_i)$ = probability distribution over the labels created by passing ex
 - The paper "[Well-Read Students Learn Better: On the Importance of Pre-training Compact Models](https://arxiv.org/abs/1908.08962)" recommends that the best approach for training BERT architectures is to use a pre-trained model with a small number of parameters, and then fine-tune the model on a specific task. This approach was found to be more effective than training a BERT model from scratch, or fine-tuning a large BERT model on a specific task.
 - One of the biggest advantages of the Pre-trained Distillation (PD) method is that it can be used with any NLP model architecture. This makes it a very versatile and powerful tool for training compact NLP models. If you are planning on using a compact NLP model in practice, I recommend reading the paper, especially section 6, which provides more details on the PD method.
 
-# 
+# Mixed Precision Training
+
+# Overview
+- Mixed precision training is a technique that uses half-precision floating point numbers (`float16`) to speed up neural network training while maintaining accuracy. By using `float16` for most operations, the training time is reduced significantly while using less memory. Certain parts of the model are still kept in single-precision floating point (`float32`) for numeric stability, but this does not affect the accuracy of the model.
+    - **Example**: Let's say we have a neural network with 100 million parameters that we want to train on a dataset of images. If we train the network using single-precision floating point numbers (float32), the training will take about 10 days to complete.
+
+        However, if we use mixed precision training, we can reduce the training time to about 5 days. This is because mixed precision training uses half-precision floating point numbers (float16) for most operations, which takes up half as much memory and is twice as fast as float32.
+
+        The only parts of the network that are still kept in float32 are the weights and activations of the first few layers. This is because these layers are more sensitive to numerical errors, and using float16 for these layers could lead to a loss of accuracy.
+
+        However, even with these few layers in float32, the overall accuracy of the network is still 99%. This shows that mixed precision training can be a very effective way to speed up the training of neural networks without sacrificing accuracy.
+    
+    - **Numeric stability**: Measure of how well a model's quality is maintained when using a lower-precision floating point data type (`float16` or `bfloat16`) instead of a higher-precision data type (`float32`). An operation is considered "numerically unstable" in float16 or bfloat16 if it causes the model to have worse evaluation accuracy or other metrics compared to running the operation in `float32`.
+- Modern accelerators can take advantage of lower-precision data types, such as `float16` and `bfloat16`, which take up half as much memory as float32 and can be processed more quickly.
+- Automatic Mixed Precision (AMP) is a technique that uses lower precision (such as `float16` or `bfloat16`) for operations that don't require the full precision of `float32`. This can speed up training without sacrificing accuracy.
+- Mixed precision is a technique that can reduce the runtime and memory footprint of your network by matching each operation to its appropriate data type.
+
+## Under-the-hood
+- Using lower-precision floating-point (`float16` and `bfloat16`) formats can speed up machine learning operations on NVIDIA GPUs and TPUs. However, it is important to use `float32` for some variables and computations to ensure that the model trains to the same quality. This is because lower-precision floating-point formats can introduce numerical errors, which can affect the accuracy of the model.
+- NVIDIA GPUs with Tensor Cores can achieve significant performance gains for `fp16` matrix operations, as these cores are specifically designed for this task.
+- Using tensor cores in PyTorch used to be difficult, requiring manual writing of reduced precision operations into models. However, the `[torch.cuda.amp]()` API automates this process, making it possible to implement mixed precision training in just five lines of code. This can significantly speed up training time without sacrificing accuracy.
+
+## How Mixed Precision Works
+- To understand mixed precision training, we need to first understand floating point numbers. 
+- In computer engineering, decimal numbers are typically represented as floating-point numbers. Floating-point numbers have a limited precision, but they can represent a wide range of values. This is a trade-off between precision and size.
+    -  The number π cannot be represented exactly as a floating-point number, but it can be represented with a high degree of precision. This is sufficient for most engineering applications.
+- Building upon the background of precision(Discussed Earlier), the IEEE 754 standard, which is the technical standard for floating point numbers, sets the following standards:
+    - **Precision**: The number of digits that can be represented accurately in a floating point number. This is typically between 6 and 15 significant digits for single-precision and double-precision numbers, respectively.
+    - **Range**: The set of all possible values that a floating point number can represent. This ranges from very small numbers (such as $10^{-38}$) to very large numbers (such as $10^{38}$).
+    -**Rounding mode**: How floating point numbers are rounded when they are converted to integers. There are several different rounding modes, such as round to nearest, round down, and round up.
+    - `fp64`, also known as double-precision or “double”, max rounding error of $~2^−52$
+    - `fp32`, also known as single-precision or “single”, max rounding error of $~2^−23$.
+    - `fp16` also known as half-precision or “half”, max rounding error of $~2^−10$
+- PyTorch, which is more memory-sensitive than Python, uses `fp32` as its default dtype instead of `fp64`, which is the default float type in Python.
+> Note: Mixed precision training is a technique that uses half-precision floating point numbers (`fp16`) instead of single-precision floating point numbers (`fp32`) to reduce the training time of deep learning models.
+- The tricky part is to do it without compromising accuracy.
+- Using smaller floating point numbers can lead to rounding errors that are large enough to cause underflow. This is a problem because many gradient update values during backpropagation are very small but not zero. Rounding errors can accumulate during backpropagation, turning these values into zeroes or NaNs. This can lead to inaccurate gradient updates and prevent the network from converging.
+- The researchers "[Mixed Precision Training](https://arxiv.org/pdf/1710.03740.pdf)" found that using `fp16` "half-precision" floating point numbers for all computations can lose information, as it cannot represent gradient updates smaller than "$2^{-24}$" value. This information loss can affect the accuracy of the model, as around 5% of all gradient updates made by their example network were smaller than this threshold.
+- Mixed precision training is a technique that uses `fp16` to speed up model training without sacrificing accuracy. It does this by combining three different techniques:
+    - Maintain two copies of the weights matrix:
+        -  The master copy of the weights matrix is stored in `fp32`. This is the copy that is used to calculate the loss function and to update the weights.
+        - The `fp16` copy of the weights matrix is used for all other computations. This helps to speed up training by reducing the amount of memory required.
+    - Use different vector operations for different parts of the network:
+        - Convolutions are generally safe to run in `fp16`. This is because convolutions only involve multiplying small matrices together, which can be done accurately in `fp16`.
+        - Matrix multiplications are not as safe to run in `fp16`. This is because matrix multiplications involve multiplying large matrices together, which can lead to rounding errors in `fp16`.
+        - By using convolutions in `fp16` and matrix multiplications in fp32, we can improve accuracy while still using mixed precision.
+    - Use loss scaling:
+        - Loss scaling is a technique for multiplying the loss function output by a scalar number before performing backpropagation. This increases the magnitude of the gradient updates, which can help to prevent them from becoming too small.
+        - A good loss scaling factor to start with is `8` "Suggested by paper". If the model is diverging, you can try increasing the loss scaling factor. However, if the loss scaling factor is too large, it can cause the model to diverge in the other direction.
+- The authors used a combination of three techniques to train a variety of networks much faster than traditional methods. For benchmarks, please see the [paper](https://arxiv.org/pdf/1710.03740.pdf).
+
+## How Tensor Cores Actually Works
+- Mixed precision training (an `fp16` matrix is half the size of a `fp32` one) can reduce the memory requirements for deep learning models, but it can only speed up training if the GPU has special hardware support for half-precision operations. Tensor cores in recent NVIDIA GPUs provide this support, and can significantly speed up mixed precision training.
+- Tensor cores are a type of processor that is specifically designed to perform a single operation very quickly: multiplying two 4x4 matrices of floating-point numbers in half precision (`fp16`) and adding the result to a third 4x4 matrix of floating-point numbers in either half precision or single precision (`fp32`). This operation is called a "fused multiply add".
+- Tensor cores are a type of processor that can be used to accelerate matrix multiplication operations in half precision. This makes them ideal for accelerating backpropagation, which is a computationally intensive process that is used to train neural networks.
+
+> Note: Tensor cores are only useful for accelerating matrix multiplication operations if the input matrices are in half precision. If you are training a neural network on a GPU with tensor cores and not using mixed precision training, you are wasting the potential of the GPU because the tensor cores will not be used.
+- Tensor cores are a type of processor that was introduced in the Volta architecture in late 2017. They have been improved in the Turing and Ampere architectures, and are now available on the [V100](https://www.nvidia.com/en-us/data-center/v100/) and T4 GPUs. The V100 has 5120 CUDA cores and 600 tensor cores, while the T4 has 2560 CUDA cores and 320 tensor cores.Tensor cores can be used to accelerate matrix multiplication operations in half precision, which can significantly improve the performance of deep learning workloads.
+> Although all versions of CUDA 7.0 or higher support tensor core operations, early implementations of tensor cores in CUDA were buggy. It is recommended to use CUDA 10.0 or higher for the best performance and stability when using tensor cores.
+
+## How PyTorch Automatic Mixed Precision Works
+- Now that we have covered the important background information, we can finally start exploring the new PyTorch `amp` API.
+- Mixed precision training has been possible for a long time, but it required manual intervention to convert parts of the network to fp16 and implement loss scaling. Automatic mixed precision training automates these steps, making it as simple as adding two new API primitives to your training script: `torch.cuda.amp.GradScaler` and `torch.cuda.amp.autocast`.
+- Here is a code snippet that shows how to use mixed precision training in the training loop of a neural network. The comment "# NEW" marks the lines of code that have been added to enable mixed precision training.
+
+```python
+self.train()
+X = torch.tensor(X, dtype=torch.float32)
+y = torch.tensor(y, dtype=torch.float32)
+
+optimizer = torch.optim.Adam(self.parameters(), lr=self.max_lr)
+scheduler = torch.optim.lr_scheduler.OneCycleLR(
+    optimizer, self.max_lr,
+    cycle_momentum=False,
+    epochs=self.n_epochs,
+    steps_per_epoch=int(np.ceil(len(X) / self.batch_size)),
+)
+batches = torch.utils.data.DataLoader(
+    torch.utils.data.TensorDataset(X, y),
+    batch_size=self.batch_size, shuffle=True
+)
+
+# NEW
+scaler = torch.cuda.amp.GradScaler()
+
+for epoch in range(self.n_epochs):
+    for i, (X_batch, y_batch) in enumerate(batches):
+        X_batch = X_batch.cuda()
+        y_batch = y_batch.cuda()
+        optimizer.zero_grad()
+
+        # NEW
+        with torch.cuda.amp.autocast():
+            y_pred = model(X_batch).squeeze()
+            loss = self.loss_fn(y_pred, y_batch)
+
+        # NEW
+        scaler.scale(loss).backward()
+        lv = loss.detach().cpu().numpy()
+        if i % 100 == 0:
+            print(f"Epoch {epoch + 1}/{self.n_epochs}; Batch {i}; Loss {lv}")
+
+        # NEW
+        scaler.step(optimizer)
+        scaler.update()
+        scheduler.step()
+```
+
+### Loss/Gradient Scaling
+- Gradients with small magnitudes in `float16` may underflow and be lost, so it is important to use gradient scaling to prevent this.
+- When training neural networks with float16, gradients with small magnitudes may underflow and be lost. Gradient scaling can be used to prevent this by multiplying the network's loss by a scale factor, which increases the magnitude of the gradients. This ensures that the gradients are large enough to be representable in float16 and that they are not lost.
+- The PyTorch `GradScaler` object is a tool that can be used to prevent gradients from rounding down to 0 during training with mixed precision. It does this by multiplying the network's loss by a scale factor, which ensures that the gradients are large enough to be representable in float16. The optimal scale factor is one that is high enough to retain very small gradients, but not so high that it causes very large gradients to round up to `inf`.
+- The optimal loss multiplier for mixed precision training is difficult to find because it varies depending on the network architecture, the dataset, and the learning rate. Additionally, the optimal multiplier can change over time as the gradients become smaller during training.
+- To prevent gradient updates containing inf values, PyTorch uses exponential backoff. `GradScalar` starts with a small loss multiplier, which it doubles every so often. If GradScalar encounters a gradient update with inf values, it will discard the batch, divide the loss multiplier by 2, and start over.
+- PyTorch uses an algorithm similar to TCP congestion control to approximate the appropriate loss multiplier over time. The algorithm steps the loss multiplier up and down, increasing it until it encounters a problem and then decreasing it until the problem is resolved. The exact numbers used by the algorithm are configurable.
+
+```python
+torch.cuda.amp.GradScaler(
+    init_scale=65536.0, growth_factor=2.0, backoff_factor=0.5,
+    growth_interval=2000, enabled=True
+)
+```
+- `GradScalar` needs to control the gradient update calculations and the optimizer to implement its behavior. This is why the `loss.backwards()` function is replaced with `scaler.scale(loss).backwards()`, and the `optimizer.step()` function is replaced with `scaler.step(optimizer)`.
+- `GradScalar` can prevent gradient updates from overflowing, but it cannot prevent them from underflowing. This is because 0 is a legitimate value, while `inf` is not. If you pick a small `init_scale` and a large `growth_interval`, your network may underflow and diverge before GradScalar can intervene. To prevent this, it is a good idea to pick a large `init_scale`. The default `init_scale` of 65536 (2<sup>16</sup>) is a good choice.
+- `GradScalar` needs to be saved to disk along with the model weights when checkpointing a model. This is because GradScalar is a stateful object that maintains its state across training iterations. The `state_dict()` and `load_state_dict()` object methods can be used to save and load the GradScalar state.
+- To prevent the scale factor from interfering with the learning rate, it is necessary to unscale the `.grad` attribute of each parameter in PyTorch before the optimizer updates the parameters.
+
+## `autocast` Context Manager
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
