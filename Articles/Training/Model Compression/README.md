@@ -182,16 +182,23 @@ torch.backends.quantized.engine=backend
 - The decision of which scheme to use is dependent by a variety of factors.
     - **Model/Target requirements**: Some models are more sensitive to quantization than others, and may require quantization-aware training to maintain accuracy.
     - **Operator/Backend support**: There are backends that only work with fully quantized operators.
-- The number of quantized operators available in PyTorch is currently limited, which may impact the choices you can make from the table below. This table, from PyTorch: Introduction to Quantization on PyTorch, provides some guidance.
+- The number of quantized operators available in PyTorch is currently limited, which may impact the choices you can make from the table below. This table, from [PyTorch: Introduction to Quantization on PyTorch](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/), provides some guidance.
+  
+![choosing_an_approach](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/6fb70bc1-8315-4b61-9cfa-cc66a688c7c8)
 
 ## Performance Reults
 - Quantization can reduce the model size by 4x and speed up inference by 2x to 3x, depending on the hardware platform and the model being benchmarked. The table below from the [PyTorch documentation on quantization on PyTorch](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/) provides some sample results of the technique.
+
+![performance_result](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/cafd2132-0f7b-47e7-8425-2e56ae8cdabb)
 
 ## Accuracy Results
 - The tables in [PyTorch's Introduction to Quantization on PyTorch](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/) document compare the accuracy of quantized models to floating-point models on the ImageNet, as well as we compared the F1 score of BERT on the GLUE benchmark for MRPC.
 
 ### Computer Vision Model Accuracy
+![computer_vision_model_accuracy](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/bc12512e-3537-46b1-b946-812e99994934)
+
 ### Speech and NLP Model Accuracy
+![speech_and_nlp_model_accuracy](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/7af7f87e-da68-46e5-84a5-f9286249b771)
 
 ## Quantization in Other Frameworks: TensorFlow and CoreML
 - PyTorch quantization may not work in all production environments, such as when converting a model to Apple's CoreML format, which requires 16-bit quantization. When deploying a model to an edge device, it is important to check that the device supports quantization. On Apple devices, the hardware already computes everything in `fp16`, so quantization is only useful for reducing the memory footprint of the model.
@@ -208,6 +215,7 @@ torch.backends.quantized.engine=backend
 - Knowledge distillation is a technique for transferring knowledge from a large model (teacher) to a smaller model (student), resulting in smaller and more efficient models. [Hinton et al., 2015](https://arxiv.org/abs/1503.02531)
 - "Knowledge distillation is a process of transferring knowledge from a large model (teacher) to a smaller model (student). The student model can learn to produce similar output responses (response-based distillation), reproduce similar intermediate layers (feature-based distillation), or reproduce the interaction between layers (relation-based distillation)." [aiedge.io](https://newsletter.theaiedge.io/)
 - The image below, which is sourced from [AiEdge.io](https://newsletter.theaiedge.io/), does an excellent job of visualizing the concept of knowledge distillation.
+![knowledge_distilation](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/205a960c-c1ce-4d18-9c3a-feab2df12f45)
 - Knowledge distillation is a technique that allows us to deploy large deep learning models in production by training a smaller model (student) to mimic the performance of a larger model (teacher).
 > The key idea of knowledge distillation is to train the student model with the soft target of the teacher model's output probability distribution, instead of the same labeled data as the teacher.
 - During a standard training process, the teacher model learns to discriminate between many classes by maximizing the probability of the correct label. This side effect, where the model assigns smaller probabilities to other classes, can give us valuable insights into how the model generalizes. For example, an image of a cat is more likely to be mistaken for a tiger than a chair, even though the probability of both mistakes is low. We can use this knowledge to train a student model that is more accurate and robust.
@@ -248,6 +256,8 @@ where, $F(x_i)$ = probability distribution over the labels created by passing ex
 ### Distillation As Semi-supervised Learning
 - A teacher model can be used to transfer knowledge to a student model. The teacher model is first trained on a large set of labeled data. Then, it is used to generate soft labels for a smaller set of unlabeled data. These soft labels can then be used to train the student model. This approach allows the student model to learn from the knowledge of the teacher model, even though it is not trained on as much data.
 - [Parthasarathi and Strom (2019)](https://arxiv.org/pdf/1904.01624.pdf) used a two-step approach to train an acoustic model for speech recognition. First, they trained a powerful teacher model on a small set of annotated data. This teacher model was then used to label a much larger set of unannotated data. Finally, they trained a leaner, more efficient student model on the combined dataset of annotated and unlabeled data.
+
+![Distillation As Semi-supervised Learning](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/32d6f8a2-e9aa-4fa0-b485-7a1f1e648320)
 
 # Pruning
 - Pruning is a way to remove unnecessary weights or neurons from a neural network, making it smaller and faster without sacrificing accuracy. We can often prune up to [90% of the parameters](https://arxiv.org/abs/1506.02626) in a large deep neural network without any noticeable loss in performance.
@@ -301,7 +311,7 @@ where, $F(x_i)$ = probability distribution over the labels created by passing ex
 - NVIDIA GPUs with Tensor Cores can achieve significant performance gains for `fp16` matrix operations, as these cores are specifically designed for this task.
 - Using tensor cores in PyTorch used to be difficult, requiring manual writing of reduced precision operations into models. However, the `[torch.cuda.amp]()` API automates this process, making it possible to implement mixed precision training in just five lines of code. This can significantly speed up training time without sacrificing accuracy.
 
-### How Mixed Precision Works
+### How Mixed Precision Actually Works
 - To understand mixed precision training, we need to first understand floating point numbers. 
 - In computer engineering, decimal numbers are typically represented as floating-point numbers. Floating-point numbers have a limited precision, but they can represent a wide range of values. This is a trade-off between precision and size.
     -  The number π cannot be represented exactly as a floating-point number, but it can be represented with a high degree of precision. This is sufficient for most engineering applications.
@@ -317,6 +327,10 @@ where, $F(x_i)$ = probability distribution over the labels created by passing ex
 - The tricky part is to do it without compromising accuracy.
 - Using smaller floating point numbers can lead to rounding errors that are large enough to cause underflow. This is a problem because many gradient update values during backpropagation are very small but not zero. Rounding errors can accumulate during backpropagation, turning these values into zeroes or NaNs. This can lead to inaccurate gradient updates and prevent the network from converging.
 - The researchers "[Mixed Precision Training](https://arxiv.org/pdf/1710.03740.pdf)" found that using `fp16` "half-precision" floating point numbers for all computations can lose information, as it cannot represent gradient updates smaller than "$2^{-24}$" value. This information loss can affect the accuracy of the model, as around 5% of all gradient updates made by their example network were smaller than this threshold.
+
+
+
+
 - Mixed precision training is a technique that uses `fp16` to speed up model training without sacrificing accuracy. It does this by combining three different techniques:
     - Maintain two copies of the weights matrix:
         -  The master copy of the weights matrix is stored in `fp32`. This is the copy that is used to calculate the loss function and to update the weights.
