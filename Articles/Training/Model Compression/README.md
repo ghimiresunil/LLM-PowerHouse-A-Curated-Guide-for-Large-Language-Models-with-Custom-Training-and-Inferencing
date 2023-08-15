@@ -328,8 +328,7 @@ where, $F(x_i)$ = probability distribution over the labels created by passing ex
 - Using smaller floating point numbers can lead to rounding errors that are large enough to cause underflow. This is a problem because many gradient update values during backpropagation are very small but not zero. Rounding errors can accumulate during backpropagation, turning these values into zeroes or NaNs. This can lead to inaccurate gradient updates and prevent the network from converging.
 - The researchers "[Mixed Precision Training](https://arxiv.org/pdf/1710.03740.pdf)" found that using `fp16` "half-precision" floating point numbers for all computations can lose information, as it cannot represent gradient updates smaller than "$2^{-24}$" value. This information loss can affect the accuracy of the model, as around 5% of all gradient updates made by their example network were smaller than this threshold.
 
-
-
+![mixed_precision](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/1316fdde-2bbc-49f9-99fd-aac4a462cbf6)
 
 - Mixed precision training is a technique that uses `fp16` to speed up model training without sacrificing accuracy. It does this by combining three different techniques:
     - Maintain two copies of the weights matrix:
@@ -347,6 +346,7 @@ where, $F(x_i)$ = probability distribution over the labels created by passing ex
 ### How Tensor Cores Actually Works
 - Mixed precision training (an `fp16` matrix is half the size of a `fp32` one) can reduce the memory requirements for deep learning models, but it can only speed up training if the GPU has special hardware support for half-precision operations. Tensor cores in recent NVIDIA GPUs provide this support, and can significantly speed up mixed precision training.
 - Tensor cores are a type of processor that is specifically designed to perform a single operation very quickly: multiplying two 4x4 matrices of floating-point numbers in half precision (`fp16`) and adding the result to a third 4x4 matrix of floating-point numbers in either half precision or single precision (`fp32`). This operation is called a "fused multiply add".
+![How Tensor Cores Actually Works](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/c4958145-628a-4e22-9f06-61544eb02c81)
 - Tensor cores are a type of processor that can be used to accelerate matrix multiplication operations in half precision. This makes them ideal for accelerating backpropagation, which is a computationally intensive process that is used to train neural networks.
 
 > Note: Tensor cores are only useful for accelerating matrix multiplication operations if the input matrices are in half precision. If you are training a neural network on a GPU with tensor cores and not using mixed precision training, you are wasting the potential of the GPU because the tensor cores will not be used.
@@ -423,7 +423,11 @@ torch.cuda.amp.GradScaler(
 ### `autocast` Context Manager
 - The `torch.cuda.amp.autocast` context manager is a powerful tool for improving the performance of PyTorch models. It automatically casts operations to fp16, which can significantly speed up training without sacrificing accuracy. However, not all operations are safe to run in fp16, so it is important to check the amp [module documentation](https://pytorch.org/docs/master/amp.html#autocast-op-reference) for a list of supported operations.
 - The list of operations that autocast can cast to fp16 is dominated by matrix multiplication and convolutions. The simple linear function is also supported.
+![image](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/ff9bff6e-2a18-4359-ba58-89fa8aee2ee0)
+
 - The operations listed above are safe to use in `FP16`, and they have up-casting rules to ensure that they are not affected by a mixture of `FP16` and `FP32` inputs. These operations include two other fundamental linear algebraic operations: matrix/vector dot products and vector cross products.
+![image](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/7bbd5347-b609-4a22-9d35-30a71ef383b5)
+
 - The following operations are not safe to use in `FP16`: logarithms, exponents, trigonometric functions, normal functions, discrete functions, and large sums. These operations must be performed in `FP32` to avoid errors.
 - Convolutional layers are the most likely layers to benefit from autocasting, as they rely on safe FP16 operations. Activation functions, on the other hand, may not benefit as much from autocasting, as they often use unsafe FP16 operations.
 - To enable autocasting, you can simply wrap the forward pass of your model in the autocast context manager. This will cause all of the operations in the forward pass to be cast to `FP16`, except for those that are not safe to use in `FP16`.
@@ -455,7 +459,9 @@ with torch.cuda.amp.autocast():
 | UNet | Image segmentation network | [Segmented Bob Ross Images corpus](https://www.kaggle.com/datasets/residentmario/segmented-bob-ross-images)|[🔗](https://github.com/spellml/unet-bob-ross)|
 | BERT | Natural language processing [transformer](https://jalammar.github.io/illustrated-transformer/) model([bert-base-uncased](https://huggingface.co/bert-base-uncased))	 |[Twitter Sentiment Extraction](https://www.kaggle.com/c/tweet-sentiment-extraction) competition on Kaggle	|[🔗](hhttps://github.com/spellml/tweet-sentiment-extraction)|
 
-Thre results:
+The results:
+![result](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/60086032-8772-4e0b-9102-7f319217ffce)
+
 - Observation from results:
     -   Mixed precision training does not provide any benefits for the feedforward network because it is too small.
     - UNet, a medium-sized convolutional model with 7.7 million parameters, sees significant benefits from mixed precision training, especially on T4 GPUs, where it can save up to 30% of training time.
@@ -468,6 +474,7 @@ Thre results:
 - PyTorch reserves GPU memory at the start of training to protect the training script from other processes that may try to use up too much memory and cause it to crash.
 - Enabling mixed precision training can free up GPU memory, which can allow you to train larger models or use larger batch sizes.
 - Both UNet and BERT benefited from mixed precision training, but UNet benefited more. The reason for this is not clear to me, as PyTorch memory allocation behavior is not well-understood.
+![result_memory](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/06155d01-2f4f-4be6-8fe0-088bcbe59483)
 
 # Conclusion
 - The [PyTorch official website](https://pytorch.org/tutorials/#model-optimization) has tutorials that can help you get started with quantizing your models in PyTorch.
@@ -501,6 +508,7 @@ matrix can be approximately decomposed into a product of $2N×1$ matrices. That�
 - Knowledge distillation is about transferring knowledge from one model to another. Typically from a large model to a smaller one. When the student model learns to produce similar output responses, that is response-based distillation. When the student model learns to reproduce similar intermediate layers, it is called feature-based distillation. When the student model learns to reproduce the interaction between layers, it is called relation-based distillation.
 - Lightweight model design is about using knowledge from empirical results to design more efficient architectures. That is probably one of the most used methods in LLM research.
 - The image below ([source](https://newsletter.theaiedge.io/p/the-aiedge-model-compression-techniques)) provides a concise and visually appealing overview of some of the methods 
+![Compression Techniques](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/c08149ee-c578-4043-9af6-e1da902bd930)
 
 # Inference Optimizations
 - Credits for this section go to [Sebastian Raschka](https://www.linkedin.com/in/sebastianraschka/).
@@ -510,6 +518,7 @@ matrix can be approximately decomposed into a product of $2N×1$ matrices. That�
     - Loop tiling
     - Operator fusion
     - Quantization
+![Inference Optimizations](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/ccd14769-1652-410b-8862-ffce67e8dde6)
 
 # On-Device Privacy
 | Aspect | Description |
