@@ -87,7 +87,7 @@
 
 > The coverage of layers and operators (such as Linear, Conv, RNN, LSTM, GRU, and Attention) for dynamic and static quantization differs, as shown in the table below. FX quantization also supports the corresponding functionals.
 
-## Dynamic/Runtime Quantization
+### Dynamic/Runtime Quantization
 
 - Dynamic quantization is a simple and effective way to quantize models in PyTorch. Dynamic quantization in PyTorch involves converting the weights to int8, as with other quantization methods, but it also converts the activations to `int8` on the fly, just before the computation is performed. The computations will be performed using efficient `int8` matrix multiplication and convolution implementations, which will result in faster compute. However, the activations will be read and written to memory in floating point format.
 - The network's weights are stored in a specified quantization format. At runtime, the activations are dynamically converted to the same quantization format, combined with the quantized weights, and then written to memory in full precision. The output of each layer in a quantized neural network is quantized and then combined with the quantized weights of the next layer. This process is repeated for each layer in the network, until the final output is produced. I am confused why this happens, my understanding is that `scalars` could be dynamically determined from the data, which would mean that this is a data-free method.
@@ -104,7 +104,7 @@ quantized_model = torch.quantization.quantize_dynamic(
 - There are many ways to improve your model by adjusting its hyperparameters. More details can be found in this [blog post](https://pytorch.org/tutorials/recipes/recipes/dynamic_quantization.html).
 - For more information on the function, please see the documentation [here](https://pytorch.org/docs/stable/quantization.html#torch.quantization.quantize_dynamic). For an end-to-end example, please see tutorials [here](https://pytorch.org/tutorials/advanced/dynamic_quantization_tutorial.html) and [here](https://pytorch.org/tutorials/intermediate/dynamic_quantization_bert_tutorial.html).
 
-## Post-Training Static Quantization
+### Post-Training Static Quantization
 - Converting activations to full precision and back at runtime is computationally expensive. However, we can avoid this cost if we know the distribution of activations, which can be determined by recording real data flowing through the network. 
 - Neural networks can be made to perform faster (in terms of latency) by converting them to use bot integer arithmetic and `int8` memory accesses. Static quantization involves feeding batches of data through the network to compute the distribution of activations. This is done by inserting observer modules at different points in the network to record the distributions.The information is used to determine how to quantize the activations at inference time. We can use a simple method that divides the activations into 256 levels, or we can use a more sophisticated method.
 - By quantizing the values, we can avoid the overhead of converting them to floats and then back to ints, which can significantly improve performance.
@@ -137,7 +137,7 @@ model_with_observers(example_batch)
 quantized_model = torch.quantization.convert(model_with_observers)
 
 ```
-## Static Quantization-aware Training (QAT)
+### Static Quantization-aware Training (QAT)
 - Quantization-aware training (QAT) is the third method for quantization, and it typically achieves the highest accuracy. In QAT, weights and activations are "fake quantized" i.e. rounded to `int8` values during both the forward and backward passes of training, while computations are still done with floating point numbers. This allows the model to be trained with the knowledge/aware that it will be quantized, resulting in higher accuracy than other methods.
 - QAT tells the model about its limitations in advance, and the model learns to adapt to these limitations by rounding its activations to the chosen quantization during the forward and backward passes. This helps the model to learn to be more robust to quantization, resulting in higher accuracy after quantization.
 > During QAT, the backpropagation (gradient descent of the weights) is performed in full precision. This is important because it ensures that the model is able to learn the correct weights, even though the activations are being rounded to a lower precision.
@@ -155,7 +155,7 @@ epochquantized_model=torch.quantization.convert(qat_model.eval(), inplace=False)
 ```
 > It is recommended to read the helpful tips under the “[Model Preparation for Quantization](https://pytorch.org/docs/stable/quantization.html)” section of the PyTorch documentation before using PyTorch quantization.
 
-# Device and Operator Support
+## Device and Operator Support
 - Quantization support is limited to a subset of operators, depending on the quantization method. For a list of supported operators, please see the [documentation](https://pytorch.org/docs/stable/quantization.html).
 - The set of operators and quantization methods available for quantized models depends on the backend used to run them. Currently, quantized operators are only supported for CPU inference on the x86 and ARM backends. The quantization configuration and quantized kernels are also backend dependent. To specify the backend, you can use:
 
@@ -171,52 +171,38 @@ torch.backends.quantized.engine=backend
 ```
 - Quantization-aware training is a process that trains CNN models in full floating point, and can be run on either GPU or CPU. It is typically used when post-training quantization does not yield sufficient accuracy, such as with models that are highly optimized to achieve small size.
 
-# Integration in Torchvision
+## Integration in Torchvision
 - PyTorch has made it easier to quantize popular models in [torchvision](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/) by providing quantized versions of the models, a quantization API, and a quantization tutorial. This makes it possible to deploy quantized models to production with less effort.
     - Quantized versions of the models, which are pre-trained and ready to use.
     - Quantization-ready model definitions are provided so that you can quantize a model after training (post-training quantization) or quantize a model during training (quantization aware training).
     - Quantization aware training is a technique that can be used to improve the accuracy of any model, but we found it to be especially beneficial for Mobilenet
     - You can find a [tutorial](https://pytorch.org/tutorials/intermediate/quantized_transfer_learning_tutorial.html) on that demonstrates how to do transfer learning with quantization using a torchvision model.
 
-# Choosing an Approach
+## Choosing an Approach
 - The decision of which scheme to use is dependent by a variety of factors.
     - **Model/Target requirements**: Some models are more sensitive to quantization than others, and may require quantization-aware training to maintain accuracy.
     - **Operator/Backend support**: There are backends that only work with fully quantized operators.
 - The number of quantized operators available in PyTorch is currently limited, which may impact the choices you can make from the table below. This table, from PyTorch: Introduction to Quantization on PyTorch, provides some guidance.
 
-# Performance Reults
+## Performance Reults
 - Quantization can reduce the model size by 4x and speed up inference by 2x to 3x, depending on the hardware platform and the model being benchmarked. The table below from the [PyTorch documentation on quantization on PyTorch](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/) provides some sample results of the technique.
 
-# Accuracy Results
+## Accuracy Results
 - The tables in [PyTorch's Introduction to Quantization on PyTorch](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/) document compare the accuracy of quantized models to floating-point models on the ImageNet, as well as we compared the F1 score of BERT on the GLUE benchmark for MRPC.
 
-## Computer Vision Model Accuracy
-## Speech and NLP Model Accuracy
+### Computer Vision Model Accuracy
+### Speech and NLP Model Accuracy
 
-# Conclusion
-- The [PyTorch official website](https://pytorch.org/tutorials/#model-optimization) has tutorials that can help you get started with quantizing your models in PyTorch.
-- If you are working with sequence data, start with…
-    - [Dynamic quantization for LSTM](https://pytorch.org/tutorials/advanced/dynamic_quantization_tutorial.html) or 
-    [Dynamic quantization for BERT](https://pytorch.org/tutorials/intermediate/dynamic_quantization_bert_tutorial.html)
-- If you are working with image data, you can start by learning about [transfer learning with quantization](https://pytorch.org/tutorials/intermediate/quantized_transfer_learning_tutorial.html). Once you have a good understanding of that, you can explore s[tatic post-training quantization](https://pytorch.org/tutorials/advanced/static_quantization_tutorial.html).
-    - If you are not satisfied with the accuracy of your model after post-training quantization, you can try [quantization aware training](https://pytorch.org/tutorials/advanced/static_quantization_tutorial.html) to improve accuracy.
-
-# Quantization in Other Frameworks: TensorFlow and CoreML
+## Quantization in Other Frameworks: TensorFlow and CoreML
 - PyTorch quantization may not work in all production environments, such as when converting a model to Apple's CoreML format, which requires 16-bit quantization. When deploying a model to an edge device, it is important to check that the device supports quantization. On Apple devices, the hardware already computes everything in `fp16`, so quantization is only useful for reducing the memory footprint of the model.
 - TensorFlow uses a similar set of steps as above, but the examples are focused on TFLite. 
 - The [post-training quantization](https://www.tensorflow.org/model_optimization/guide/quantization/post_training) page explains static and dynamic quantization, and the QAT page provides more information about quantization aware training. The tradeoffs between PyTorch and TensorFlow for quantization are similar, but there are some features that are not compatible between the two frameworks.
 
-# How Far Can We Go?
+## How Far Can We Go?
 - Researchers have been working on binary neural networks [for years](https://arxiv.org/abs/1909.13863), as they offer the potential for extreme speedups with only a small loss in accuracy. These networks use only 1 bit of precision for their weights and activations, which can be much faster to compute than traditional neural networks. Binary neural networks are still mostly research projects, but [XNOR-Net++](https://arxiv.org/abs/1909.13863) is a notable exception as it has been implemented in PyTorch. This makes it a more usable idea for practical applications.
 
-# Use-case
+## Use-case
 - Quantization is a technique that can be used to increase the speed of model inference by reducing the precision of the model's parameters. In contrast, please reed Mixed Precision Training, Automatic Mixed Precision (AMP) is a technique that can be used to reduce the training time of a model by using lower precision numbers during training.
-
-# Further Reading
-- [PyTorch official documentation: Introduction to Quantization on PyTorch](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/)
-- [PyTorch official documentation: Advanced Quantization in PyTorch](https://pytorch.org/tutorials/advanced/static_quantization_tutorial.html)
-- [PyTorch official documentation: Quantization](https://pytorch.org/docs/stable/quantization.html)
-- [CoreML Tools documentation: Quantization](https://coremltools.readme.io/docs/quantization)
 
 # Knowledge Distillation
 - Knowledge distillation is a technique for transferring knowledge from a large model (teacher) to a smaller model (student), resulting in smaller and more efficient models. [Hinton et al., 2015](https://arxiv.org/abs/1503.02531)
@@ -248,7 +234,7 @@ where, $F(x_i)$ = probability distribution over the labels created by passing ex
 - Neural networks can learn to recognize features in data, but they may not learn all of the features that are important. For example, a neural network might learn to recognize feature A by seeing image 1. However, if the network only sees image 1 and image 3, it may not learn feature B, even though feature B is also present in image 3. This is because the network will not receive any gradient signal to learn feature B. A good neural network would learn both feature A and feature B, but this may not always happen.
 -  A neural network learns to classify data points more accurately, it may become less sensitive to small changes in the data. This is because the network is already able to classify the data points with high confidence, so it does not need to rely on every single data point to make a decision. As a result, the signal from some data points may decrease as the network becomes more accurate.
 
-# Distillation in Practice
+## Distillation in Practice
 - Knowledge distillation is a rapidly growing research field with applications in defending against adversarial attacks, transferring knowledge between models, and protecting privacy.
 - In knowledge distillation, the student model learns from the teacher model by mimicking its predictions. Response-based distillation focuses on the final output layer of the teacher model, while feature-based and relation-based distillation focus on other parts of the teacher model.
 - The different types of distillation, such as offline distillation (where the student model is trained after the teacher model), online distillation (where the student and teacher models are trained together), and self-distillation (where the teacher model has the same architecture as the student model), can make it difficult to track distillation in practice. A set of ad hoc model-specific techniques may be the best general recommendation.
@@ -259,7 +245,7 @@ where, $F(x_i)$ = probability distribution over the labels created by passing ex
 > Note: Knowledge distillation can be harmful when the student model is too small, and it is less effective when the student and teacher models have different capacities.
 - In Summary, knowledge distillation is a powerful technique for improving the performance of small models, but it is more difficult to implement than quantization and pruning. However, it can be worth the effort if you need to achieve a high level of accuracy with a small model.
 
-## Distillation As Semi-supervised Learning
+### Distillation As Semi-supervised Learning
 - A teacher model can be used to transfer knowledge to a student model. The teacher model is first trained on a large set of labeled data. Then, it is used to generate soft labels for a smaller set of unlabeled data. These soft labels can then be used to train the student model. This approach allows the student model to learn from the knowledge of the teacher model, even though it is not trained on as much data.
 - [Parthasarathi and Strom (2019)](https://arxiv.org/pdf/1904.01624.pdf) used a two-step approach to train an acoustic model for speech recognition. First, they trained a powerful teacher model on a small set of annotated data. This teacher model was then used to label a much larger set of unannotated data. Finally, they trained a leaner, more efficient student model on the combined dataset of annotated and unlabeled data.
 
@@ -284,7 +270,7 @@ where, $F(x_i)$ = probability distribution over the labels created by passing ex
 - Structured pruning, a dynamic research field lacking a clear API, involves selecting a metric to assess the significance of each neuron. Subsequently, neurons with lower information content can be pruned, with potentially useful metrics encompassing the [Shapley value](https://christophm.github.io/interpretable-ml-book/shapley.html), a Taylor approximation measuring a neuron's impact on loss sensitivity, or even random selection. Notably, the [TorchPruner](https://github.com/marcoancona/TorchPruner) library automatically incorporates some of these metrics for `nn.Linear` and convolution modules, while the [Torch-Pruning](https://github.com/vainf/torch-pruning) library offers support for additional operations. Among the notable earlier contributions, one involves filter pruning in convnets using the L1 norm of filter weights.
 - Unstructured pruning is a technique for reducing the size of a neural network by zeroing out weights with small magnitudes. It can be done during or after training, and the target sparsity can be adjusted to achieve the desired balance between model size and accuracy. However, [there is some confusion](https://arxiv.org/abs/2003.03033) in this area, so it is important to consult the documentation for [TensorFlow](https://www.tensorflow.org/model_optimization/guide/pruning/) and [PyTorch](https://pytorch.org/tutorials/intermediate/pruning_tutorial.html) before using unstructured pruning.
 
-# Fine Tuning | [What is Fine Tuning](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/main/Articles/Training/Fine%20Tuning%20Models)
+## Fine Tuning | [What is Fine Tuning](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/main/Articles/Training/Fine%20Tuning%20Models)
 - After pruning a neural network, it is [standard practice](https://arxiv.org/pdf/2003.02389.pdf) to retrain the network. The best method is to reset the learning rate to its original value and start training from scratch. Optionally, you can also reset the weights of the unpruned parts of the network to their values earlier in training. This is essentially training the lottery ticket subnetwork that we have identified.
     - For example: let's say we have a neural network with 1000 weights. We use pruning to remove 90% of the weights, leaving us with 100 weights. We then retrain the network with a reset learning rate and the weights from the earlier training. This helps the lottery ticket subnetwork to learn how to perform the task at hand more effectively.
 
@@ -293,17 +279,9 @@ where, $F(x_i)$ = probability distribution over the labels created by passing ex
 # DeepSpeed and ZeRO-Offload
 - [DeepSpeed](https://www.deepspeed.ai/) is a library that optimizes the training of large and extremely large models on GPUs. It does this by using smart parallelism and better caching, which can lead to significant speedups and memory savings. DeepSpeed is an extension to PyTorch, so it is easy to use with existing PyTorch code.
 
-# Conclusion
-- Deep learning researchers have developed model-specific methods to distill large models into smaller, faster models with similar performance.
-- These distilled models can be used to gain performance without having to train a large model from scratch.
-- In NLP, [HuggingFace](https://huggingface.co/) provides pre-trained distilled models such as DistilBert and TinyBert.
-- In computer vision, [Facebook Research's d2go](https://github.com/facebookresearch/d2go) provides pre-trained mobile-ready models, some of which are distilled using DeiT methods.- 
-- The paper "[Well-Read Students Learn Better: On the Importance of Pre-training Compact Models](https://arxiv.org/abs/1908.08962)" recommends that the best approach for training BERT architectures is to use a pre-trained model with a small number of parameters, and then fine-tune the model on a specific task. This approach was found to be more effective than training a BERT model from scratch, or fine-tuning a large BERT model on a specific task.
-- One of the biggest advantages of the Pre-trained Distillation (PD) method is that it can be used with any NLP model architecture. This makes it a very versatile and powerful tool for training compact NLP models. If you are planning on using a compact NLP model in practice, I recommend reading the paper, especially section 6, which provides more details on the PD method.
-
 # Mixed Precision Training
 
-# Overview
+## Overview
 - Mixed precision training is a technique that uses half-precision floating point numbers (`float16`) to speed up neural network training while maintaining accuracy. By using `float16` for most operations, the training time is reduced significantly while using less memory. Certain parts of the model are still kept in single-precision floating point (`float32`) for numeric stability, but this does not affect the accuracy of the model.
     - **Example**: Let's say we have a neural network with 100 million parameters that we want to train on a dataset of images. If we train the network using single-precision floating point numbers (float32), the training will take about 10 days to complete.
 
@@ -323,7 +301,7 @@ where, $F(x_i)$ = probability distribution over the labels created by passing ex
 - NVIDIA GPUs with Tensor Cores can achieve significant performance gains for `fp16` matrix operations, as these cores are specifically designed for this task.
 - Using tensor cores in PyTorch used to be difficult, requiring manual writing of reduced precision operations into models. However, the `[torch.cuda.amp]()` API automates this process, making it possible to implement mixed precision training in just five lines of code. This can significantly speed up training time without sacrificing accuracy.
 
-## How Mixed Precision Works
+### How Mixed Precision Works
 - To understand mixed precision training, we need to first understand floating point numbers. 
 - In computer engineering, decimal numbers are typically represented as floating-point numbers. Floating-point numbers have a limited precision, but they can represent a wide range of values. This is a trade-off between precision and size.
     -  The number π cannot be represented exactly as a floating-point number, but it can be represented with a high degree of precision. This is sufficient for most engineering applications.
@@ -352,7 +330,7 @@ where, $F(x_i)$ = probability distribution over the labels created by passing ex
         - A good loss scaling factor to start with is `8` "Suggested by paper". If the model is diverging, you can try increasing the loss scaling factor. However, if the loss scaling factor is too large, it can cause the model to diverge in the other direction.
 - The authors used a combination of three techniques to train a variety of networks much faster than traditional methods. For benchmarks, please see the [paper](https://arxiv.org/pdf/1710.03740.pdf).
 
-## How Tensor Cores Actually Works
+### How Tensor Cores Actually Works
 - Mixed precision training (an `fp16` matrix is half the size of a `fp32` one) can reduce the memory requirements for deep learning models, but it can only speed up training if the GPU has special hardware support for half-precision operations. Tensor cores in recent NVIDIA GPUs provide this support, and can significantly speed up mixed precision training.
 - Tensor cores are a type of processor that is specifically designed to perform a single operation very quickly: multiplying two 4x4 matrices of floating-point numbers in half precision (`fp16`) and adding the result to a third 4x4 matrix of floating-point numbers in either half precision or single precision (`fp32`). This operation is called a "fused multiply add".
 - Tensor cores are a type of processor that can be used to accelerate matrix multiplication operations in half precision. This makes them ideal for accelerating backpropagation, which is a computationally intensive process that is used to train neural networks.
@@ -428,7 +406,7 @@ torch.cuda.amp.GradScaler(
 - `GradScalar` needs to be saved to disk along with the model weights when checkpointing a model. This is because GradScalar is a stateful object that maintains its state across training iterations. The `state_dict()` and `load_state_dict()` object methods can be used to save and load the GradScalar state.
 - To prevent the scale factor from interfering with the learning rate, it is necessary to unscale the `.grad` attribute of each parameter in PyTorch before the optimizer updates the parameters.
 
-## `autocast` Context Manager
+### `autocast` Context Manager
 - The `torch.cuda.amp.autocast` context manager is a powerful tool for improving the performance of PyTorch models. It automatically casts operations to fp16, which can significantly speed up training without sacrificing accuracy. However, not all operations are safe to run in fp16, so it is important to check the amp [module documentation](https://pytorch.org/docs/master/amp.html#autocast-op-reference) for a list of supported operations.
 - The list of operations that autocast can cast to fp16 is dominated by matrix multiplication and convolutions. The simple linear function is also supported.
 - The operations listed above are safe to use in `FP16`, and they have up-casting rules to ensure that they are not affected by a mixture of `FP16` and `FP32` inputs. These operations include two other fundamental linear algebraic operations: matrix/vector dot products and vector cross products.
@@ -445,28 +423,119 @@ with torch.cuda.amp.autocast():
 - Autocasting is a powerful tool that can help you to improve the performance of your PyTorch models. However, it is important to follow best practices for using PyTorch, such as avoiding in-place operations, to ensure that autocasting works correctly.
 
 
+### Multiple GPUs
+- Autocasting is compatible with the multi-GPU DistributedDataParallel API and the DataParallel multi-GPU API. With `DistributedDataParallel`, you need to use one process per GPU. With `DataParallel`, you need to make a [small adjustment](https://pytorch.org/docs/master/notes/amp_examples.html#dataparallel-in-a-single-process).
+- The "Working with multiple GPUs" section of the [Automatic Mixed Precision Examples](https://pytorch.org/docs/master/notes/amp_examples.html#working-with-multiple-gpus) page in the PyTorch documentation is a good resource for learning how to use autocasting with multiple GPUs. The most important thing to remember is that you need to use torch.nn.BCEWithLogitsLoss instead of torch.nn.BCELoss if you want to get accurate results. [Source:prefer binary cross entropy with logits over binary cross entropy](https://pytorch.org/docs/master/amp.html#prefer-binary-cross-entropy-with-logits-over-binary-cross-entropy)
 
 
+## Mixed Precision with TensorFlow
+- The [TensorFlow: Mixed Precision](https://www.tensorflow.org/guide/mixed_precision) guide provides instructions on how to use mixed precision to train your TensorFlow models faster and with less memory.
+
+## Performance Benchmarks
+- Three neural networks were benchmarked in real-world settings using `V100`s (last-gen tensor cores) and `T4`s (current-gen tensor cores), the Spell API(cloud-based service that provides spell checking and grammar checking for text) on AWS EC2 instances (`p3.2xlarge` and `g4dn.xlarge` respectively), and a recent PyTorch build with CUDA 10.0. The benchmarks evaluated the performance of the networks with and without automatic mixed precision.
+- The models trained using mixed precision and vanilla training converged to the same accuracy. The networks that were trained were:
+
+| Model | Type | Dataset | Code |
+| ------ | ---- | ------ | :----:|
+| Feedforward | Feedforward neural network | [Rossman Store Samples](https://www.kaggle.com/c/rossmann-store-sales) competition on Kaggle | [🔗](https://github.com/spellml/feedforward-rossman)|
+| UNet | Image segmentation network | [Segmented Bob Ross Images corpus](https://www.kaggle.com/datasets/residentmario/segmented-bob-ross-images)|[🔗](https://github.com/spellml/unet-bob-ross)|
+| BERT | Natural language processing [transformer](https://jalammar.github.io/illustrated-transformer/) model([bert-base-uncased](https://huggingface.co/bert-base-uncased))	 |[Twitter Sentiment Extraction](https://www.kaggle.com/c/tweet-sentiment-extraction) competition on Kaggle	|[🔗](hhttps://github.com/spellml/tweet-sentiment-extraction)|
+
+Thre results:
+- Observation from results:
+    -   Mixed precision training does not provide any benefits for the feedforward network because it is too small.
+    - UNet, a medium-sized convolutional model with 7.7 million parameters, sees significant benefits from mixed precision training, especially on T4 GPUs, where it can save up to 30% of training time.
+    - BERT is a large model that benefits greatly from mixed precision training. Automatic mixed precision can cut training time for BERT on Volta or Turing GPUs by up to 60%.
+
+> The benefits of mixed precision training are immense, and it can be implemented with just a few lines of code in model training script. Given the potential to save up to 60% of training time with mixed precision training, it should be a top priority for performance optimization in model training scripts.
+
+### What about Memory?
+- Mixed precision training can be beneficial for memory usage, as `fp16` matrices are half the size of `fp32` matrices. This can be helpful for training larger models or for using larger batch sizes.
+- PyTorch reserves GPU memory at the start of training to protect the training script from other processes that may try to use up too much memory and cause it to crash.
+- Enabling mixed precision training can free up GPU memory, which can allow you to train larger models or use larger batch sizes.
+- Both UNet and BERT benefited from mixed precision training, but UNet benefited more. The reason for this is not clear to me, as PyTorch memory allocation behavior is not well-understood.
+
+# Conclusion
+- The [PyTorch official website](https://pytorch.org/tutorials/#model-optimization) has tutorials that can help you get started with quantizing your models in PyTorch.
+- If you are working with sequence data, start with…
+    - [Dynamic quantization for LSTM](https://pytorch.org/tutorials/advanced/dynamic_quantization_tutorial.html) or 
+    [Dynamic quantization for BERT](https://pytorch.org/tutorials/intermediate/dynamic_quantization_bert_tutorial.html)
+- If you are working with image data, you can start by learning about [transfer learning with quantization](https://pytorch.org/tutorials/intermediate/quantized_transfer_learning_tutorial.html). Once you have a good understanding of that, you can explore s[tatic post-training quantization](https://pytorch.org/tutorials/advanced/static_quantization_tutorial.html).
+    - If you are not satisfied with the accuracy of your model after post-training quantization, you can try [quantization aware training](https://pytorch.org/tutorials/advanced/static_quantization_tutorial.html) to improve accuracy.
+- Deep learning researchers have developed model-specific methods to distill large models into smaller, faster models with similar performance.
+- These distilled models can be used to gain performance without having to train a large model from scratch.
+- In NLP, [HuggingFace](https://huggingface.co/) provides pre-trained distilled models such as DistilBert and TinyBert.
+- In computer vision, [Facebook Research's d2go](https://github.com/facebookresearch/d2go) provides pre-trained mobile-ready models, some of which are distilled using DeiT methods.- 
+- The paper "[Well-Read Students Learn Better: On the Importance of Pre-training Compact Models](https://arxiv.org/abs/1908.08962)" recommends that the best approach for training BERT architectures is to use a pre-trained model with a small number of parameters, and then fine-tune the model on a specific task. This approach was found to be more effective than training a BERT model from scratch, or fine-tuning a large BERT model on a specific task.
+- One of the biggest advantages of the Pre-trained Distillation (PD) method is that it can be used with any NLP model architecture. This makes it a very versatile and powerful tool for training compact NLP models. If you are planning on using a compact NLP model in practice, I recommend reading the paper, especially section 6, which provides more details on the PD method.
+- Automatic mixed precision training is a new feature that can speed up larger-scale model training jobs on recent NVIDIA GPUs by up to 60%. It is easy to use and does not require any changes to the model code.
+- Automatic mixed precision training has been around for a while, but it was not easy to use for the average user because it required manual configuration. This has changed with the introduction of a native PyTorch API, which makes it much easier to use.
+- The best place to learn more about mixed precision training is from the official PyTorch documentation. The [automatic mixed precision package](https://pytorch.org/docs/master/amp.html) and [automatic mixed precision examples pages](https://pytorch.org/docs/master/notes/amp_examples.html) are a great place to start.
+
+# Key Takeaways
+- The `torch.cuda.amp` mixed-precision training module can deliver significant speed improvements of up to 50-60% for large model training jobs, with only a few lines of code needed to be changed.
+
+# Use-case
+- Automatic Mixed Precision (AMP) is a technique that uses lower precision data types to reduce training time, while quantization is a technique that uses lower precision data types to reduce inference time.
+- To learn how to use AMP in [PyTorch, you can refer to the PyTorch Automatic Mixed Precision](https://pytorch.org/tutorials/recipes/recipes/amp_recipe.html)
+
+# How Model Compression Techniques Reducing the cost? [Visual Summary]
+- Not too long ago, the biggest Machine Learning models most people would deal with, merely reached a few GB in memory size. Now, every new generative model coming out is between 100B and 1T parameters. To get a sense of the scale, one float parameter that's 32 bits or 4 bytes, so those new models scale between 400 GB to 4 TB in memory, each running on expensive hardware. Because of the massive scale increase, there has been quite a bit of research to reduce the model size while keeping performance up.
+- Model pruning is about removing unimportant weights from the network. The game is to understand what “important” means in that context. A typical approach is to measure the impact to the loss function of each weight. This can be done easily by looking at the gradient and second order derivative of the loss. Another way to do it is to use L1 or L2 regularization and get rid of the low magnitude weights. Removing whole neurons, layers or filters is called “structured pruning” and is more efficient when it comes to inference speed.
+- Low-rank decomposition comes from the fact that neural network weight matrices can be approximated by products of low-dimension matrices. A $N×N$
+matrix can be approximately decomposed into a product of $2N×1$ matrices. That’s a $O(N^2)−>O(N)$ space complexity gain
+- Knowledge distillation is about transferring knowledge from one model to another. Typically from a large model to a smaller one. When the student model learns to produce similar output responses, that is response-based distillation. When the student model learns to reproduce similar intermediate layers, it is called feature-based distillation. When the student model learns to reproduce the interaction between layers, it is called relation-based distillation.
+- Lightweight model design is about using knowledge from empirical results to design more efficient architectures. That is probably one of the most used methods in LLM research.
+- The image below ([source](https://newsletter.theaiedge.io/p/the-aiedge-model-compression-techniques)) provides a concise and visually appealing overview of some of the methods 
+
+# Inference Optimizations
+- Credits for this section go to [Sebastian Raschka](https://www.linkedin.com/in/sebastianraschka/).
+- Here are five ways to optimize deep neural network models for faster inference. These techniques don’t change the model architecture.
+    - Parallelization
+    - Vectorization
+    - Loop tiling
+    - Operator fusion
+    - Quantization
+
+# On-Device Privacy
+| Aspect | Description |
+| -------- | --------- |
+| On-Device Privacy (Edge Computing) | Processing data directly on user devices (e.g., smartphones) instead of sending it to central servers. Enhances privacy and security by keeping data on the device, reducing exposure risks during transit or from compromised servers. | 
+| NLP and LLM Systems in On-Device Processing | All interactions, including analysis and response generation in Natural Language Processing (NLP) and Language Model (LLM) systems, occur locally on the device. Important for maintaining privacy in conversational AI and lowering network-related latency. | 
+| Benefits of On-Device Processing	| 1. Enhanced Privacy<br>2. Improved Security<br>3. Reduced Data Exposure Risks<br>4. Lower Latency for Smoother User Experience | 
+| Solutions to Efficiency Challenges | Advances in model compression techniques:<br>- Pruning: Removing less important model components.<br>- Quantization: Reducing precision of numerical values.<br>- Knowledge Distillation: Transferring knowledge from a large model to a smaller one.<br>These techniques enable effective deployment of smaller models on devices.|
+
+# Differential Privacy
+| Aspect | Description | 
+| ------- | ----------- |
+| Differential Privacy	| A mathematical framework to measure individual privacy within a dataset. Involves adding random noise to data to hinder identification of individuals while preserving overall data patterns. | 
+| Role in NLP and LLMs | In Natural Language Processing (NLP) and Language Model (LLM) applications, differential privacy ensures model outputs do not expose sensitive training data. Prevents models from generating text that might link back to specific individuals in the training data. | 
+| Implementation Challenges in LLMs	 | While the principle of differential privacy is strong, applying it to complex models like LLMs is intricate. Striking a balance between privacy-preserving noise and model utility is crucial. | 
+| Key Considerations | 1. Privacy vs. Utility: Finding the right amount of noise to protect privacy without rendering the model's output useless.<br>2. Complex Model Dynamics: Handling intricate interactions within LLMs to maintain data patterns.<br>3. Noise Addition: Incorporating noise without compromising the quality of language generation. | 
+| Benefits of Differential Privacy	| 1. Privacy Preservation: Shields sensitive data in the training set, safeguarding individual information.<br>2. Legal and Ethical Compliance: Supports compliance with privacy regulations by minimizing data exposure.<br>3. Trust Building: Users are more inclined to use systems that prioritize their privacy and data security.| 
+| Challenges in Implementation	| 1. Optimal Noise Level: Determining the appropriate noise magnitude for effective privacy.<br>2. Trade-off with Utility: Avoiding excessive noise that hampers model usefulness.<br>3. Performance Impact: Addressing potential model performance reduction due to noise introduction. | 
+
+# Federated Learning
+| Aspect | Description|
+| ------ | ---------- |
+| Federated Learning | A machine learning technique training a model across multiple devices or servers while keeping data localized. Each device learns a local model, periodically updating a global model. Raw data remains on the original device, preserving privacy. | 
+| Role in NLP and Conversational AI	| In NLP and conversational AI, federated learning enables models to learn from diverse data sources without compromising privacy. For instance, a conversational AI learns from various devices, comprehending different contexts and dialects, while never accessing specific conversation data.|
+| Benefits | 1. Privacy-Preserving Learning: Raw data remains on devices, enhancing user data privacy.<br>2. Diverse Data Insights: Models gain understanding from varied sources, broadening their knowledge and linguistic capabilities.<br>3. Decentralized Training: Training on local devices reduces the need to transfer large datasets to a central server.|
+| Implementation Challenges	| 1. Efficient Aggregation: Coordinating and merging local model updates securely and efficiently.<br>2. Heterogeneous Devices: Handling different device capabilities and computational resources during the learning process.<br>3. Network Variability: Managing varying network connectivity affecting data synchronization.|
+| Use Case Example	| 	Federated learning allows a conversational AI to learn from interactions on numerous devices, enabling it to understand diverse conversations, yet preserving the privacy of each conversation's raw data. |
+| Considerations | 1. Model Drift: Local models may evolve differently, necessitating strategies to maintain global model performance.<br>2. Security: Ensuring secure communication during aggregation to prevent unauthorized access or tampering.|
+
+# Low-rank Decomposition
+- Low-rank decomposition can be used to compress neural networks by representing the weight matrices as the product of smaller matrices, which requires less storage space and computational resources.
+- Low-rank decomposition can be used to compress large matrices (N * N) in neural networks by representing them as the product of two smaller matrices each of size $N * 1$. This can significantly reduce the space complexity of the matrices, from quadratic $O(N^2)$ to linear O(N), which can lead to significant improvements in computational efficiency.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# References
+- [PyTorch official documentation: Introduction to Quantization on PyTorch](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/)
+- [PyTorch official documentation: Advanced Quantization in PyTorch](https://pytorch.org/tutorials/advanced/static_quantization_tutorial.html)
+- [PyTorch official documentation: Quantization](https://pytorch.org/docs/stable/quantization.html)
+- [CoreML Tools documentation: Quantization](https://coremltools.readme.io/docs/quantization)
+- [PyTorch: Quantization](https://pytorch.org/docs/stable/quantization.html)
+- [PyTorch: Introduction to Quantization on PyTorch](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/)
+- [TensorFlow: Pruning Tutorial](https://www.tensorflow.org/model_optimization/guide/pruning/)
+- [Pytorch Model Optimization: Automatic Mixed Precision vs Quantization](https://stackoverflow.com/questions/70503585/pytorch-model-optimization-automatic-mixed-precision-vs-quantization)
