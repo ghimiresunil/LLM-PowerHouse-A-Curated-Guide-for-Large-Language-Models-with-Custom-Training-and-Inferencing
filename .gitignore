@@ -1,2 +1,6 @@
 venv
 dataset/final_df
+env
+__pycache__/
+.DS_Store
+.ipynb_checkpoints/
