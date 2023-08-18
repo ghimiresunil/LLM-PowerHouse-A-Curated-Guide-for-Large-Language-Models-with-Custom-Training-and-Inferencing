@@ -1,1 +1,4 @@
 pandas
+gensim
+gdown
+nltk
