@@ -1,5 +1,6 @@
 venv
 dataset/final_df
+# data/clean_resume/
 env
 __pycache__/
 .DS_Store
@@ -7,3 +8,4 @@ __pycache__/
 *.model
 *.npy
 *.tsv
+Articles/NLP/NLP Embeddings/data/clean_resume/

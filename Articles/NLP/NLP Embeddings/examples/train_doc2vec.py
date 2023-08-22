@@ -2,12 +2,16 @@ import os
 from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 from nltk.tokenize import word_tokenize
 
-def train_doc2vec_model(clean_resume_dir, model_save_path):
+def train_doc2vec_model(clean_resume_dir: str, model_save_path: str) -> None:
     """
     Trains a Doc2Vec model on tokenized resumes and saves the model to the specified path.
     
-    :param clean_resume_dir: Path to the directory containing clean resume files.
-    :param model_save_path: Path to save the trained model.
+    Args:
+        clean_resume_dir (str): Path to the directory containing clean resume files.
+        model_save_path (str): Path to save the trained model.
+    
+    Returns:
+        None
     """
     tokenized_resumes = []
 
