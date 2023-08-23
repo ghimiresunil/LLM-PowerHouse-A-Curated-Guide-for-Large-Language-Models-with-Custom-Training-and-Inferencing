@@ -102,6 +102,8 @@ Prompt engineering is typically sufficient when the task is well-defined and the
 |gpt-neox | An implementation of model parallel autoregressive transformers on GPUs, based on the DeepSpeed library.| [🔗](https://github.com/EleutherAI/gpt-neox)|
 |Trainer API| Provides an API for feature-complete training in PyTorch for most standard use cases | [🔗](https://huggingface.co/docs/transformers/main_classes/trainer)|
 | Lighting | Deep learning framework to train, deploy, and ship AI products Lightning fast | [🔗](https://github.com/Lightning-AI/lightning)|
+| maxtext | A simple, performant and scalable Jax LLM! | [🔗](https://github.com/google/maxtext)| 
+
 
 # Effective Deployment Strategies for Language Models
 | Deployment Tools | Description | Resource |
@@ -115,10 +117,17 @@ Prompt engineering is typically sufficient when the task is well-defined and the
 | wechat-chatgpt | Use ChatGPT On Wechat via wechaty | [🔗](https://github.com/fuergaosi233/wechat-chatgpt)|
 | promptfoo | Test your prompts. Evaluate and compare LLM outputs, catch regressions, and improve prompt quality. | [🔗](https://github.com/promptfoo/promptfoo)|
 | Agenta | Easily build, version, evaluate and deploy your LLM-powered apps | [🔗](https://github.com/agenta-ai/agenta)|
+| LiteChain | Build robust LLM applications with true composability | [🔗](https://github.com/rogeriochaves/langstream)|
+| magentic | Seamlessly integrate LLMs as Python functions | [🔗](https://github.com/jackmpcollins/magentic)|  
+| Serge | A web interface for chatting with Alpaca through llama.cpp. Fully dockerized, with an easy to use API. | [🔗](https://github.com/serge-chat/serge#serge---llama-made-easy-)|
+| Langroid | Harness LLMs with Multi-Agent Programming | [🔗](https://github.com/langroid/langroid)|
+| Embedchain | Framework to create ChatGPT like bots over your dataset. | [🔗](https://github.com/embedchain/embedchain) | 
+| FastChat | A distributed multi-model LLM serving system with web UI and OpenAI-compatible RESTful APIs. | [🔗](https://github.com/lm-sys/FastChat) |
+ 
 
 # Courses about LLM
 | Courses| Link |
-|------ | :--------- |
+|------ | :---------: |
 | Full Stack DeepLearning's "LLM BootCamp" | [🔗](https://fullstackdeeplearning.com/llm-bootcamp/)| 
 | Cohere's LLM University - By Luis Serrano, Jay Alammar and Meor Amer | [🔗](https://www.youtube.com/playlist?list=PL3vkEKxWd-us5YvvuvYkjP_QGlgUq3tpA)| 
 | "fast.ai's Part 2 of "Practical Deep Learning for Coders" | [🔗](https://course.fast.ai/Lessons/part2.html)| 
