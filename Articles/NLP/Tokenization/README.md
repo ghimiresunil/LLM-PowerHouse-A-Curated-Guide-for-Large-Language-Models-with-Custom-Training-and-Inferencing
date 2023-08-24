@@ -43,4 +43,9 @@ Tokenization is the process of splitting a text into smaller units, called token
 - BPE is a subword tokenization algorithm that breaks down words into smaller units by merging the most common pairs of characters. It has been used in GPT-2 and RoBERTa, which are large language models.
 - The algorithm starts by creating subwords from individual characters. It then repeatedly replaces the most frequent pairs of characters in the text with a new subword, which is represented by an unused byte.
 - The process is repeated for a specified number of times or until the desired number of sub-words is obtained.
-- 
+-  It was first described in the article “[A New Algorithm for Data Compression](https://www.derczynski.com/papers/archive/BPE_Gage.pdf)”
+- The following example, taken from [Wikipedia](https://en.wikipedia.org/wiki/Byte_pair_encoding), will explain BPE.
+> Suppose we have data $aaabdaaabac$ which needs to be encoded (compressed). The byte pair aa occurs most often, so we will replace it with $Z$ as $Z$ does not occur in our data. So we now have ZabdZabac where $Z = aa$. The next common byte pair is ab so let’s replace it with $Y$. We now have $ZYdZYac$ where $Z = aa$ and $Y = ab$. The only byte pair left is ac which appears as just one so we will not encode it. We can use recursive byte pair encoding to encode ZY as X. Our data has now transformed into XdXac where $X = ZY$, $Y = ab$, and $Z = aa$. It cannot be further compressed as there are no byte pairs appearing more than once. We decompress the data by performing replacements in reverse order.
+- BPE is a subword-based tokenization algorithm that merges the most common pairs of characters into single tokens, while breaking down rare words into multiple tokens. 
+
+
