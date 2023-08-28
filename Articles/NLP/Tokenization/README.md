@@ -79,6 +79,164 @@ Tokenization is the process of splitting a text into smaller units, called token
 - The next step in the BPE algorithm is to find the most frequently occurring pair of characters and merge them. This process is repeated until we reach the desired vocabulary size or the maximum number of iterations is reached.
 - The goal of the BPE algorithm is to represent the corpus with the least number of tokens, which is achieved by merging the most frequently occurring byte pairs. In English, a character is the same as a byte, but this may not be the case in other languages. Once the most common byte pairs are merged, they are added to the list of tokens and the frequency of each token is recalculated. This process is repeated until the desired number of iterations is reached or the maximum token limit is reached.
 
+- Iterations
+    - Iteration 1:
+    
+    Starting with the second most common token `"e"`. The most common byte pair in our corpus with `“e”` is `“e”` and `“s”` which is in the words (finest and lowest). We merged the most common byte pair "e" and "s" (which occurred 9 + 4 = 13 times) to form a new token "es". The frequency of "es" is 13. We also reduced the count of "e" and "s" by 13. We can see that "s" does not occur alone and "e" occurs 3 times.
+
+    | Number | Token | Frequency |
+    | ------- | ----- | --------- |
+    | 1 | <\w> | 23 | 
+    | 2 | o | 14 | 
+    | 3 | l | 14 |
+    | 4 | d | 10 |
+    | 5 | e | 16 - 13 = 3 |
+    | 6 | r | 3 |
+    | 7 | f | 9 |
+    | 8 | i | 9 |
+    | 9 | n | 9 |
+    | 10 | s | 13 - 13 = 0 |
+    | 11 | t | 13 |
+    | 12 | w | 4 |
+    | 13 | es | 9 + 4 = 13 |
+
+    Iteration 2:
+
+    Continuing the process, we merged the token "es" and "t" (which occurred 13 times) to form a new token "est". The frequency of "est" is 13. We also reduced the count of "es" and "t" by 13.
+
+    | Number | Token | Frequency |
+    | ------- | ----- | --------- |
+    | 1 | <\w> | 23 | 
+    | 2 | o | 14 | 
+    | 3 | l | 14 |
+    | 4 | d | 10 |
+    | 5 | e | 3 |
+    | 6 | r | 3 |
+    | 7 | f | 9 |
+    | 8 | i | 9 |
+    | 9 | n | 9 |
+    | 10 | s | 0 |
+    | 11 | t | 13 - 13 = 0 |
+    | 12 | w | 4 |
+    | 13 | es | 13  - 13 = 0|
+    | 14 | est | 13 |
+
+    Iteration 3: 
+
+    Continuing the process, the byte pair consisting of the characters "o" and "l" occurred 10 times in our corpus.
+
+
+    | Number | Token | Frequency |
+    | ------- | ----- | --------- |
+    | 1 | <\w> | 23 | 
+    | 2 | o | 14 - 10 = 4 | 
+    | 3 | l | 14 - 10 = 4|
+    | 4 | d | 10 |
+    | 5 | e | 3 |
+    | 6 | r | 3 |
+    | 7 | f | 9 |
+    | 8 | i | 9 |
+    | 9 | n | 9 |
+    | 10 | s | 0 |
+    | 11 | t | 0 |
+    | 12 | w | 4 |
+    | 13 | es | 0|
+    | 14 | est | 13 |
+    | 15 | ol | 7 + 3 = 10 | 
+
+    Iteration 4: 
+    
+    We now see that byte pairs “ol” and “d” occurred 10 times in our corpus.
+
+    | Number | Token | Frequency |
+    | ------- | ----- | --------- |
+    | 1 | <\w> | 23 | 
+    | 2 | o | 4 | 
+    | 3 | l | 4|
+    | 4 | d | 10 - 10 = 0|
+    | 5 | e | 3 |
+    | 6 | r | 3 |
+    | 7 | f | 9 |
+    | 8 | i | 9 |
+    | 9 | n | 9 |
+    | 10 | s | 0 |
+    | 11 | t | 0 |
+    | 12 | w | 4 |
+    | 13 | es | 0|
+    | 14 | est | 13 |
+    | 15 | ol | 10 - 10 = 0| 
+    | 16 | old | 10  | 
+
+    Iteration 4:
+
+    The stop token "</w>" is important in the BPE algorithm because it helps to distinguish between words that share common prefixes or suffixes. For example, the words "established" and "highest" both share the prefix "est". However, the algorithm can tell them apart because "established" ends with the stop token "</w>", while "highest" does not. This is because the algorithm knows that "</w>" marks the end of a word.
+
+    | Number | Token | Frequency |
+    | ------- | ----- | --------- |
+    | 1 | <\w> | 23 - 13 = 10 | 
+    | 2 | o | 4 | 
+    | 3 | l | 4|
+    | 4 | d | 0|
+    | 5 | e | 3 |
+    | 6 | r | 3 |
+    | 7 | f | 9 |
+    | 8 | i | 9 |
+    | 9 | n | 9 |
+    | 10 | s | 0 |
+    | 11 | t | 0 |
+    | 12 | w | 4 |
+    | 13 | es | 0|
+    | 14 | est | 13 - 13 = 0 |
+    | 15 | ol |  0| 
+    | 16 | old | 10  | 
+    | 17 | `est</w>` | 13 | 
+
+> Note: The frequency of the byte pair "fin" is 9, but we do not merge them because there is only one word that contains these characters. For the sake of brevity, let us stop the iterations here and examine the tokens.
+
+| Number | Token | Frequency |
+| ------- | ----- | --------- |
+| 1 | <\w> |  10 | 
+| 2 | o | 4 | 
+| 3 | l | 4|
+| 4 | e | 3 |
+| 5 | r | 3 |
+| 6 | f | 9 |
+| 7 | i | 9 |
+| 8 | n | 9 |
+| 9 | w | 4 |
+| 10 | old | 10  | 
+| 11 | `est</w>` | 13 | 
+
+- The number of tokens in the vocabulary was reduced from 12 to 11 after removing the tokens with zero frequency count. This is a small corpus, but in practice, the vocabulary size is much smaller.
+- The token count increases and then decreases as we add more tokens. The stopping criterion can be either the number of tokens or the number of iterations. We choose the stopping criterion that breaks down the dataset into tokens in the most efficient way.
+
+
+# Encoding and Decoding
+
+| Process     | Description                                                                                             |
+|-------------|---------------------------------------------------------------------------------------------------------|
+| **Decoding**  | Reconstructs words by concatenating tokens.                                                         |
+|             | Encoded Sequence: ["the</w>", "high", "est</w>", "range</w>", "in</w>", "Seattle</w>"]                |
+|             | Decoded Output: ["the", "highest", "range", "in", "Seattle"]                                         |
+|             | (Not: ["the", "high", "estrange", "in", "Seattle"])                                                  |
+|             | "</w>" in "est" indicates word boundaries.                                                           |
+| **Encoding**  | Replaces substrings in a sequence with training tokens.                                            |
+|             | Word Sequence: ["the</w>", "highest</w>", "range</w>", "in</w>", "Seattle</w>"]                      |
+|             | Iterates through tokens to replace substrings in sequence.                                          |
+|             | Unmatched substrings replaced by unknown tokens.                                                     |
+| **Vocabulary** | Vocabulary is large; potential for unknown words.                                                  |
+| **Enhancement** | Maintains dictionary of pre-tokenized words.                                                      |
+|             | Utilizes encoding to tokenize new words and adds to dictionary.                                     |
+
+
+# Isn’t it greedy? 
+| Aspect | Description | 
+| Approach | Greedy approach to merge frequent character/subword pairs iteratively. | 
+| Efficiency | Efficiently represents the corpus by breaking words into subword units. | 
+| Handling Rare Words | Improves handling of rare words and morphemes for better generalization. | 
+| Performance | Widely used in NLP tasks due to its ability to handle morphological variations and rare words. | 
+
+> Note: Keep in mind that while BPE is a widely used technique, there are other subword tokenization methods like Unigram Language Model and SentencePiece that offer similar benefits. The choice of method depends on the specific task and dataset you're working with.
 
 
 
