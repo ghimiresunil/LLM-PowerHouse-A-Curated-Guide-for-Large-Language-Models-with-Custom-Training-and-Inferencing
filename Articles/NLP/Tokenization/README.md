@@ -328,16 +328,32 @@ Let the tokenization of all words result in following tokens and sum of probabil
     "mug": ["mu", "g"] (score 0.007710)
     "fun": ["f", "un"] (score 0.006168)
     "hug": ["h","ug"] (score: 0.00648)
-    "run": ["r", "un"] (score 0.001701)
+    "run": ["r", "un"] (score 0.001451)
 ```
 
 The loss is the sum of the negative log probabilities of all the words in the corpus, where the negative log probability of a word is the logarithm of the probability that the word will occur in the corpus.
 
 ```python
-10 * (-log(0.071428)) + 5 * (-log(0.007710)) + 12 * (-log(0.006168)) + 4 * (-log(0.00293)) + 5 * (-log(0.001701)) = 169.8
+9 * (-log(0.071428)) + 7* (-log(0.007710)) + 11 * (-log(0.006168)) + 5 * (-log(0.00293)) + 8 * (-log(0.001701)) = 382.106.
 ```
 
-The total loss is 169.8. We want to find out which tokens in the vocabulary have the least impact on the loss. We could compute the loss for each token, but that would make the article too long. Here's an intuitive explanation: if we remove the token "hu", the score will not change because the probability of the sequence `["hu", "g"]` is the same as the probability of the sequence `["h", "ug"]`. So, we can remove the token "hu" from the vocabulary.
+The total loss is 382.106. We want to find out which tokens in the vocabulary have the least impact on the loss. We could compute the loss for each token, but that would make the article too long. Here's an intuitive explanation: if we remove the token "hu", the score will not change because the probability of the sequence `["hu", "g"]` is the same as the probability of the sequence `["h", "ug"]`. So, we can remove the token "hu" from the vocabulary.
+
+Suppose, if there is another word `mugs` with score `0.001701`. Then, removing `mug` will make the loss worse, because the tokenization of `mug` and `mugs`
+
+```python
+"mug": ["mu", "g"] (score 0.007710)
+"mugs": ["mu", "gs"] (score 0.001701)
+```
+
+These changes will cause the loss to rise by:
+
+```python
+- 10 * (-log(0.007710)) + 10 * (-log(0.001701)) = 25.741
+```
+
+So, the token `hu` will probably be removed from the vocabulary, but not `mug`.
+
 
 > Note: `Steps 2` and `Step 3` are repeated with the new vocabulary. These steps are repeated until the loss threshold is met or a fixed number of iterations is reached. 
 
