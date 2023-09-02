@@ -18,7 +18,6 @@ Tokenization is the process of splitting a text into smaller units, called token
 
 # Why Tokenization
 - Tokenization helps split unstructured data or text into chunks of information.
-- Tokenization helps split unstructured data or text into chunks of information.
 - Chunks represent the discrete elements whose occurrences in a corpus document can be represented as a vector of the corresponding document. 
 - The unstructured data can be represented as a numerical data structure which can be fed directly to machine learning algorithm.
 
@@ -239,6 +238,107 @@ Tokenization is the process of splitting a text into smaller units, called token
 > Note: Keep in mind that while BPE is a widely used technique, there are other subword tokenization methods like Unigram Language Model and SentencePiece that offer similar benefits. The choice of method depends on the specific task and dataset you're working with.
 
 
+# Unigram Sub-word Tokenization 
+- The algorithm first creates a vocabulary of the most common words in the text. Then, it represents all other words in the text as a combination of words in the vocabulary.
+- The algorithm iteratively decomposes the most probable word into smaller subwords until the desired number of subwords is reached.
+- A unigram model is a probabilistic language model that trains by removing the token that has the least impact on the overall likelihood of the model, until it reaches the desired number of tokens.
 
+**Mathematical Calculation**:
+- The process begins with a large vocabulary and removes tokens until the desired size is reached.
+
+Let me explain step by step with an example. Let our corpus with frequency be
+``` python
+        ("t","u",g",9), 
+        ("m","u",g",7), 
+        ("f","u","n",11), 
+        ("h","u",g",5),
+        ("r","u",n",8)
+```
+
+**Step 1**: Pretokenization
+- There are two main ways to build the initial vocabulary: by taking the most common substrings in pre-tokenized words, or by using *BPE*.
+
+Let the whole vocabulary be:
+
+```python
+["t","u","g","m","f","r","h","n","tu","ug","mu","fu","un","hu","ru"]
+```
+
+**Step2**: Calculate the probability and tokens of all words based on vocabulary.
+
+To start, we will count how many times each word appears in the vocabulary. This will give us the frequency of each word.
+
+```python
+    {
+        "t" = 9
+        "u" = 40
+        "g" = 21
+        "m" = 7
+        "f" = 11
+        "r" = 8
+        "h" = 5
+        "n" = 8
+        "tu" = 9
+        "ug" = 21
+        "mu" = 7
+        "fu" = 11
+        "un" = 19
+        "hu" = 5
+        "ru" = 8
+    }
+```
+
+The vocabulary has a total of 189 words. To tokenize a word, we will find the probability of each possible way to split the word into tokens. We do this by using the Unigram model, which assumes that each token is independent of the others. So, the probability of a segmentation is just the product of the probabilities of the individual tokens.
+
+$$P(X) = \prod_{i=1}^{M} p(x_i)$$
+$$\forall{i}\ x_i \  \in  v, \sum_{x_i \  \in\ v} p(x) = 1$$
+
+The most probable segmentation is given as
+$$X^{*} = arg max\ P(X)$$ 
+$$X \in S(X)$$
+
+Let me give you an example. Let's take the word "hug".
+
+```
+p("h","u",g") = p("h") x p("u") x p("g")
+              = (5/189) x (40/189) x (21/189)
+              = 0.000620
+
+p("h","ug") = p("h") x p("ug") 
+            = (5/189) x (21/189) 
+            = 0.00293
+
+p("hu","g") = (5/189) x (21/189)
+            = 0.00293
+```
+
+> Generally tokenization with least sub words or tokens will have the highest probability.  If two tokenizations have the same number of probability, then the algorithm will choose the one that it encounters first. Therefore, the word "hug" could be tokenized as either `["hu", "g"] or ["h", "ug"]`, depending on the training data.
+
+> Similarly we have to find probabilities for all words which we need to tokenize.
+
+**Step 3**: Compute the loss by removing a token from vocabulary. Repeat it for all tokens and choose the remove the token which decreases loss least.
+
+Loss is given by equation:
+$$\mathcal{L} = \sum_{s=1}^{|D|}\ log(P(X^{(s)}))\ = \sum_{s=1}^{|D|}\ log(\sum_{x \in S(X^{(x)})} P(x)$$ 
+
+Let the tokenization of all words result in following tokens and sum of probability scores.
+
+```python
+    "tug": ["tu","g"] (score 0.071428)
+    "mug": ["mu", "g"] (score 0.007710)
+    "fun": ["f", "un"] (score 0.006168)
+    "hug": ["h","ug"] (score: 0.00648)
+    "run": ["r", "un"] (score 0.001701)
+```
+
+The loss is the sum of the negative log probabilities of all the words in the corpus, where the negative log probability of a word is the logarithm of the probability that the word will occur in the corpus.
+
+```python
+10 * (-log(0.071428)) + 5 * (-log(0.007710)) + 12 * (-log(0.006168)) + 4 * (-log(0.00293)) + 5 * (-log(0.001701)) = 169.8
+```
+
+The total loss is 169.8. We want to find out which tokens in the vocabulary have the least impact on the loss. We could compute the loss for each token, but that would make the article too long. Here's an intuitive explanation: if we remove the token "hu", the score will not change because the probability of the sequence `["hu", "g"]` is the same as the probability of the sequence `["h", "ug"]`. So, we can remove the token "hu" from the vocabulary.
+
+> Note: `Steps 2` and `Step 3` are repeated with the new vocabulary. These steps are repeated until the loss threshold is met or a fixed number of iterations is reached. 
 
 
