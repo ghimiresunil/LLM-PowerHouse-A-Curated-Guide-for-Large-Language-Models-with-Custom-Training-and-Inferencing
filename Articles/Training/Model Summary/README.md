@@ -93,27 +93,22 @@ $((current\ layer\ neurons\ c\ *\ previous\ layer\ neurons\ p\ )\ +\ 1\ *\ c)$
 **CNN Architecture for second model summary**
 
 ```python
-def first_model_summary():
-  model = Sequential()
-  model.add(Conv2D(16, (3, 3), activation='relu', padding="same", input_shape=(150,150,3)))
-  model.add(Conv2D(16, (3, 3), padding="same", activation='relu'))
-  
-  model.add(Conv2D(32, (3, 3), activation='relu', padding="same"))
-  model.add(Conv2D(32, (3, 3), padding="same", activation='relu'))
-  
-  model.add(Conv2D(64, (3, 3), activation='relu', padding="same"))
-  model.add(Conv2D(64, (3, 3), padding="same", activation='relu'))
-  model.add(MaxPooling2D(pool_size=(2, 2)))
-  
-  
-  model.add(Flatten())
-  
-  model.add(Dense(64, activation='relu'))
-  model.add(Dropout(0.2))
-  model.add(Dense(2 , activation='sigmoid'))
-  
-  model.compile(loss='binary_crossentropy',
-                    optimizer=RMSprop(lr=0.00005),
-                    metrics=['accuracy'])
-  return model
+def second_model_summary():
+    model = Sequential() 
+    model.add(Conv2D(32, (3, 3), input_shape=(3, 256, 256), activation = 'relu')) 
+    model.add(Conv2D(32, (3, 3), activation = 'relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2))) # the CONV CONV POOL structure is popularized in during ImageNet 2014
+    model.add(Dropout(0.25)) # this thing called dropout is used to prevent overfitting
+    model.add(Conv2D(64, (3, 3), activation = 'relu'))
+    model.add(Conv2D(64, (3, 3), activation = 'relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Dropout(0.25))
+    model.add(Flatten()) 
+    model.add(Dropout(0.5))
+    model.add(Dense(4, activation= 'softmax'))
+    optimizer = keras.optimizers.Adam()
+    model.compile(loss='categorical_crossentropy',
+              optimizer=optimizer,
+              metrics=['accuracy'])
+    return model
 ```
