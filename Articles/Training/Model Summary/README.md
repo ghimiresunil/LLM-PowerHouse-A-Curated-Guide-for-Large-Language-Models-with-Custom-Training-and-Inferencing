@@ -6,6 +6,8 @@
 
 # Deep Learning
 
+![deep_learning_compared_with_human_brain](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/3c453267-40b7-43a5-9727-c21a4654cb36)
+
 -  Deep Learning is a subset of machine learning
 - The Algorithms of Deep Learning try to imitate the working of the human brain in processing data and creating patterns for use in decision making
 - Deep Learning, uses the concept of artificial neural networks to carry out the process of machine learning
@@ -29,6 +31,8 @@ Parameters in general are weights that are learned during training. They are wei
 
 # Summary of `Model 01`
 
+![summary_model_01](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/6f9c2dc4-1977-4943-9648-2b75e0d8db9f)
+
 The CNN consist layer of neurons and it is optimized for two-dimensional pattern recognition. CNN has three types of layer namely convolutional layer, pooling layer and fully connected layer. Our network consists of `11 layers` excluding the input layer. The input layer takes in a RGB color image where each color channel is processed separately.
 
 The first `6 layers` of convolution network are convolution layer. First `2 convolution layer` applies 16 of `3*3` filters to an image in the layer. The other two layer applies `32 of 3*3 filters` to an image. And the last `2 layers of convolution` applies `64 of 3*3 filters` to an image. The nonlinear transformation sublayer employs the ReLU activation function. The max pooling sublayer applies a `2*2 filter` to the image which results in reducing the image size to its half. At this point, convolution network extracts `64 features`, each represented by a `32*32 array` for each color channel.
@@ -37,7 +41,37 @@ The eighth layer is the `flatten layer`. The flatten layer transforms a multidim
 
 First, we train convolution network using the data in training set to find appropriated filters’ weights in the three convolutional sublayers and the weights that yield minimum error in the two fully connected layers. Next, we evaluate convolution network using the data in the validation set to obtain validation error and cross-entropy loss. We repeat the training of convolution network in this same procedure until we complete 10 epochs. Last, we evaluate the performance of convolution network using data in the test set.
 
+**CNN Architecture for first model summary**
+
+```python
+def first_model_summary():
+  model = Sequential()
+  model.add(Conv2D(16, (3, 3), activation='relu', padding="same", input_shape=(150,150,3)))
+  model.add(Conv2D(16, (3, 3), padding="same", activation='relu'))
+  
+  model.add(Conv2D(32, (3, 3), activation='relu', padding="same"))
+  model.add(Conv2D(32, (3, 3), padding="same", activation='relu'))
+  
+  model.add(Conv2D(64, (3, 3), activation='relu', padding="same"))
+  model.add(Conv2D(64, (3, 3), padding="same", activation='relu'))
+  model.add(MaxPooling2D(pool_size=(2, 2)))
+  
+  
+  model.add(Flatten())
+  
+  model.add(Dense(64, activation='relu'))
+  model.add(Dropout(0.2))
+  model.add(Dense(2 , activation='sigmoid'))
+  
+  model.compile(loss='binary_crossentropy',
+                    optimizer=RMSprop(lr=0.00005),
+                    metrics=['accuracy'])
+  return model
+```
+
 # Summary of `Model 02`
+
+![summary_model_02](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/a39e869c-04f9-4248-b6f0-d47745a6356b)
 
 - **Input Layer**: The input layer has nothing to learn, at its core, what it does is just provide the input image’s shape. So no learnable parameters here. Thus a number of `parameters = 0`.
 - **CONV layer**: This is where CNN learns, so certainly we’ll have weight matrices. To calculate the learnable parameters here, all we have to do is just multiply the by the shape of width m, height n, previous layer’s filters d and account for all such filters k in the current layer. Don’t forget the bias term for each of the filters. A number of parameters in a CONV layer would be : $((m * n * d)+1)* k)$, added 1 because of the bias term for each filter. The same expression can be written as follows:` ((shape of width
@@ -56,3 +90,30 @@ $((current\ layer\ neurons\ c\ *\ previous\ layer\ neurons\ p\ )\ +\ 1\ *\ c)$
 - The fifth **POOL2** layer has no parameters.
 - The Softmax layer has `((current layer c*previous layer p)+1*c) parameters ` = 238144 * 4 + 1 * 4 = 952580.
 
+**CNN Architecture for second model summary**
+
+```python
+def first_model_summary():
+  model = Sequential()
+  model.add(Conv2D(16, (3, 3), activation='relu', padding="same", input_shape=(150,150,3)))
+  model.add(Conv2D(16, (3, 3), padding="same", activation='relu'))
+  
+  model.add(Conv2D(32, (3, 3), activation='relu', padding="same"))
+  model.add(Conv2D(32, (3, 3), padding="same", activation='relu'))
+  
+  model.add(Conv2D(64, (3, 3), activation='relu', padding="same"))
+  model.add(Conv2D(64, (3, 3), padding="same", activation='relu'))
+  model.add(MaxPooling2D(pool_size=(2, 2)))
+  
+  
+  model.add(Flatten())
+  
+  model.add(Dense(64, activation='relu'))
+  model.add(Dropout(0.2))
+  model.add(Dense(2 , activation='sigmoid'))
+  
+  model.compile(loss='binary_crossentropy',
+                    optimizer=RMSprop(lr=0.00005),
+                    metrics=['accuracy'])
+  return model
+```
