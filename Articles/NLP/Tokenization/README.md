@@ -299,7 +299,7 @@ $$X \in S(X)$$
 
 Let me give you an example. Let's take the word "hug".
 
-```
+```python
 p("h","u",g") = p("h") x p("u") x p("g")
               = (5/189) x (40/189) x (21/189)
               = 0.000620
@@ -356,5 +356,87 @@ So, the token `hu` will probably be removed from the vocabulary, but not `mug`.
 
 
 > Note: `Steps 2` and `Step 3` are repeated with the new vocabulary. These steps are repeated until the loss threshold is met or a fixed number of iterations is reached. 
+
+# WordPiece
+
+- WordPiece is a subword tokenization algorithm that starts with a vocabulary of individual characters and iteratively adds the most frequent and meaningful sequences of characters to the vocabulary. It is used in models like BERT and DistilBERT.
+- The algorithm starts by splitting the most probable word into smaller parts. It then assigns a probability to each sub-word based on its frequency in the text. This process is repeated until the desired number of sub-words is reached.
+> `WordPiece` algorithm is not very different from `BPE`, so I recommend you first understand BPE before going through `WordPiece`. 
+- To recall, BPE iteratively merges the most frequent pairs of tokens (bytes) until a predefined vocabulary size is reached. This process is greedy, meaning that it always merges the pair with the highest combined frequency.
+- Problem with `BPE`: The issue with `BPE` is that it can sometimes encode a word in multiple ways, making it hard for the algorithm to decide which subword tokens to use first. This can result in different encodings for the same input, affecting the accuracy of learned representations. 
+
+    Please refer to the following table of subword tokens.
+
+    | Number | Token | Frequency |
+    | ------- | ------ | -------- |
+    |  1     | li    |     3       |
+    |  2     | l    |     5       |
+    |  3     | ea    |     2       |
+    |  4    | eb    |     4       |
+    |  5     | near    |     6      |
+    |  6     | bra    |     2       |
+    |  7     | al    |     4       |
+    |  8     | n    |     5       |
+    |  9     | r    |     1       |
+    |  10     | ge   |     11       |
+    |  11     | g    |     7       |
+    |  12    | e    |     8       |
+
+    Given the vocabulary for a small corpus, we can tokenize the input phrase "linear algebra" as follows:
+
+    | word | Tokenize 01 | Tokenize 02 |
+    | ----- | ---------- | ----------- |
+    | linear |  li + near | li + n + ea + r |
+    | algebra | al + ge + bra | al + g + e + bra |
+
+    The phrase **"linear algebra"** can be tokenized into four different ways and there are two different ways to tokenize each word in the phrase, and the order of the subwords can also be different. This can be a problem, as it can make it difficult for the algorithm to choose the correct subword tokens. 
+
+    When we consider progress and enhancement in any field, we often seek a more effective and true-to-life method. One possible improvement over BPE's frequency-based approach is to consider the impact of merging a particular byte-pair (symbol pair) at each step. 
+
+    > WordPiece and BPE are both probabilistic approaches to tokenization. The main difference is that WordPiece chooses the symbol pair that maximizes the likelihood of the training data, while BPE chooses the most frequent symbol pair.
+
+    FOr example, `WordPiece` algorithm merges two characters if the probability of the two-character sequence occurring is greater than the probability of the two characters occurring separately. Mathematically, this can be expressed as:
+
+    ```python
+    p(es) > p(e) * p(s)
+    ```
+
+    ```python
+    p(es): the probability of the two-character sequence "es" occurring
+    p(e): the probability of the character "e" occurring
+    p(s): the probability of the character "s" occurring
+    ```
+
+    In other words, the algorithm will merge the two characters "e" and "s" if the probability of them occurring together is more than the probability of them occurring separately. This is because it is more likely that the two characters will occur together if they are merged into a single symbol.
+
+    Let's say, if the probability of "es" occurring is 0.5, the probability of "e" occurring is 0.2, and the probability of "s" occurring is 0.3, then the algorithm would merge the two characters "e" and "s". This is because 0.5 is greater than 0.2 * 0.3.
+
+    - The WordPiece algorithm is iterative and the summary of the algorithm according to the [paper](https://static.googleusercontent.com/media/research.google.com/ja//pubs/archive/37842.pdf) is as follows:
+        - Initialize the word unit inventory with the base characters. This means starting with the individual characters in the language, such as "a", "b", "c", and so on.
+        - Build a language model on the training data using the word inventory from 1. This means creating a statistical model that predicts the probability of each word in the training data occurring. The model is trained using the word inventory, which in this case is just the individual characters.
+        - Generate a new word unit by combining two units out of the current word inventory. This means taking two characters from the word inventory and combining them into a single unit. For example, if the word inventory contains the characters "a" and "b", then we could generate the word unit "ab".
+        - The word unit inventory will be incremented by 1 after adding this new word unit. This means adding the new word unit to the word inventory.
+        - The new word unit is chosen from all the possible ones so that it increases the likelihood of the training data the most when added to the model. This means choosing the new word unit that is most likely to occur in the training data.
+        - Repeat steps 2-5 until the word inventory reaches a pre-defined size or the likelihood increase falls below a certain threshold.
+
+# Is it still greedy?
+
+`WordPiece` is a greedy algorithm, but it follows a probabilistic approach to choosing the pairs to merge. This makes it more likely to produce accurate encodings, even though it does not always choose the best pair at each iteration.
+
+# Summary of `WordPiece`
+The WordPiece algorithm starts with a base vocabulary of individual characters. It then iteratively trains a language model on the vocabulary, and picks the pair of characters with the highest likelihood to merge. The new pair is added to the vocabulary, and the language model is retrained on the new vocabulary. This process is repeated until the desired vocabulary size or likelihood threshold is reached.
+
+**Pros**
+-  WordPiece helps in reducing the vocabulary size and can effectively handle OOV words by breaking them down into known sub-words. It also aids in preserving semantic meaning as some subwords can stand as individual words.
+
+**Cons**
+- If the sub-word unit does not exist in the vocabulary, WordPiece further breaks it down into individual characters, which might result in loss of semantic meaning.
+
+**Time Complexity**
+- The `WordPiece` use brute-force approach to training a language model is computationally expensive, with a time complexity of O(K²), where K is the number of word units. This is because the algorithm needs to test all possible pairs of word units and train a new language model for each pair.
+
+
+
+
 
 
