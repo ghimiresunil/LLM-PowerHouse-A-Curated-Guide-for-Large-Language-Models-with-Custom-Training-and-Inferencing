@@ -36,7 +36,7 @@ Tokenization is the process of splitting a text into smaller units, called token
     - Example: 
         - The word "refactoring" can be split into the subwords "re", "factor", and "ing".
         - The word "uninteresting" can be split into the subwords "un", "inter", "est", and "ing".
-        - The word "outperform" can be split into the subwords "out", "per", "form", and "ing".
+        - The word "outperforming" can be split into the subwords "out", "per", "form", and "ing".
 
 # Byte Pair Encoding (BPE)
 - BPE is a subword tokenization algorithm that breaks down words into smaller units by merging the most common pairs of characters. It has been used in GPT-2 and RoBERTa, which are large language models.
@@ -435,8 +435,39 @@ The WordPiece algorithm starts with a base vocabulary of individual characters. 
 **Time Complexity**
 - The `WordPiece` use brute-force approach to training a language model is computationally expensive, with a time complexity of O(K²), where K is the number of word units. This is because the algorithm needs to test all possible pairs of word units and train a new language model for each pair.
 
+# SentencePiece
 
+| Feature | Description |
+| -------- | ----------- |
+| Type | Unsupervised text tokenizer and detokenizer |
+| Usage | Mainly for Neural Network-based text generation systems | 
+| Vocabulary Size Determination	 | Predetermined prior to neural model training |
+| Tokenization Methods | BPE and unigram language model, with direct training from raw sentences |
+| Supervised/Unsupervised | Unsupervised, no external training data required
+| 
+| Sub-word Unit Learning | Learns directly from input text |
+| Handling Out-of-Vocabulary Words	| Generates new sub-word units on the fly |
+| Multilingual Support	| Handles multiple languages with a single model |
+| Text Normalization | Can be used for text normalization |
+| Usage in Transformer Models	| Widely used in models like BERT, RoBERTa, and GPT-3 |
+| Pros | 1. No pre-tokenization required. <br> 2. Language-independent. <br> 3. No language-specific pre/post-processing. |
+| Cons |  It could lead to inefficient encoding for languages with many multi-byte characters (e.g., Asian languages), as it treats each Unicode character as a potential token. | 
 
+**Problems is SentencePiece addressing :**
+| Feature |	SentencePiece |	BPE/Unigram Models|
+| ------- | -------------- | ----------------|
+| Input Tokenization |	Raw text input; no pre-tokenization needed	| Requires input to be pre-tokenized |
+| Language Agnostic	| Language-independent; works for all languages	| Requires language-specific rules
+| Decoding Ambiguity | 	Avoids ambiguity in token encoding	| Ambiguity in token encoding rules |
+| End-to-End Solution |	Provides a complete end-to-end solution	| Only part of a tokenization solution | 
 
+# Comparative Analysis Summary
+
+| Algotithm | Description	| Supervised? | 	Popularity | 	Applications | 
+| --------- | -------------- | ------------ | ------------- | -------------- |
+| Byte-Pair Encoding (BPE)	| Starts with a set of individual characters as the initial subwords. Iteratively replaces the most frequent pair of bytes (or characters) in the text with a new, unused byte.	| Yes | Widely used	| Neural machine translation, text summarization, question answering |
+| Unigram Subword Tokenization	| Starts with a set of words, and then iteratively splits the most probable word into smaller parts. Assigns a probability to the newly created subwords based on their frequency in the text.	| No	| Less popular |	Language modeling, text-to-speech |
+| WordPiece | Starts with a set of words, and then iteratively splits the most probable word into smaller parts. Assigns a probability to the newly created subwords based on their frequency in the text.	| No	| Less popular |	Neural machine translation | 
+| SentencePiece | Based on the byte-pair encoding (BPE) algorithm. Unsupervised, which means that it does not require any external training data. Has a built-in mechanism for handling out-of-vocabulary words. Can handle multiple languages with a single model and can also be used for text normalization. Widely used in modern transformer-based models such as BERT, RoBERTa, and GPT-3.	| No	| Widely used	| Neural machine translation, text summarization, question answering | 
 
 
