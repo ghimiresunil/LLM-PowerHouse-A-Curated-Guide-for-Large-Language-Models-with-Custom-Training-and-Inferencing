@@ -473,7 +473,6 @@ The WordPiece algorithm starts with a base vocabulary of individual characters. 
 
 # References 
 
-- 
 - [A New Algorithm for Data Compression](https://www.derczynski.com/papers/archive/BPE_Gage.pdf)
 - [Byte-Pair Encoding Tokenization](https://huggingface.co/course/chapter6/5)
 - [Byte-Pair Encoding Algorithm](https://leimao.github.io/blog/Byte-Pair-Encoding/)
