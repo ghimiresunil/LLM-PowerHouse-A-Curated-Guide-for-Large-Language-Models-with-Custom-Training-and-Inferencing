@@ -10,6 +10,8 @@
 
 Tokenization is the process of splitting a text into smaller units, called tokens, which can be words, subwords, or characters. It is one of the first steps in an NLP pipeline.
 
+![tokenization](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/9a5b49b1-4adf-4bdb-8a7f-856cb525235a)
+
 | Tokenization Type | Description | Advantages | Disadvantages | Example |
 | ----------------- | ----------- | ----------- | ------------ | -------- |
 | Word-based tokenization	| Breaks a text into words based on a delimiter, such as a space or punctuation mark.	| Simple and efficient.	| Large vocabulary size and many OOV tokens, which can lead to a heavier model and loss of information.	| "This is a sentence." → ["This", "is", "a", "sentence"].|
@@ -469,4 +471,16 @@ The WordPiece algorithm starts with a base vocabulary of individual characters. 
 | WordPiece | Starts with a set of words, and then iteratively splits the most probable word into smaller parts. Assigns a probability to the newly created subwords based on their frequency in the text.	| No	| Less popular |	Neural machine translation | 
 | SentencePiece | Based on the byte-pair encoding (BPE) algorithm. Unsupervised, which means that it does not require any external training data. Has a built-in mechanism for handling out-of-vocabulary words. Can handle multiple languages with a single model and can also be used for text normalization. Widely used in modern transformer-based models such as BERT, RoBERTa, and GPT-3.	| No	| Widely used	| Neural machine translation, text summarization, question answering | 
 
+# References 
 
+- [A New Algorithm for Data Compression](https://www.derczynski.com/papers/archive/BPE_Gage.pdf)
+- [Byte-Pair Encoding Tokenization](https://huggingface.co/course/chapter6/5)
+- [Byte-Pair Encoding Algorithm](https://leimao.github.io/blog/Byte-Pair-Encoding/)
+- [Tokenizers: How Machines Read](https://blog.floydhub.com/tokenization-nlp/)
+- [WordPiece Tokenization](https://huggingface.co/course/chapter6/6)
+- [A Fast WordPiece Tokenization System](https://ai.googleblog.com/2021/12/a-fast-wordpiece-tokenization-system.html)
+- [Google's Neural Machine Translation System: Bridging the Gap between Human and Machine Translation](https://arxiv.org/abs/1609.08144v2)
+- [Training BPE, WordPiece, and Unigram Tokenizers from Scratch using Hugging Face](https://towardsdatascience.com/training-bpe-wordpiece-and-unigram-tokenizers-from-scratch-using-hugging-face-3dd174850713)
+- [Subword Regularization: Improving Neural Network Translation Models with Multiple Subword Candidates](https://arxiv.org/pdf/1804.10959.pdf)
+- [Summary of the tokenizers](https://huggingface.co/docs/transformers/tokenizer_summary)
+- [Unsupervised text tokenizer for Neural Network-based text generation](https://github.com/google/sentencepiece)
