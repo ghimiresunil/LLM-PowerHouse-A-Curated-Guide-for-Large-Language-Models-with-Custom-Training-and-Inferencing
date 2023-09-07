@@ -443,8 +443,7 @@ The WordPiece algorithm starts with a base vocabulary of individual characters. 
 | Usage | Mainly for Neural Network-based text generation systems | 
 | Vocabulary Size Determination	 | Predetermined prior to neural model training |
 | Tokenization Methods | BPE and unigram language model, with direct training from raw sentences |
-| Supervised/Unsupervised | Unsupervised, no external training data required
-| 
+| Supervised/Unsupervised | Unsupervised, no external training data required| 
 | Sub-word Unit Learning | Learns directly from input text |
 | Handling Out-of-Vocabulary Words	| Generates new sub-word units on the fly |
 | Multilingual Support	| Handles multiple languages with a single model |
