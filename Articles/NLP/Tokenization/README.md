@@ -10,6 +10,8 @@
 
 Tokenization is the process of splitting a text into smaller units, called tokens, which can be words, subwords, or characters. It is one of the first steps in an NLP pipeline.
 
+![tokenization](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/9a5b49b1-4adf-4bdb-8a7f-856cb525235a)
+
 | Tokenization Type | Description | Advantages | Disadvantages | Example |
 | ----------------- | ----------- | ----------- | ------------ | -------- |
 | Word-based tokenization	| Breaks a text into words based on a delimiter, such as a space or punctuation mark.	| Simple and efficient.	| Large vocabulary size and many OOV tokens, which can lead to a heavier model and loss of information.	| "This is a sentence." → ["This", "is", "a", "sentence"].|
