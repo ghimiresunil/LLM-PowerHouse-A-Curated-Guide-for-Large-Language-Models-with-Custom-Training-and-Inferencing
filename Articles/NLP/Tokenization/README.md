@@ -1,7 +1,7 @@
 # Overview
 - This article focuses the significance of tokenization in NLP and how it helps machines to learn the meaning of words and phrases.
 - Teaching machines to read and understand text is a challenging task, but it is possible with the right approach. The goal is to enable them to read and understand the meaning of text.
-- To process text, maclibrarieshines first need to tokenize it, which means dividing the text into smaller units called tokens.
+- To process text, machines first need to tokenize it, which means dividing the text into smaller units called tokens.
 - To be used by language models like BERT, text must first be tokenized, which is the process of dividing it into smaller units called tokens.
 - The ability of models to understand the meaning of text is still being investigated, but it is thought that they learn syntactic knowledge at lower levels of the neural network and semantic knowledge at higher levels.[Source](https://hal.inria.fr/hal-02131630/document)
 - Instead of treating text as a single string, it can be broken down into a list of individual words, called tokens. This is called tokenization.
