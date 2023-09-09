@@ -49,7 +49,7 @@ flowchart LR
 
 We will be going through the following activation functions:
 ## Sigmoid Function
-<img align="right" width="400" src="https://production-media.paperswithcode.com/methods/1200px-Logistic-curve.svg_VXkoEDF.png" />
+<img align="right" width="400" src="https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/2e8999ee-e870-4d3d-9dc8-a25398c38037" />
 
 - The sigmoid function is a common choice for binary classification because it maps any input to a value between 0 and 1, which can be interpreted as a probability.
 - The sigmoid function can be a good choice for some applications, but it is important to be aware of its limitations, such as gradient saturation and slow convergence.
@@ -64,7 +64,7 @@ We will be going through the following activation functions:
 - Sigmoid is defined as: $S(x)\ = \frac{1}{1 + e^{-x}}$ where, $S(x) = Sigmoid \ Function$ and $e = Euler's\ Number$
 
 # Tanh Activation
-<img align="right" width="400" src="https://api.wandb.ai/files/shweta/images/projects/57358/9914b406.png" />
+<img align="right" width="400" src="https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/41971fda-f43a-4ec6-88e3-0e254f4e3c01" />
 
 - The hyperbolic tangent function, or tanh, is a popular activation function in recurrent neural networks (RNNs) and long short-term memory (LSTM) networks. It maps inputs to values between -1 and 1, which makes it suitable for modeling continuous outputs in this range.
 - For Example: The tanh function is a popular activation function for RNNs and LSTMs because it can represent a wide range of values, which is necessary for modeling sequential data.
@@ -82,6 +82,8 @@ We will be going through the following activation functions:
 $f(x) = \frac{(e^x -\ e^{-x})}{(e^x + e^{-x})}$
 
 ## Rectified Linear Units (ReLU)
+<img align="right" width="400" src="https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/558f3e31-b5cf-400c-a2e0-7b93ba796e8a" />
+
 - The rectified linear unit (ReLU) activation function is commonly used in the hidden layers of feedforward neural networks. It passes the positive input values to the next layer unchanged and sets the negative input values to zero.
 - Pros:
     - ReLU is computationally efficient because it only involves simple mathematical operations, unlike the sigmoid and tanh functions which require more complex mathematical operations.
@@ -98,6 +100,8 @@ Usage:
 - Rectified Linear Units (ReLU) is defined as $f(x) = max(0, x)$
 
 ## Leaky Rectified Linear Unit (Leaky ReLU)
+<img align="right" width="400" src="https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/ee803b57-6878-4a80-9862-2296ce61dccc" />
+
 - Leaky ReLU is a modified version of ReLU that adds a small, non-zero slope to negative inputs. This helps avoid complete inactivity of negative values and proves beneficial in situations where gradients are sparse, like when training generative adversarial networks (GANs).
 - Leaky Rectified Linear Unit, known as Leaky ReLU, is an activation function similar to ReLU, but it differs by having a gentle slope for negative values instead of a flat one. The slope value is set prior to training and doesn't change during the training process.
 - Pros:
@@ -111,7 +115,10 @@ Usage:
     - Like ReLU, Leaky ReLU is suitable for use in hidden layers, but it should be considered as an alternative rather than a strict replacement because it may not consistently outperform ReLU.
 - The Leaky Rectified Linear Unit is defined as $Leaky\ ReLu(x) = max(αx,x)$ where $x$ is the input and $α$ is a small positive constant.
 
+
 ## ELU (Exponential Linear Unit)
+<img align="right" width="400" src="https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/375945fe-b5c6-46b8-a5d7-71334b942361" />
+
 - ELU (Exponential Linear Unit) is an activation function developed to tackle the problems linked to ReLU, and it manages to do this by ensuring that in the negative region, the y-value remains slightly below zero.
 - Pros:
     -  Unlike ReLU, It is derivable at 0.
@@ -129,6 +136,8 @@ Usage:
 - ELU (Exponential Linear Unit) is defined as: $f(x) = x\ if\ x\ > 0\ else\ α(e^x - 1)$ where $α$ is a hyperparameter whose value lies in the range [0.1,0.3]. When x is positive, ELU is like ReLU, but for negative values of x, y in ELU is just a little below zero.
 
 ## Scaled Exponential Linear Unit (SELU)
+<img align="right" width="400" src="https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/704e0625-1f58-442c-bc4c-5411a42de214" />
+
 - Scaled Exponential Linear Units, or SELUs, are activation functions that induce self-normalizing properties.
 - Pros
     - SELU activation function does not require external normalization because it can normalize the input to the next layer by itself. This makes the neural network converge more quickly.
@@ -139,7 +148,10 @@ Usage:
     - Works best for sequential network architectures
 - The SELU activation function is given by: $f(x) = \lambda x\ if x \ge 0$ also this can SELU activation function defined as $f(x) = \lambda \alpha(exp(x) - 1)\ if\ x < 0$ where $\alpha \approx 1.6733$ and $\lambda \approx 1.0507$ 
 
+
 ## Gaussian Error Linear Unit (GELU)
+<img align="right" width="400" src="https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/9a37ea6b-97f0-41a9-b53a-457d50e66a32" />
+
 - GELU activation function is $x \Phi(x)$, where $\Phi(x)$ is the standard Gaussian cumulative distribution function. The GELU nonlinearity takes into account the percentile of the input, rather than just its sign, like the ReLU activation function.
 - Pros:
     - Appears to be cutting-edge in NLP, particularly in Transformer models.
@@ -154,6 +166,8 @@ Usage:
     - Where, where $erf$ is the error function and $X$ is a standard normal variable.
 
 ## Swish Activation Function 
+<img align="right" width="400" src="https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/5e6576b6-987d-48b6-89e0-942aa5e37acd" />
+
 - Up until now, most activation functions we've learned about shared a common trait: they were either always increasing or always decreasing. Which means that they are monotonic in nature. 
 - Swish stands out because it's not a monotonic function. If you examine its behavior in the negative range, you'll notice that after reaching 0, it starts decreasing before eventually rising again. This unique feature sets Swish apart from other activation functions.
 - Pros:
@@ -171,6 +185,8 @@ Usage:
     - $f(x) = x.sigmoid(\beta{x})$, where $\beta$ is a learnable parameter. Nearly all implementations do not use the learnable parameter $\beta$, in which case the activation function is $f(x) = x.sigmoid(x)$ which is also known as "Swish-1". 
 
 ## Mish Activation Function
+<img align="right" width="400" src="https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/4948e3d3-7053-43f5-915e-63e55133ab9a" />
+
 - Mish is another non-monotonic activation function, just like Swish.
 - Pros:
     - Mish is also unbounded above and bounded below, just like Swish.
@@ -183,9 +199,12 @@ Usage:
     - It is computationally very expensive.
 - Usages:
     - It should be used in the hidden layers.
--  Mish Activation Function is defined as: $f(x) = x.tanh(softplus(x))$, where, $softplus(x) = ln(1+e^x)$ is the softplus activation function. 
+-  Mish Activation Function is defined as: $f(x) = x.tanh(softplus(x))$, where, $softplus(x) = ln(1+e^x)$ is the softplus activation function.
+  
 
 ##  Softmax Activation Function
+<img align="right" width="400" src="https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/95528141-372b-460e-868f-e8dd394a4449" />
+
 - The terms "Softmax-Loss" and "Softmax activation function" can be confusing because they sound similar, but they actually have different meanings. We will explain them in more detail below.
 - The softmax function takes the output of a neural network and converts it into a probability distribution over the possible classes. This ensures that the probabilities sum to 1, so they can be interpreted as probabilities.
 - Cross-entropy loss tells us how much the model's predictions are off from the actual labels. The lower the cross-entropy loss, the better the model is at predicting the labels.
