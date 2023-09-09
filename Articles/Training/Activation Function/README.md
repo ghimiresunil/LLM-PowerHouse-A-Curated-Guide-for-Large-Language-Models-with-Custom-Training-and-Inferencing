@@ -219,8 +219,8 @@ $f(x) = \frac{(e^x -\ e^{-x})}{(e^x + e^{-x})}$
 $f(x)_i = \frac{e^{s_i}}{\sum_{j}^Ce^{s_j}}$
     - where $s_j$ are the scores inferred by the net for each class in $C$. Note that the Softmax activation for a class $s_i$ depends on all the scores in s.
     
-
-
+# Further Reading
+- [Activation functions by Papers with code](https://paperswithcode.com/methods/category/activation-functions)
 
 
 
