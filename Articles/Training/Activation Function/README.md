@@ -8,7 +8,41 @@
     - You could also use the ReLU activation function to transform the output of each neuron into a value that is greater than or equal to zero. This would allow the neural network to learn to ignore irrelevant features and focus on the most important features for fraud detection.
 > Note: Activation functions in neural networks allow the network to learn non-linear relationships between the input and output data. This is important because many real-world problems involve non-linear relationships. Without activation functions, neural networks would only be able to learn linear relationships. So, By adding an activation function to each neuron, the neural network can learn to make more complex decisions. 
 
-# Sigmoid Function
+# Why is non-linearity necessary for neural networks to learn complex relationships?
+
+A linear function is a function that can be represented by a straight line. A neural network with only linear layers can only learn linear relationships between its inputs and outputs. However, many real-world problems involve non-linear relationships. For example, the relationship between the price of a house and its square footage is non-linear.
+
+Non-linearity is introduced to neural networks through the use of activation functions. Activation functions are mathematical operations that are applied to the outputs of the neurons in a neural network. They introduce non-linearity into the network, allowing it to learn complex relationships.
+
+Let's say we have a neural network with a single neuron in the hidden layer. The neuron has a weight of 2 and a bias of 1. The input to the neuron is x.
+
+The output of the neuron is calculated as follows:
+
+```python
+y = wx + b = 2x + 1
+```
+
+We can apply an activation function to the output of this neuron to make it non-linear. For example, we could apply the ReLU activation function, which would give us the following:
+
+```python
+y = ReLU(wx + b) = max(0, 2x + 1)
+```
+
+The ReLU function will output a value of 0 if the input is negative, and the input value if the input is positive. This means that the output of the ReLU function will be non-linear.
+
+In this example, the activation function has transformed the linear function into a non-linear function. This allows the neural network to learn more complex relationships between its inputs and outputs.
+
+# How do activation functions introduce non-linearity to neural networks?
+
+Activation functions are mathematical operations that are applied to the outputs of the neurons in a neural network. They introduce non-linearity into the network, allowing it to learn complex relationships.
+
+Without activation functions, neural networks would be limited to learning linear relationships. This is because a linear function is a function that can be represented by a straight line. A neural network with only linear layers can only learn linear relationships between its inputs and outputs.
+
+
+# Different Activation Functions
+
+We will be going through the following activation functions:
+## Sigmoid Function
 <img align="right" width="400" src="https://production-media.paperswithcode.com/methods/1200px-Logistic-curve.svg_VXkoEDF.png" />
 
 - The sigmoid function is a common choice for binary classification because it maps any input to a value between 0 and 1, which can be interpreted as a probability.
@@ -41,7 +75,7 @@
 - Hyperbolic Tangent is defined:
 $f(x) = \frac{(e^x -\ e^{-x})}{(e^x + e^{-x})}$
 
-# Rectified Linear Units (ReLU)
+## Rectified Linear Units (ReLU)
 - The rectified linear unit (ReLU) activation function is commonly used in the hidden layers of feedforward neural networks. It passes the positive input values to the next layer unchanged and sets the negative input values to zero.
 - Pros:
     - ReLU is computationally efficient because it only involves simple mathematical operations, unlike the sigmoid and tanh functions which require more complex mathematical operations.
@@ -57,7 +91,7 @@ Usage:
     - For hidden layers, it's advisable to opt for ReLU activation because it's computationally more efficient than sigmoid and tanh. ReLU is not only faster than both sigmoid and tanh but also ensures that only a few neurons are active simultaneously in hidden layers, making computations efficient.
 - Rectified Linear Units (ReLU) is defined as $f(x) = max(0, x)$
 
-# Leaky Rectified Linear Unit (Leaky ReLU)
+## Leaky Rectified Linear Unit (Leaky ReLU)
 - Leaky ReLU is a modified version of ReLU that adds a small, non-zero slope to negative inputs. This helps avoid complete inactivity of negative values and proves beneficial in situations where gradients are sparse, like when training generative adversarial networks (GANs).
 - Leaky Rectified Linear Unit, known as Leaky ReLU, is an activation function similar to ReLU, but it differs by having a gentle slope for negative values instead of a flat one. The slope value is set prior to training and doesn't change during the training process.
 - Pros:
@@ -71,7 +105,7 @@ Usage:
     - Like ReLU, Leaky ReLU is suitable for use in hidden layers, but it should be considered as an alternative rather than a strict replacement because it may not consistently outperform ReLU.
 - The Leaky Rectified Linear Unit is defined as $Leaky\ ReLu(x) = max(αx,x)$ where $x$ is the input and $α$ is a small positive constant.
 
-# ELU (Exponential Linear Unit)
+## ELU (Exponential Linear Unit)
 - ELU (Exponential Linear Unit) is an activation function developed to tackle the problems linked to ReLU, and it manages to do this by ensuring that in the negative region, the y-value remains slightly below zero.
 - Pros:
     -  Unlike ReLU, It is derivable at 0.
@@ -88,7 +122,7 @@ Usage:
     - It should be used in the hidden layers.
 - ELU (Exponential Linear Unit) is defined as: $f(x) = x\ if\ x\ > 0\ else\ α(e^x - 1)$ where $α$ is a hyperparameter whose value lies in the range [0.1,0.3]. When x is positive, ELU is like ReLU, but for negative values of x, y in ELU is just a little below zero.
 
-# Swish Activation Function 
+## Swish Activation Function 
 - Up until now, most activation functions we've learned about shared a common trait: they were either always increasing or always decreasing. Which means that they are monotonic in nature. 
 - Swish stands out because it's not a monotonic function. If you examine its behavior in the negative range, you'll notice that after reaching 0, it starts decreasing before eventually rising again. This unique feature sets Swish apart from other activation functions.
 - Pros:
@@ -105,7 +139,7 @@ Usage:
 - The Swish Activation Function is defined as: 
     - $f(x) = x.sigmoid(\beta{x})$, where $\beta$ is a learnable parameter. Nearly all implementations do not use the learnable parameter $\beta$, in which case the activation function is $f(x) = x.sigmoid(x)$ which is also known as "Swish-1". 
 
-# Mish Activation Function
+## Mish Activation Function
 - Mish is another non-monotonic activation function, just like Swish.
 - Pros:
     - Mish is also unbounded above and bounded below, just like Swish.
@@ -120,9 +154,7 @@ Usage:
     - It should be used in the hidden layers.
 -  Mish Activation Function is defined as: $f(x) = x.tanh(softplus(x))$, where, $softplus(x) = ln(1+e^x)$ is the softplus activation function. 
 
-
-
-#  Softmax Activation Function
+##  Softmax Activation Function
 - The terms "Softmax-Loss" and "Softmax activation function" can be confusing because they sound similar, but they actually have different meanings. We will explain them in more detail below.
 - The softmax function takes the output of a neural network and converts it into a probability distribution over the possible classes. This ensures that the probabilities sum to 1, so they can be interpreted as probabilities.
 - Cross-entropy loss tells us how much the model's predictions are off from the actual labels. The lower the cross-entropy loss, the better the model is at predicting the labels.
@@ -137,7 +169,7 @@ Usage:
 $f(x)_i = \frac{e^{s_i}}{\sum_{j}^Ce^{s_j}}$
     - where $s_j$ are the scores inferred by the net for each class in $C$. Note that the Softmax activation for a class $s_i$ depends on all the scores in s.
 
-# Scaled Exponential Linear Unit (SELU)
+## Scaled Exponential Linear Unit (SELU)
 - Scaled Exponential Linear Units, or SELUs, are activation functions that induce self-normalizing properties.
 - Pros
     - SELU activation function does not require external normalization because it can normalize the input to the next layer by itself. This makes the neural network converge more quickly.
@@ -148,7 +180,7 @@ $f(x)_i = \frac{e^{s_i}}{\sum_{j}^Ce^{s_j}}$
     - Works best for sequential network architectures
 - The SELU activation function is given by: $f(x) = \lambda x\ if x \ge 0$ also this can SELU activation function defined as $f(x) = \lambda \alpha(exp(x) - 1)\ if\ x < 0$ where $\alpha \approx 1.6733$ and $\lambda \approx 1.0507$ 
 
-# Gaussian Error Linear Unit (GELU)
+## Gaussian Error Linear Unit (GELU)
 - GELU activation function is $x \Phi(x)$, where $\Phi(x)$ is the standard Gaussian cumulative distribution function. The GELU nonlinearity takes into account the percentile of the input, rather than just its sign, like the ReLU activation function.
 - Pros:
     - Appears to be cutting-edge in NLP, particularly in Transformer models.
