@@ -38,6 +38,12 @@ Activation functions are mathematical operations that are applied to the outputs
 
 Without activation functions, neural networks would be limited to learning linear relationships. This is because a linear function is a function that can be represented by a straight line. A neural network with only linear layers can only learn linear relationships between its inputs and outputs.
 
+The basic process carried out by a neuron in a neural network is:
+
+```mermaid
+flowchart LR
+    A[Take the input and calculate the weighted sum] --> B(add the bias to the sum) --> C[feed the result to the activation function] --> D(transmit the output to the next layer)   
+```
 
 # Different Activation Functions
 
