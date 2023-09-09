@@ -128,6 +128,31 @@ Usage:
     - It should be used in the hidden layers.
 - ELU (Exponential Linear Unit) is defined as: $f(x) = x\ if\ x\ > 0\ else\ α(e^x - 1)$ where $α$ is a hyperparameter whose value lies in the range [0.1,0.3]. When x is positive, ELU is like ReLU, but for negative values of x, y in ELU is just a little below zero.
 
+## Scaled Exponential Linear Unit (SELU)
+- Scaled Exponential Linear Units, or SELUs, are activation functions that induce self-normalizing properties.
+- Pros
+    - SELU activation function does not require external normalization because it can normalize the input to the next layer by itself. This makes the neural network converge more quickly.
+    - Vanishing and exploding gradient problems are impossible.
+- Cons:
+    - SELU activation function works best for sequential network architectures, where the output of each layer is fed directly into the next layer. If the architecture has skipped connections, where the output of one layer is not fed into the next layer, then the self-normalization property of SELU is not guaranteed, and the performance of the network may not be as good.
+- Usage:
+    - Works best for sequential network architectures
+- The SELU activation function is given by: $f(x) = \lambda x\ if x \ge 0$ also this can SELU activation function defined as $f(x) = \lambda \alpha(exp(x) - 1)\ if\ x < 0$ where $\alpha \approx 1.6733$ and $\lambda \approx 1.0507$ 
+
+## Gaussian Error Linear Unit (GELU)
+- GELU activation function is $x \Phi(x)$, where $\Phi(x)$ is the standard Gaussian cumulative distribution function. The GELU nonlinearity takes into account the percentile of the input, rather than just its sign, like the ReLU activation function.
+- Pros:
+    - Appears to be cutting-edge in NLP, particularly in Transformer models.
+    - It is a smooth and non-monotonic activation function that has been shown to outperform ReLU in a variety of tasks.
+    - Avoids vanishing gradient problem
+    - It is more expressive, meaning that it can represent a wider range of functions.
+- Cons:
+    - Fairly new in practical use, although introduced in 2016.
+- Usage:
+    - Used in GPT-3, BERT, and most other Transformers.
+- The GELU activation function is defined as: $GELU(x) = x * P(X \le x) = x \Phi(x) = x * 0.5 * [1 + erf(x+\sqrt2)]$
+    - Where, where $erf$ is the error function and $X$ is a standard normal variable.
+
 ## Swish Activation Function 
 - Up until now, most activation functions we've learned about shared a common trait: they were either always increasing or always decreasing. Which means that they are monotonic in nature. 
 - Swish stands out because it's not a monotonic function. If you examine its behavior in the negative range, you'll notice that after reaching 0, it starts decreasing before eventually rising again. This unique feature sets Swish apart from other activation functions.
@@ -174,31 +199,7 @@ Usage:
 - For a given class $s_i$, the Softmax function can be computed as:
 $f(x)_i = \frac{e^{s_i}}{\sum_{j}^Ce^{s_j}}$
     - where $s_j$ are the scores inferred by the net for each class in $C$. Note that the Softmax activation for a class $s_i$ depends on all the scores in s.
-
-## Scaled Exponential Linear Unit (SELU)
-- Scaled Exponential Linear Units, or SELUs, are activation functions that induce self-normalizing properties.
-- Pros
-    - SELU activation function does not require external normalization because it can normalize the input to the next layer by itself. This makes the neural network converge more quickly.
-    - Vanishing and exploding gradient problems are impossible.
-- Cons:
-    - SELU activation function works best for sequential network architectures, where the output of each layer is fed directly into the next layer. If the architecture has skipped connections, where the output of one layer is not fed into the next layer, then the self-normalization property of SELU is not guaranteed, and the performance of the network may not be as good.
-- Usage:
-    - Works best for sequential network architectures
-- The SELU activation function is given by: $f(x) = \lambda x\ if x \ge 0$ also this can SELU activation function defined as $f(x) = \lambda \alpha(exp(x) - 1)\ if\ x < 0$ where $\alpha \approx 1.6733$ and $\lambda \approx 1.0507$ 
-
-## Gaussian Error Linear Unit (GELU)
-- GELU activation function is $x \Phi(x)$, where $\Phi(x)$ is the standard Gaussian cumulative distribution function. The GELU nonlinearity takes into account the percentile of the input, rather than just its sign, like the ReLU activation function.
-- Pros:
-    - Appears to be cutting-edge in NLP, particularly in Transformer models.
-    - It is a smooth and non-monotonic activation function that has been shown to outperform ReLU in a variety of tasks.
-    - Avoids vanishing gradient problem
-    - It is more expressive, meaning that it can represent a wider range of functions.
-- Cons:
-    - Fairly new in practical use, although introduced in 2016.
-- Usage:
-    - Used in GPT-3, BERT, and most other Transformers.
-- The GELU activation function is defined as: $GELU(x) = x * P(X \le x) = x \Phi(x) = x * 0.5 * [1 + erf(x+\sqrt2)]$
-    - Where, where $erf$ is the error function and $X$ is a standard normal variable.
+    
 
 
 
