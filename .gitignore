@@ -1,2 +1,11 @@
 venv
 dataset/final_df
+# data/clean_resume/
+env
+__pycache__/
+.DS_Store
+.ipynb_checkpoints/
+*.model
+*.npy
+*.tsv
+Articles/NLP/NLP Embeddings/data/clean_resume/
