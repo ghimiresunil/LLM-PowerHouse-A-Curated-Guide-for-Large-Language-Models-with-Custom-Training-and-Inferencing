@@ -99,3 +99,15 @@ $$cosine\textunderscore similarity(u,v) = \frac{u⋅v}{∥u∥∥v∥} = \frac{\
 | Use Cases	| 	Often used in text/document similarity, recommendation systems.| Commonly used in machine learning and neural networks.|
 | Comparison within Varying Length Data	| Well-suited for comparing data with varying lengths.| May produce different values for different magnitudes.| 
 | Complexity and Implementation	| Requires normalization, potentially more operations.	| Simpler to compute, fewer operations.|
+
+# Reasoning
+- Let's begin our discussion of how reasoning works in LLMs by defining reasoning as the ability to make inferences using evidence and logic. [Source](https://arxiv.org/pdf/2302.07842.pdf)
+- Reasoning can take many forms, such as commonsense reasoning or mathematical reasoning
+- Similarly, there are many different ways to elicit reasoning from a model, such as chain-of-thought prompting. [Source](https://arxiv.org/abs/2201.11903)
+- The extent of reasoning used by LLMs in their predictions is still unclear. It is not easy to determine how much of their final output is based on reasoning and how much is based on factual information. 
+
+# The state of the art in retrieval-augmented generation
+- In industrial settings, there is a high demand for cost-effective, privacy-preserving, and reliable solutions. Startups are particularly interested in these solutions, as they do not have the resources to invest in training models from scratch or to hire expensive talent.
+- Recent research and releases of chatbots have shown that they can access and use knowledge and information that is not stored in their models. This is known as retrieval augmented generation (RAG).
+- RAG allows LLMs to learn in context without the need for costly fine-tuning, making them more cost-effective to use. Companies can use a single model to process and generate responses based on new data, while also tailoring their solution to meet specific needs and staying up-to-date.
+- We can accomplish this in several ways, such as iteratively calling another language model to extract the information we need.
