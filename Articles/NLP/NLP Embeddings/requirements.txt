@@ -1,9 +1,0 @@
-pandas
-gensim
-gdown
-nltk
-scikit-learn scipy
-spacy
-tensorflow
-tensorflow_hub
-chart_studio
