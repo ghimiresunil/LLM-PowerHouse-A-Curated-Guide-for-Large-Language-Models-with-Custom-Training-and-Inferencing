@@ -9,12 +9,14 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
 - [Difference between Masked Language Model and Causal Language Model](#difference-between-masked-language-model-and-causal-language-model)
 - [Open Source LLM Space for Research Use](#open-source-llm-space-for-research-use)
 - [Open Source LLM Space for Commercial Use](#open-source-llm-space-for-commercial-use)
+- [Open LLM datasets for instruction-tuning](#open-llm-datasets-for-instruction-tuning)
 - [LLM Training Frameworks](llm-training-frameworks)
 - [Effective Deployment Strategies for Language Models](#effective-deployment-strategies-for-language-models)
 - [Courses about LLM](#courses-about-llm)
 - [Tutorials about LLM ](#tutorials-about-llm)
 - [Codebase Mastery: Building with Perfection with In-Depth Articles](#codebase-mastery-building-with-perfection-with-in-depth-articles)
 - [What I am learning](#what-i-am-learning)
+
 
 # Prompt Engineering
 
