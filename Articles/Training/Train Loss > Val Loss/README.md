@@ -3,7 +3,11 @@
 
 # Theories
 - Here are several hypotheses that could explain this phenomenon.
+![train_loss_is_greater_than_val_loss](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/4940a943-24a6-407b-99d5-e30ae8b5bfd0)
+
 - **Regularization**: Regularization, such as dropout, is often the cause, as it is applied during training but not during validation and testing. When the regularization loss is added to the validation loss, the results change.
+![regularization](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/9b5bcaa5-fd95-4aa9-9005-7fdf198e007d)
+
     - For Example:
         - Suppose that your model's training loss without regularization is 0.5. When you add the dropout regularization loss, the training loss increases to 0.6.
         - However, the validation loss remains at 0.5, because the dropout regularization loss is not applied during validation.
@@ -11,6 +15,8 @@
         - If you add the dropout regularization loss to the validation loss, the validation loss also increases to 0.6. This makes the training and validation losses equal.
         - This example shows how regularization can cause training loss to be greater than validation loss. However, it is important to note that this is a good thing. Regularization helps to prevent overfitting, which can lead to better performance on unseen data.
 - **Epoch delta between training and validation loss**: Training loss is measured during each epoch, while validation loss is measured after each epoch. This means that training loss is measured half an epoch earlier, on average. If we shift the training loss curve half an epoch to the left, the two curves look much more similar.
+![Epoch delta between training and validation loss](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/0cc0a92d-ae50-4162-a28c-7db91bdb8170)
+
     - For Example: 
         - Imagine you have a training set of 100 images, and you are training a model to classify the images into two categories: cats and dogs. You split the training set into two batches of 50 images each.
         - You train your model on the first batch of images, and then you measure the training loss. Next, you train your model on the second batch of images, and then you measure the training loss again.
