@@ -146,7 +146,7 @@ Weighted Average is the method of calculating a kind of arithmetic mean of a set
 
 Cohen's kappa measures the agreement between two raters who each classify N items into C mutually exclusive categories. The definition of 
 
-$ Kappa (\kappa) = \frac{P_o - P_e}{1 - P_e}$
+$Kappa (\kappa) = \frac{P_o - P_e}{1 - P_e}$
 
 Where,
 
