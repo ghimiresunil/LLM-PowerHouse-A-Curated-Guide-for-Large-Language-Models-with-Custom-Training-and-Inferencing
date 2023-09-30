@@ -32,6 +32,8 @@ Below is a carefully chosen collection of articles discussing the fundamental pr
 
 
 # Evaluation Metrics 
+| Article | Resources |
+| -------- | :---------: |
 | Classification | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/articles/Articles/Evaluation%20Metrics/Classification)|
 | Regression | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/articles/Articles/Evaluation%20Metrics/Regression)| 
 
