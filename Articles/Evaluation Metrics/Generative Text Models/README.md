@@ -64,7 +64,7 @@
             - Perplexity(P, Q) = 2^H(P, Q) = 2^2.105 ≈ 4.22 (rounded to two decimal places)
         - So, the perplexity of the language model for the sentence "I love cats dogs" is approximately 4.22. Lower perplexity values indicate better language model performance, as they suggest that the model's predicted probabilities are closer to the true distribution of words.
 - Perplexity is the result of exponentiating the average negative log-likelihood of a sequence, using the base $e$, and can also be described as the exponent of the negative log-probability. The formula for perplexity is the exponent of mean of log likelihood of all the words in an input sequence.
-    - $PPL(X) =  exp\{\frac{-1}{t}\sum^tlogp_\theta(x_i|x_{<i})\}$
+    - $PPL(X) = exp\{\frac{-1}{t}\sum\nolimits_{i}^tlogp_{\theta}({x_1}|x_{<1})\}$
 - Perplexity is commonly used in NLP tasks such as speech recognition, machine translation, and text generation, where the most predictable option is usually the correct answer.
 
 - When creating standard or typical content, aiming for lower perplexity is the most reliable approach. Lower perplexity results in less randomness in the text, as larger language models strive to maximize text probability, effectively minimizing negative log-probability and, consequently, perplexity. Therefore, lower perplexity is thus desired.
