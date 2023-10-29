@@ -153,7 +153,7 @@ def train(
     per_device_train_batch_size,
     lr,
     seed,
-    test_size=200,
+    test_size=26000,
 ):
     set_seed(seed)
     tokenizer, model = get_tokenizer_model()
@@ -169,7 +169,7 @@ def train(
     data = load_dataset_from_file("dataset/final_df.csv")
     dataset = load_training_dataset(data)
     processed_dataset = preprocess_dataset(dataset, tokenizer=tokenizer, max_length=max_length, seed=seed)
-    split_dataset = processed_dataset.train_test_split(test_size=200, seed=seed)
+    split_dataset = processed_dataset.train_test_split(test_size=26000, seed=seed)
     data_collator = DataCollatorForCompletionOnlyLM(
         tokenizer=tokenizer, mlm=False, return_tensors="pt", pad_to_multiple_of=8
     )
@@ -217,7 +217,7 @@ if __name__ == "__main__":
             "per_device_train_batch_size": BATCH_SIZE,
             "lr": LEARNING_RATE,
             "seed": seed,
-            "test_size": 200,
+            "test_size": 26000,
         }
         main(**med_tune)
     except Exception:
