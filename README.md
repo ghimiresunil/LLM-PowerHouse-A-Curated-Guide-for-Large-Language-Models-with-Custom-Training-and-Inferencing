@@ -90,7 +90,7 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
 | Finetuning Mistral-7b FineTuning Model using Autotrain-advanced| [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/blob/main/src/Efficiently%20Fine%20Tune%20LLM/Finetuning_Mistral_7b_Using_AutoTrain.ipynb)|
 | RAG LangChain Tutorial | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/blob/main/src/Efficiently%20Fine%20Tune%20LLM/RAG_LangChain.ipynb)|
 | Mistral Finetuning SftTrainer | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/blob/main/src/Efficiently%20Fine%20Tune%20LLM/Mistral_Finetuning_SftTrainer.py)|
-
+| Mistral Finetuning Trainer API | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/blob/main/src/Efficiently%20Fine%20Tune%20LLM/Mistral_finetune_trainer.py)|
 
 # What I am learning
 
