@@ -90,6 +90,22 @@ Output: 211.81
 ```
 - For more: [Perplexity of fixed-length models](https://huggingface.co/docs/transformers/perplexity).
 
+### Summary 
+
+- What is Perplexity?
+    - Perplexity is a evaluation metrics common used in natural language processing and information theory to assess how well a probability distribution predicts a sample. In the context of language models, it evaluates the uncertainty of a model in predicting the next word in a sequence.
+
+- Why use Perplexity?
+    - Perplexity serves as an inverse probability metric. A lower perplexity indicates that the model’s predictions are closer to the actual outcomes, meaning the model is more confident (and usually more accurate) in its predictions.
+
+- How is it calculated?
+    - For a probability distribution $p$ and a sequence of $N$ words $w_1$, $w_2$, ...... $w_N$: $$perplexity = p(w_1, w_2, ....., w_N)^{\frac{1}{N}}$$
+    - In simpler terms, if we only consider bigrams (two-word sequences) and a model assigns a probability  to the correct next word, the perplexity would be $\frac{1}{p}$
+- Where to use?
+    - Language Models: To evaluate the quality of language models. A model with lower perplexity is generally considered better.
+    - Model Comparison: To compare different models of different versions of the same model over a dataset.
+
+
 
 
 
