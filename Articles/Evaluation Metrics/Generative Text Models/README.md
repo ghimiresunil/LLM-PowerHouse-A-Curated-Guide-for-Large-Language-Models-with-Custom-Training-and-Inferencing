@@ -90,7 +90,7 @@ Output: 211.81
 ```
 - For more: [Perplexity of fixed-length models](https://huggingface.co/docs/transformers/perplexity).
 
-### Summary 
+### Summary of Perplexity
 
 - What is Perplexity?
     - Perplexity is a evaluation metrics common used in natural language processing and information theory to assess how well a probability distribution predicts a sample. In the context of language models, it evaluates the uncertainty of a model in predicting the next word in a sequence.
