@@ -90,7 +90,7 @@ Output: 211.81
 ```
 - For more: [Perplexity of fixed-length models](https://huggingface.co/docs/transformers/perplexity).
 
-### Summary 
+### Summary of Perplexity
 
 - What is Perplexity?
     - Perplexity is a evaluation metrics common used in natural language processing and information theory to assess how well a probability distribution predicts a sample. In the context of language models, it evaluates the uncertainty of a model in predicting the next word in a sequence.
@@ -105,7 +105,31 @@ Output: 211.81
     - Language Models: To evaluate the quality of language models. A model with lower perplexity is generally considered better.
     - Model Comparison: To compare different models of different versions of the same model over a dataset.
 
+## Burstiness
+- The phenomenon of burstiness states that a term previously used in a document is more likely to be used again, making subsequent appearances less significant than the first.
+- A positive correlation exists between the burstiness of a word and its semantic content, indicating that words with higher information content tend to exhibit higher burstiness.
+- Burstiness serves as a measure of the predictability of a text based on the consistency of sentence length and structure throughout the piece. Similar to how perplexity assesses the predictability of words, burstiness evaluates the predictability of sentences.
+- While perplexity measures the randomness or complexity of word usage, burstiness assesses the variability of sentences, encompassing their lengths, structures, and tempos. Real people tend to write in bursts and lulls, naturally alternating between long and short sentences, driven by their own verbal momentum and interest in the topic.
+- Burtiness($b$) is mathematically calculated as: $$b=(\frac{\sigma_T / m_T -1}{\sigma_T / m_T + 1})$$ within the interval [-1, 1]. Therefore the hypothesis is $b_H - b_{AI} ≥ 0$, where $b_H$ is the mean burstiness of human writers and $b_{AI}$ is the mean burstiness of AI AKA a particular LLM. Corpora containing predictable and periodic dispersions of switch points exhibit burstiness values closer to -1, a characteristic commonly observed in AI-generated texts. On the other hand, corpora with less predictable switching patterns exhibit burstiness values closer to 1, a trait typically associated with human-written texts. Therefore, in the context of AI-generated text detection, the hypothesis $b_H − b_{AI} ≥ 0$ holds true, where $b_H$ represents the average burstiness of human writers and $b_{AI}$ represents the average burstiness of AI, also known as a particular large language model (LLM).
+ 
+### Summary of Burstiness
 
+- What is Burstiness?
+    - Burstiness characterizes the phenomenon of certain terms appearing unusually frequently and repeatedly within a text. It suggests that once a word is introduced, it is more probable to reoccur within a short span."
+
+- Why consider Burstiness?
+    - Burstiness can reveal patterns or biases in text generation. For example, if an AI language model frequently repeats specific words or phrases in its output, it may indicate an overreliance on particular patterns or a lack of diverse responses.
+
+-  How is it measured?
+    - Although a universally accepted method for measuring burstiness does not exist, a common approach involves examining the distribution of terms and identifying those that occur more frequently than a typical random distribution would predict.
+
+- Where to use?
+    - Text Analysis: To understand patterns in text, e.g., to see if certain terms are being repeated unusually often.
+
+    - Evaluating Generative Models: A language model that generates text with high burstiness may indicate an overreliance on specific patterns present in its training data or a lack of diversity in its outputs.
+        - In the realm of AI and recommender systems, both perplexity and burstiness offer valuable insights into the behavior of AI models, particularly generative models like LLMs
+        - Perplexity can tell us how well the model predicts or understands a given dataset.
+        - Burstiness provides insights into the diversity and variability of a model's outputs. In recommender systems, where textual recommendations or descriptions are generated, perplexity can help assess the quality of those recommendations. Burstiness, on the other hand, can indicate whether the system repeatedly recommends the same or similar items.
 
 
 
