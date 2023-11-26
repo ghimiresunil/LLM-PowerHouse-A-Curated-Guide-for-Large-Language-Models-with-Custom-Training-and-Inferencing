@@ -132,7 +132,9 @@ Output: 211.81
         - Burstiness provides insights into the diversity and variability of a model's outputs. In recommender systems, where textual recommendations or descriptions are generated, perplexity can help assess the quality of those recommendations. Burstiness, on the other hand, can indicate whether the system repeatedly recommends the same or similar items.
 
 ## Bilingual Evaluation Understudy (BLEU)
-- 
+- Burstiness implies that if a term is used once in a document, then it is likely to be used again. This phenomenon is called burstiness, and it implies that the second and later appearances of a word are less significant than the first appearance.
+- Importantly, the burstiness of a word and its semantic content are positively correlated; words that are more informative are also more bursty.
+
 
 
 
