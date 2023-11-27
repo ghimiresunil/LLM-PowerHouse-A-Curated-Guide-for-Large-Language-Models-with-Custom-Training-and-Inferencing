@@ -12,7 +12,7 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
     - [Cost Analysis](#cost-analysis)
 - [Codebase Mastery: Building with Perfection](#codebase-mastery-building-with-perfection)
 - [What I am learning](#what-i-am-learning)
-- [Contributing 🤝](#contributing-🤝)
+- [Contributing](#contributing)
 
 # In-Depth Articles 
 
@@ -111,5 +111,5 @@ Please note that these observations are subjective and specific to my own experi
 - LLMs do not need to have complete world knowledge. Humans also don't possess comprehensive knowledge but can adapt. LLMs only need to know how to utilize the available knowledge. It might be possible to create smaller models by separating the knowledge component.
 - The next wave of innovation might involve simulating "thoughts" before answering, rather than simply predicting one word after another. This approach could lead to significant advancements.
 
-# Contributing 🤝
+# Contributing
 Contributions are welcome! If you'd like to contribute to this project, feel free to open an issue or submit a pull request.
