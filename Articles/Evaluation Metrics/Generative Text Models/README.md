@@ -132,9 +132,19 @@ Output: 211.81
         - Burstiness provides insights into the diversity and variability of a model's outputs. In recommender systems, where textual recommendations or descriptions are generated, perplexity can help assess the quality of those recommendations. Burstiness, on the other hand, can indicate whether the system repeatedly recommends the same or similar items.
 
 ## Bilingual Evaluation Understudy (BLEU)
-- Burstiness implies that if a term is used once in a document, then it is likely to be used again. This phenomenon is called burstiness, and it implies that the second and later appearances of a word are less significant than the first appearance.
-- Importantly, the burstiness of a word and its semantic content are positively correlated; words that are more informative are also more bursty.
-
+- **Origin**: Introduced in the paper "BLUE: A Method for Automatic Evaluation of Machine Translation"
+- **Definition**: A metric for evaluating the quality of machine-translated text.
+- **Purpose**: To measure the similarity between machine-generated text and a set of reference translations
+- **Method**: Evaluates the precision of n-grams (consecutive sequences of n words)
+- **Limitation**: Primarily focuses on precision and lacks a recall component
+- When evaluating machine translation, multiple characteristics are taken into account.
+    - Fluency: The machine-translated text should be natural and easy to read.
+    - Adequacy: The machine-translated text should accurately convey the meaning of the source text.
+    - Fidelity: The machine-translated text should preserve the nuances and style of the original text as much as possible. 
+    - Grammar: The machine-translated text should be grammatically correct.
+    - Style: The machine-translated text should match the style of the source text.
+    - Overall quality: The machine-translated text should be of overall high quality.
+- 
 
 
 
