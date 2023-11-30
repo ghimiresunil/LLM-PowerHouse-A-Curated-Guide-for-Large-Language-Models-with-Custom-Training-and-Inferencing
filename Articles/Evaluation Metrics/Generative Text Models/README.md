@@ -144,8 +144,22 @@ Output: 211.81
     - Grammar: The machine-translated text should be grammatically correct.
     - Style: The machine-translated text should match the style of the source text.
     - Overall quality: The machine-translated text should be of overall high quality.
-- 
-
-
-
+- Mathematically, precision for unigram word can be calculated as:
+$$Precision = \frac{Number \ of \ correct \ word \ in \ Machine \ Translation}{Total \ words \ in \ machine \ translation}$$
+- BLEU expands on this concept by incorporating the precision of n-grams. To prevent artificially inflated precision scores, BLEU employs a modified precision calculation.
+- Mathematically, the BLEU score for n-grams is:$$BLEU = BP * exp(\sum\nolimits_{i=1}^nw_i * log(p_i))$$ 
+where,
+    -  *BP* is the brevity penalty (to penalize short sentence)
+    - $w_i$ are the weights for each gram (usually, we give equal weight)
+    - $p_i$ is the precision for each i-gram
+- In its simplest form, BLEU is the ratio of matching words to the total word count in the hypothesis sentence (translation). Considering the denominator, it's evident that BLEU is a precision-oriented metric. $$p_n = \frac{\sum\nolimits_{n-gram\in hypothesis}Count_{match}(n{-}gram)}{\sum\nolimits_{n-gram\in hypothesis}Count(n{-}gram)} = \frac{\sum\nolimits_{n-gram\in hypothesis}Count_{match}}{ℓ_{hyp}^{n{-}gram}}$$
+- For example, the matches in the below sample sentences are: 'the', 'guard', 'arrived', 'late', and 'because' 
+    - Sentence 01: The guard arrived late because it was raining
+    - Sentence 02: The guard arrived late because of the rain
+    $$p_1 = \frac{5}{8}$$
+    - where 5 is the matched keywords and 8 is the length of predicted or hypothesis sentence.
+> Unigram matches generally assess adequacy, while longer n-gram matches capture fluency.
+- Subsequently, the calculated precision values for various n-grams are aggregated using a weighted average of their logarithms. $$BLEU_N = BP.exp(\sum\nolimits_{i=1}^Nw_nlogp_n)$$
+- To mitigate the shortcomings of the precision metric, a brevity penalty is incorporated or added. This penalty is zero, or 1.0, when the hypothesis sentence length aligns with the reference sentence length.
+- The brevity penalty (BP) is a function of the lengths of the reference and hypothesis sentences.
 
