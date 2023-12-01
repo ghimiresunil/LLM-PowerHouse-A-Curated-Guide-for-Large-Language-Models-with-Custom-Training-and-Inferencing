@@ -1,1 +1,1 @@
-Please upload data here
+Please upload training data here
