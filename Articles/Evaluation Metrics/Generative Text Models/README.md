@@ -161,5 +161,43 @@ where,
 > Unigram matches generally assess adequacy, while longer n-gram matches capture fluency.
 - Subsequently, the calculated precision values for various n-grams are aggregated using a weighted average of their logarithms. $$BLEU_N = BP.exp(\sum\nolimits_{i=1}^Nw_nlogp_n)$$
 - To mitigate the shortcomings of the precision metric, a brevity penalty is incorporated or added. This penalty is zero, or 1.0, when the hypothesis sentence length aligns with the reference sentence length.
-- The brevity penalty (BP) is a function of the lengths of the reference and hypothesis sentences.
+- The brevity penalty *BP* is a function of the lengths of the reference and hypothesis sentences. 
+$$ BP = 
+\begin{cases}   
+  1  \text{ if $ℓ_{hyp} > ℓ_{ref}$}\\
+  e^{1-\frac{ℓ_{ref}}{ℓ_{hyp}}} \text{ if $ℓ_{hyp} ≤ ℓ_{ref}$}
+\end{cases}
+$$
+- The BLEU score is a numerical value between 0 and 1, with 0.6 or 0.7 representing exceptional performance. It's important to recognize that even human translations can vary, and achieving a perfect score is often unrealistic.
+- Example
 
+| Type | Sentence | Length |
+| ----- | -------- | ------ |
+| Reference (by human) | The guard arrived late because it was raining | ${ℓ_{ref}^{unigram}}=8$ |
+| Hypothesis/Candidate (by machine) | The guard arrived late because of the rain | ${ℓ_{hyp}^{unigram}}=8$|
+- we'll utilize the parameters defined in the paper, including an N-gram order of 4 and a uniform distribution for weights, resulting in $w_n=\frac{1}{4}$.$$BLEU_{N=4} = BP.exp(\sum\nolimits_{i=1}^{N=4}\frac{1}{4}logp_n) = BP *  \Pi_{n=1}^{4}p_n^{w_n} = (P_1)^\frac{1}{4}*(P_2)^\frac{1}{4}*(P_3)^\frac{1}{4}*(P_4)^\frac{1}{4}$$
+- We then calculate the precision $p_n$ for the different n-grams.
+- Following are the precision values for [1,5] n-grams.
+
+|n-gram | 1-gram | 2-gram | 3-gram | 4-gram |
+|-----------|--------------|----------------|----------------|----------------|
+|$p_n$ | $\frac{5}{8}$ | $\frac{4}{7}$ | $\frac{3}{6}$ | $\frac{2}{5}$ | 
+- Then, we calculate the brevity penalty:$$BP = e^{1-\frac{ℓ_{ref}}{ℓ_{hyp}}} = e^{1-\frac{8}{8}}$$
+- Finally, we aggregate the precision values across all n-grams, which gives:
+$$BLEU_{N=4} ≈ 0.5169$$
+- BLEU computation is made easy with the `sacreBLEU` python package.
+> For simplicity, the sentences are pre-normalized, removing punctuation and case folding.
+```python
+from sacrebleu.metrics import BLEU
+bleu_scorer = BLEU()
+
+hypothesis = "the guard arrived late because it was raining"
+reference = "the guard arrived late because of the rain"
+
+score = bleu_scorer.sentence_score(
+    hypothesis=hypothesis,
+    references=[reference],
+)
+
+score.score/100 # sacreBLEU gives the score in percent
+```
