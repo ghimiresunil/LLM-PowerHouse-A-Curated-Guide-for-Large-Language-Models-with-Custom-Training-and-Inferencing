@@ -186,12 +186,13 @@ $$
 - Finally, we aggregate the precision values across all n-grams, which gives:
 $$BLEU_{N=4} ≈ 0.5169$$
 - BLEU computation is made easy with the `sacreBLEU` python package.
+> For simplicity, the sentences are pre-normalized, removing punctuation and case folding.
 ```python
 from sacrebleu.metrics import BLEU
 bleu_scorer = BLEU()
 
-hypothesis = "The guard arrived late because it was raining"
-reference = "The guard arrived late because of the rain"
+hypothesis = "the guard arrived late because it was raining"
+reference = "the guard arrived late because of the rain"
 
 score = bleu_scorer.sentence_score(
     hypothesis=hypothesis,
