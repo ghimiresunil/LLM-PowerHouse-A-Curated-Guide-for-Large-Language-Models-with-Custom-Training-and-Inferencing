@@ -152,7 +152,7 @@ where,
     -  *BP* is the brevity penalty (to penalize short sentence)
     - $w_i$ are the weights for each gram (usually, we give equal weight)
     - $p_i$ is the precision for each i-gram
-- In its simplest form, BLEU is the ratio of matching words to the total word count in the hypothesis sentence (translation). Considering the denominator, it's evident that BLEU is a precision-oriented metric. $$p_n = \frac{\sum\nolimits_{n-gram\in hypothesis}Count_{match}(n{-}gram)}{\sum\nolimits_{n-gram\in hypothesis}Count(n{-}gram)} = \frac{\sum\nolimits_{n-gram\in hypothesis}Count_{match}}{ℓ_{hyp}^{n{-}gram}}$$
+- In its simplest form, BLEU is the ratio of matching words to the total word count in the hypothesis sentence (translation). Considering the denominator, it's evident that BLEU is a precision-oriented metric. $$p_n = \frac{\sum\nolimits_{n-gram\in hypothesis}Count_{match}(n{-}gram)}{\sum\nolimits_{n-gram\in hypothesis}Count(n{-}gram)} = \frac{\sum\nolimits_{n-gram\in hypothesis}Count_{match}(n{-}gram)}{ℓ_{hyp}^{n{-}gram}}$$
 - For example, the matches in the below sample sentences are: 'the', 'guard', 'arrived', 'late', and 'because' 
     - Sentence 01: The guard arrived late because it was raining
     - Sentence 02: The guard arrived late because of the rain
@@ -162,7 +162,7 @@ where,
 - Subsequently, the calculated precision values for various n-grams are aggregated using a weighted average of their logarithms. $$BLEU_N = BP.exp(\sum\nolimits_{i=1}^Nw_nlogp_n)$$
 - To mitigate the shortcomings of the precision metric, a brevity penalty is incorporated or added. This penalty is zero, or 1.0, when the hypothesis sentence length aligns with the reference sentence length.
 - The brevity penalty *BP* is a function of the lengths of the reference and hypothesis sentences. 
-$$ BP = 
+$$BP = 
 \begin{cases}   
   1  \text{ if $ℓ_{hyp} > ℓ_{ref}$}\\
   e^{1-\frac{ℓ_{ref}}{ℓ_{hyp}}} \text{ if $ℓ_{hyp} ≤ ℓ_{ref}$}
@@ -200,4 +200,55 @@ score = bleu_scorer.sentence_score(
 )
 
 score.score/100 # sacreBLEU gives the score in percent
+```
+
+## Recall-Oriented Understudy for Gisting Evaluation (ROUGE)
+- ROUGE, a metric for evaluating text summarization and machine translation, was introduced in the paper "[ROUGE: A Package for Automatic Evaluation of Summaries](https://aclanthology.org/W04-1013.pdf)."
+- ROUGE's focus on recall, measuring the overlap of n-grams between a summary and reference summaries, makes it particularly useful for evaluating tasks that require comprehensive coverage of key points.
+- ROUGE-N measures the overlap of n-grams, which are sequences of n consecutive words, between a system summary and reference summaries. $$ROUGE-N = \frac{\text{Number of N-grams in both system and reference summary}}{\text{Total number of N-grams in reference summary}}$$
+- ROUGE-L captures sentence-level structural similarity by identifying the longest common co-occurring in-sequence n-grams.
+- ROUGE-S incorporates skip-bigrams and unigram-based co-occurrence statistics to evaluate summary quality.
+- At its core, the ROUGE score represents the ratio of matching words to the total number of words in the reference sentence (summarization). The denominator indicates that ROUGE is a recall-oriented metric.
+$$ROUGE_1 = \frac{\sum\nolimits_{unigram\in reference}Count_{match}(unigram)}{\sum\nolimits_{unigram\in reference}Count(unigram)} = \frac{\sum\nolimits_{unigram\in reference}Count_{match}(unigram)}{ℓ_{hyp}^{unigram}}$$
+- Example
+    - ROUGE-1 is the ROUGE-N metric applied with unigrams.
+
+        | Type | Sentence | Length |
+        | ----- | -------- | ------ |
+        | Reference (by human) | The guard arrived late because it was raining | ${ℓ_{ref}^{unigram}}=8$ |
+        | Hypothesis/Candidate (by machine) | The guard arrived late because of the rain | ${ℓ_{hyp}^{unigram}}=8$|
+    $$ROUGE_1 = \frac{5}{8} = 0.625$$
+- The original paper defines four ROUGE metrics: ROUGE-N, ROUGE-L, ROUGE-W, and ROUGE-S. In this discussion, we will focus on the ROUGE-L score.
+- Ranging from 0 to 1, the ROUGE score is a scalar value that signifies the degree of similarity between the system summary and the reference summaries. A score closer to 0 indicates poor similarity, while a score closer to 1 indicates strong similarity.
+
+## ROUGE-L
+- ROUGE-L, also known as $ROUGE_{LCS}$, is a recall-oriented metric that utilizes the length of the longest common subsequence (LCS) to evaluate the similarity between a candidate summary and a reference summary. To address the limitations of a pure recall metric like ROUGE-N, ROUGE-L employs the Fβ-score, a weighted harmonic mean with β as the weight, which effectively combines the precision and recall scores.
+- $ROUGE_{LCS}$ offers several advantages over other ROUGE metrics. Firstly, it considers in-sequence matches rather than simply seeking contiguous lexical overlap over n-grams, meaning that overlapping words need not appear in the same order. Secondly, and more importantly, $ROUGE_{LCS}$ automatically includes the longest in-sequence common n-grams, eliminating the need to predefine an n-gram length. $$BP = \begin{cases}   
+  R_{LCS} = \frac{LCS(reference,hypothesis)}{ℓ_{unigram}^{ref}}\\\\
+  P_{LCS} = \frac{LCS(reference,hypothesis)}{ℓ_{unigram}^{hypothesis}}\\\\
+  ROUGE_{LCS} = \frac{(1+β^2)R_{LCS}P_{LCS}}{R_{LCS}+β^2P_{LCS}}\\
+\end{cases}$$
+
+- Example $$BP = \begin{cases}   
+  R_{LCS} = \frac{5}{8}\\\\
+  P_{LCS} = \frac{5}{8}\\\\
+  ROUGE_{LCS} = \frac{(1+β^2)25}{40+β^240}\\
+\end{cases}$$
+
+- To give recall and precision equal weights, we take β=1
+: $$ROUGE_{LCS} = \frac{5}{8}= 0.625$$
+
+### ROUGE with Python and `Rouge` Package
+> For simplicity, the sentences are pre-normalized, removing punctuation and case folding.
+```python
+from rouge import Rouge
+rouge_scorer = Rouge()
+
+hypothesis = "the guard arrived late because it was raining"
+reference = "the guard arrived late because of the rain"
+score = rouge_scorer.get_scores(
+    hyps=hypothesis,
+    refs=reference,
+)
+score[0]["rouge-l"]["f"]
 ```
