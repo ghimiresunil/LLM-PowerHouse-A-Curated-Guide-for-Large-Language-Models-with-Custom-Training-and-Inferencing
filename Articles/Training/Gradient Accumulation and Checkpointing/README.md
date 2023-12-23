@@ -49,3 +49,5 @@ for i in range(num_iterations):
         accumulated_gradients += gradients
     update_weights(accumulated_gradients)
 ```
+
+## Gradient Checkpointing
