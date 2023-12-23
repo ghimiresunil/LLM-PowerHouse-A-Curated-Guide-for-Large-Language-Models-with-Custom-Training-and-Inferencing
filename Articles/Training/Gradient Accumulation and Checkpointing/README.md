@@ -51,3 +51,4 @@ for i in range(num_iterations):
 ```
 
 ## Gradient Checkpointing
+- Gradient checkpointing is a technique used to trade off memory usage for computation time during backpropagation. In deep neural networks, backpropagation requires storing intermediate activations for computing gradients during the backward pass. However, for models with a large number of layers or limited memory, storing all the intermediate activations can be memory-intensive.
