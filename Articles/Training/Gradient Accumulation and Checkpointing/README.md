@@ -10,10 +10,6 @@ Big models, big problems? Don't let a lack of GPU memory hold you back! This art
     - This avoids technical jargon and keeps the analogy of learning from books to make it easily understandable. It also explains the benefits of accumulating gradients in terms of memory and handling larger tasks.
 - Gradient accumulation is a technique used in deep learning to increase the effective batch size during training. Normally, the weights of a neural network are updated based on the gradients computed from a single batch of training data. However, for larger models or datasets, the batch size may be limited by the memory capacity of the GPU, leading to a significantly longer time to convergence due to vectorization.
 - For efficient training, gradient accumulation breaks down data batches into smaller chunks, feeding them sequentially to the neural network and cumulatively summing the resulting gradients before adjusting the network parameters.
-<hr>
-
-<hr>
-
 - After accumulating sufficient gradients through the aforementioned process, we perform the model's optimization step (using the standard `optimizer.step()`) to update the model parameters effectively.
 - The following code illustrates how gradient accumulation improves the model's performance.
 
@@ -81,7 +77,7 @@ Samples/second: 5.99
 GPU memory occupied: 6775 MB.
 ```
 
-## summary
+## Summary
 -  To address memory limitations in deep learning training, gradient accumulation strategically accumulates gradients over multiple batches before updating model parameters, while gradient checkpointing efficiently recomputes select intermediate activations, reducing memory usage during backpropagation. Both techniques offer valuable optimization strategies for memory and computational resources.
 
 ## Reference
