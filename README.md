@@ -7,6 +7,7 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
     - [NLP](#nlp)
     - [Models](#models)
     - [Training](#training)
+    - [Enhancing Model Compression: Inference and Training Optimization Strategies](#enhancing-model-compression-inference-and-training-optimization-strategies)
     - [Evaluation Metrics](#evaluation-metrics)
     - [Open LLMs](#open-llms)
     - [Cost Analysis](#cost-analysis)
