@@ -41,3 +41,12 @@
 - Lastly, the plot below (source) shows the timeline vs. number of parameters for prevalent transformer models:
 
 # Transformers vs. Recurrent and Convolutional Architectures: an Overview
+- In vanilla language models, words are grouped together based on their closeness. Transformers, on the other hand, make every part of the data link to every other part, like they're all paying attention to each other. This is called "self-attention." This means that as soon as it starts training, the transformer can see traces of the entire data set.
+- Before transformers, AI for understanding language lagged behind other fields like computer vision. Even in the recent deep learning boom, natural language processing was kind of slow on the uptake, according to Anna Rumshisky from the University of Massachusetts, Lowell.
+- The arrival of Transformers marked a turning point for NLP. Like a domino effect, they triggered a chain reaction of model advances, each surpassing the previous best in different areas.
+- Imagine a news article about a celebrity couple announcing their breakup. The article states, "They decided to go their separate ways after years of dating." A vanilla language model (based on say, a recurrent architecture such as RNNs, LSTMs or GRUs) might struggle to understand who "they" refers to in this sentence. It might focus on the words "decided" and "separate" and incorrectly conclude that a band is breaking up or a political party is dividing. However, a transformer would be able to connect "they" with the previous context of the article, which established that the subject is the celebrity couple. By considering all the words and their relationships within the article, the transformer would accurately understand that the couple is the one ending their relationship. This example highlights how transformers can grasp long-range relationships between words, leading to a deeper understanding of the overall meaning of a text.
+
+
+
+
+
