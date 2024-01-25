@@ -102,6 +102,29 @@ $$
 - One-hot encoding prevents the model from incorrectly assuming a numerical order among the categories. If label encoding were used, the model might mistakenly incorporate the numerical values in its calculations, leading to incorrect interpretations of the data.
 - In summary, one-hot encoding provides a more accurate representation of categorical variables in a way that respects their independence, making it a suitable choice for scenarios where there is no inherent order among the categories.
 
+### Example: NLP
+- Just like building a language translator that turns computer commands from one language to another, let's explore another example of using computers to understand language. This involves creating a model that takes written text as input and turns it into a sequence of meaningful words, similar to how we turn sounds into words when we speak.
+- Before we start building our amazing language translator, we need to choose the "alphabet" for each language. This means picking a set of symbols, like letters or sounds, that we'll use to write the commands in both the original and translated versions.
+- Imagine English is our first language for translation. There are tons of words, regular ones and computer-lingo combined, easily reaching over 100,000! So, how do we turn these words into numbers the computer can understand? It's like making a special dictionary where each word gets its own unique number. Then, when we want to translate a sentence, we simply write it as a list of these numbers!
+- For example: Let's play a decoding game with a mini-language that has only three words: "$files$," "$find$," and "$my$." It's like a secret code where $"files"$ is $1$, $"find"$ is $2$, and "my" is 3. Now, if we want to say "$\text{Find my files}$" in this mini-language, we'd write it as $[2,3,1]$, just like a secret message!
+- Computers love playing "spot the difference" with words!  Instead of assigning each word a single number, they use a secret code called "one-hot encoding." It's like giving each word its own special pattern of zeros and ones, like this:
+
+    | files | find | my |
+    |---|---|---|
+    |1|0|0|
+    |0|1|0|
+    |0|0|1|
+- When we break down the phrase "find my files" into smaller parts, it's like arranging them in rows and columns. This creates a structure that looks like a table with rows and columns, similar to a two-dimensional array.
+
+    | find | my | files |
+    |---|---|---|
+    |0|0|1|
+    |1|0|0|
+    |0|1|0|
+- Note: the words "one-dimensional array" and "vector" are basically the same, just like "two-dimensional array" and "matrix." They're just different ways of saying the same thing.
+
+
+
 
 
 
