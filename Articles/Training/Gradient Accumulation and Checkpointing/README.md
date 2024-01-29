@@ -2,6 +2,8 @@
 
 Big models, big problems? Don't let a lack of GPU memory hold you back! This article tackles a common struggle in deep learning: training complex models without getting the dreaded "CUDA: out of memory" error. We'll explore smart tricks to squeeze more efficiency out of your GPU memory and boost your training speed, all without getting tangled in technical jargon. Get ready to unlock the secrets of memory optimization and train those giants like a pro!
 
+Are you struggling with out-of-memory issues when training your Deep Learning models? Gradient checkpointing can help you free up some memory. Today, let's dive into Gradient Checkpointing.
+
 ## Gradient Accumulation
 - Imagine learning from a pile of books. Usually, you'd read one book, update your understanding, and then move on. But if the pile is HUGE, carrying all the books at once is tough! Gradient accumulation is like reading one chapter from each book before updating your brain (the model). Instead of constantly carrying all the book summaries (gradients), you save them up until you have a manageable chunk, then update your brain with the combined knowledge. This saves memory and lets you learn from even the biggest piles of data!
 - For Example:
