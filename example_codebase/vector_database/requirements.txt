@@ -1,0 +1,2 @@
+pymilvus
+sentence-transformers
