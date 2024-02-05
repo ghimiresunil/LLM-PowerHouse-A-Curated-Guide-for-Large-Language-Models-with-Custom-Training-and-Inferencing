@@ -69,7 +69,7 @@ if __name__ == "__main__":
     connection.stop()
 ```
 
-### Install Data
+### Insert Data
 
 ```python
 import pandas as pd
