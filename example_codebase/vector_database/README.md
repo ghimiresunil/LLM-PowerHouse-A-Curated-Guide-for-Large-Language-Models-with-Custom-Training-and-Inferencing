@@ -1,4 +1,4 @@
-# Vector Database
+# 01. Vector Database
 
 - Used for efficient storage, indexing, and retrieval of high-dimensional vectors
 - Used to work with the unstructured data that is inefficient to store in the traditional database
@@ -15,7 +15,49 @@
 ![image](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/51bb044d-4959-40f4-b2a6-f81eb820c97e)
 
 
-# 01. Create Collection
+Welcome to Vector Database, a powerful tool for managing and querying vectors efficiently using Milvus! Follow the steps below to set up and run the code seamlessly.
+
+# 02. Prerequisites
+1. It is highly recommended to create a new virtual environment using Python/Conda.
+- Conda
+```bash
+conda create --name env_name python==3.9
+```
+- Python
+```bash
+python -m venv venv
+```
+
+2. Activate virtual Environment
+
+- conda
+```bash
+conda create --name env_name python==3.9
+```
+- Python
+```bash
+source venv/bin/activate 
+
+```
+3. Install the required packages using pip.
+```
+pip install -r requirements.txt
+```
+
+4. Setting Up Milvus Server Locally and run docker-compose to start the Milvus server.
+```bash
+cd scripts
+docker-compose -f milvus-docker-compose.yml up -d
+```
+
+5. Setting PYTHONPATH (if needed)
+```bash
+export PYTHONPATH=your_directory_where_you_clone_this_repo/vector_database/milvus_database
+```
+
+# 03. Example for Create, Insert, Update, Delete and Search
+
+### Create Collection
 ```python
 from data_access.utils import ClassificationCollection
 from data_access.access_milvus import MilvusDBConnection
@@ -27,7 +69,7 @@ if __name__ == "__main__":
     connection.stop()
 ```
 
-# 02. Install Data
+### Install Data
 
 ```python
 import pandas as pd
@@ -52,7 +94,7 @@ if __name__ == "__main__":
     connection.stop()
 ```
 
-# 03. Update Data
+### Update Data
 ```python
 import pandas as pd
 from data_access.access_milvus import MilvusDBConnection
@@ -78,7 +120,7 @@ if __name__ == "__main__":
     connection.stop()
 ```
 
-# 04. Delete Data
+### Delete Data
 ```python
 from data_access.access_milvus import MilvusDBConnection
 from collection_service.embedding_generator import EmbeddingGenerator
@@ -98,7 +140,7 @@ if __name__ == "__main__":
     connection.stop()
 ```
 
-# 05. Search Data
+### Search Data
 ```python
 from data_access.access_milvus import MilvusDBConnection
 from collection_service.embedding_generator import EmbeddingGenerator
@@ -116,3 +158,6 @@ if __name__ == "__main__":
     )
     connection.stop()
 ```
+
+# 04. Conclusion
+Now you are all set to explore the capabilities of Vector Database with Milvus! Feel free to reach out if you encounter any issues or have questions. Happy coding!
