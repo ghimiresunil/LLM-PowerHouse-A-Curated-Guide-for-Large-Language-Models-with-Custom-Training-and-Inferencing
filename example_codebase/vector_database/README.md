@@ -11,6 +11,9 @@
     - Clustering and Classification
     - Recommendation System
     - Anomaly and Fraud Detection
+  
+![image](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/51bb044d-4959-40f4-b2a6-f81eb820c97e)
+
 
 # 01. Create Collection
 ```python
