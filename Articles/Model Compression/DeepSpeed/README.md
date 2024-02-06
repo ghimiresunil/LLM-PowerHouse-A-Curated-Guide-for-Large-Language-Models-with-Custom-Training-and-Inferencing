@@ -1,0 +1,2 @@
+# DeepSpeed and ZeRO-Offload
+- [DeepSpeed](https://www.deepspeed.ai/) is a library that optimizes the training of large and extremely large models on GPUs. It does this by using smart parallelism and better caching, which can lead to significant speedups and memory savings. DeepSpeed is an extension to PyTorch, so it is easy to use with existing PyTorch code.
