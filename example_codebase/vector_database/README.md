@@ -1,61 +1,126 @@
-# 01. Vector Database
+# Vector Database
 
-- Used for efficient storage, indexing, and retrieval of high-dimensional vectors
-- Used to work with the unstructured data that is inefficient to store in the traditional database
-- Uses approximate nearest neighbor (ANN) for indexing and fast retrieval
-- **ANN algorithms**: HNSW, LSH, IVF, PQ, k-d trees, annoy, etc
-- **Vector Database Options**: Milvus, Pinecone, Weaviate, ChromaDB, Qdrant, Vespa, Redis, etc
-- Use Cases:
-    - Semantic Search
-    - Similarity Search
-    - Clustering and Classification
-    - Recommendation System
-    - Anomaly and Fraud Detection
-  
-![image](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/51bb044d-4959-40f4-b2a6-f81eb820c97e)
+Welcome to Vector Database, a versatile tool designed for efficient management and querying of vectors using Milvus! Follow the steps below to seamlessly set up and run the code.
 
+## Overview
 
-Welcome to Vector Database, a powerful tool for managing and querying vectors efficiently using Milvus! Follow the steps below to set up and run the code seamlessly.
+Vector Databases have gained immense popularity with the rise of Foundational Models. Initially associated with Large Language Models, Vector Databases prove valuable in various Machine Learning applications dealing with Vector Embeddings.
 
-# 02. Prerequisites
-1. It is highly recommended to create a new virtual environment using Python/Conda.
-- Conda
+### Key Features
+
+- **Efficient Storage and Retrieval:** Enables storage, indexing, and retrieval of high-dimensional vectors.
+- **Unstructured Data Handling:** Manages unstructured data efficiently, unsuitable for traditional databases.
+- **ANN Algorithms:** Utilizes approximate nearest neighbor (ANN) algorithms for indexing and fast retrieval.
+- **Diverse Algorithm Support:** Supports ANN algorithms like HNSW, LSH, IVF, PQ, k-d trees, annoy, etc.
+- **Multiple Database Options:** Includes Milvus, Pinecone, Weaviate, ChromaDB, Qdrant, Vespa, Redis, and more.
+
+### Use Cases
+
+- Semantic Search
+- Similarity Search
+- Clustering and Classification
+- Recommendation System
+- Anomaly and Fraud Detection
+
+![Vector Database](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/51bb044d-4959-40f4-b2a6-f81eb820c97e)
+
+## Retrieval and Approximate Nearest Neighbour (ANN) Search
+
+In the context of Vector Databases, retrieval involves obtaining a set of vectors most similar to a query vector within the same latent space. This retrieval process is known as Approximate Nearest Neighbour (ANN) search.
+
+### Examples of Queries
+
+- Finding similar images based on a given image.
+- Retrieving relevant context for a question, transformable into an answer via a Large Language Model (LLM).
+
+## Interaction with Vector Database
+
+- Writing/Updating Data
+    - Choose an ML model to generate Vector Embeddings.
+    - Embed various types of information: text, images, audio, tabular, based on the data type.
+    - Obtain a Vector representation of your data by running it through the chosen Embedding Model.
+    - Store additional metadata along with the Vector Embedding for pre-filtering or post-filtering ANN search results.
+    - Vector Database indexes Vector Embeddings and metadata separately using methods like Random Projection, Product Quantization, and Locality-sensitive Hashing.
+
+- Reading Data
+    - A query typically consists of two parts:
+        - Data for ANN search (e.g., an image to find similar ones).
+        - Metadata query to filter vectors based on known qualities (e.g., exclude images in a specific location).
+    - Execute Metadata Queries against the metadata index before or after the ANN search procedure.
+    - Apply ANN search, retrieving a set of Vector embeddings.
+    - Popular similarity measures for ANN search include Cosine Similarity, Euclidean Distance, and Dot Product.
+
+## Prerequisites
+
+Before you begin, make sure you have the following prerequisites installed.
+
+### Create Virtual Environment
+
+It is highly recommended to use a virtual environment for your project. Choose one of the following methods:
+
+#### Using Conda
+
 ```bash
 conda create --name env_name python==3.9
 ```
-- Python
+
+#### Using Python
+
 ```bash
 python -m venv venv
 ```
 
-2. Activate virtual Environment
+### Activate Virtual Environment
 
-- conda
-```bash
-conda create --name env_name python==3.9
-```
-- Python
-```bash
-source venv/bin/activate 
+Activate the virtual environment based on your chosen method:
 
+#### Using Conda
+
+```bash
+conda activate env_name
 ```
-3. Install the required packages using pip.
+
+#### Using Python
+
+```bash
+source venv/bin/activate
 ```
+
+### Install Required Packages
+
+Install the necessary Python packages by running:
+
+```bash
 pip install -r requirements.txt
 ```
 
-4. Setting Up Milvus Server Locally and run docker-compose to start the Milvus server.
+### Setting Up Milvus Server
+
+To use Milvus, you need to set up the server locally. Follow these steps:
+
+#### Navigate to the scripts directory.
+
 ```bash
 cd scripts
+```
+
+#### Run Docker Compose to start the Milvus server.
+
+```bash
 docker-compose -f milvus-docker-compose.yml up -d
 ```
 
-5. Setting PYTHONPATH (if needed)
+### Setting PYTHONPATH (if needed)
+
+If your project requires a specific PYTHONPATH, set it with the following command:
+
 ```bash
 export PYTHONPATH=your_directory_where_you_clone_this_repo/vector_database/milvus_database
 ```
 
-# 03. Example for Create, Insert, Update, Delete and Search
+## Example for Create, Insert, Update, Delete and Search
+
+This repository provides an example of using Milvus for creating a collection, inserting data, updating records, deleting data, and searching for similar sentences.
 
 ### Create Collection
 ```python
