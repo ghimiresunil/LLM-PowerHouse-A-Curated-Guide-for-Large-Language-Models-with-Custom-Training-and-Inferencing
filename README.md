@@ -85,6 +85,7 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
 | Article | Resources |
 | -------- | :---------: |
 | Lambda Labs vs AWS Cost Analysis | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/main/Articles/Resources)|
+| Neural Network Visualization | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/main/Articles/Resources/Neural%20Network%20Visualization)|
 
 # Codebase Mastery: Building with Perfection 
 | Title | Repository | 
