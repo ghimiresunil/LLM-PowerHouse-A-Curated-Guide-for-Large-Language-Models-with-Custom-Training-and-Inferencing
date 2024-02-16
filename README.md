@@ -10,7 +10,7 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
     - [Enhancing Model Compression: Inference and Training Optimization Strategies](#enhancing-model-compression-inference-and-training-optimization-strategies)
     - [Evaluation Metrics](#evaluation-metrics)
     - [Open LLMs](#open-llms)
-    - [Cost Analysis](#cost-analysis)
+    - [Resources for cost analysis and network visualization](#resources-for-cost-analysis-and-network-visualization)
 - [Codebase Mastery: Building with Perfection](#codebase-mastery-building-with-perfection)
 - [What I am learning](#what-i-am-learning)
 - [Contributing](#contributing)
@@ -81,7 +81,7 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
 | Tutorials about LLM | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/main/Articles/Open%20LLMs/Tutorials)|
 | Courses about LLM | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/main/Articles/Open%20LLMs/Courses)|
 
-## Cost Analysis
+## Resources for cost analysis and network visualization
 | Article | Resources |
 | -------- | :---------: |
 | Lambda Labs vs AWS Cost Analysis | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/main/Articles/Resources)|
