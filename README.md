@@ -137,3 +137,8 @@ Please note that these observations are subjective and specific to my own experi
 
 # Contributing
 Contributions are welcome! If you'd like to contribute to this project, feel free to open an issue or submit a pull request.
+
+# License
+This project is licensed under the [MIT License](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/blob/main/LICENSE).
+
+Created with ❤️ by [Sunil Ghimire](https://sunilghimire.com.np/)
