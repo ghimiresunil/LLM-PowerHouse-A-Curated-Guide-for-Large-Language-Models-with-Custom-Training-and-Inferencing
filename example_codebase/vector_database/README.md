@@ -50,6 +50,59 @@ In the context of Vector Databases, retrieval involves obtaining a set of vector
     - Apply ANN search, retrieving a set of Vector embeddings.
     - Popular similarity measures for ANN search include Cosine Similarity, Euclidean Distance, and Dot Product.
 
+
+# How Vector Databases Operate
+
+Understanding the functioning of vector databases involves breaking down the process into several key steps:
+
+1. **Data Input:**
+   - Begin with a dataset containing sentences, each consisting of three words (or tokens). 
+   - Real-world datasets may scale to millions or billions of sentences, with tens of thousands of tokens.
+   
+2. **Word Embeddings:**
+   - Retrieve word embedding vectors for each word from a table of 22 vectors, with the vocabulary size being 22. 
+   - In practice, vocabulary sizes can extend to tens of thousands, and word embedding dimensions can reach thousands (e.g., 1024, 4096).
+   
+3. **Encoding:**
+   - Feed the sequence of word embeddings into an encoder, generating a sequence of feature vectors (one per word). 
+   - The encoder, often a transformer or variant, employs a simple one-layer perceptron (linear layer + ReLU).
+   
+4. **Mean Pooling:**
+   - Merge the sequence of feature vectors into a single vector using mean pooling, which involves averaging across the columns. 
+   - This resultant vector is commonly referred to as "text embeddings" or "sentence embeddings." 
+   - While other pooling techniques exist, mean pooling is widely adopted.
+   
+5. **Indexing:**
+   - Reduce the dimensions of the text embedding vector using a projection matrix, achieving a 50% reduction (e.g., 4 to 2). 
+   - In practice, the values in this matrix are more random. 
+   - This reduction aims to provide a concise representation for faster comparison and retrieval, similar to the purpose of hashing. 
+   - The dimension-reduced index vector is stored in the vector storage.
+   
+6. **Processing Queries:**
+   - Repeat the steps from word embeddings to indexing for each new input (e.g., "who are you," "who am I").
+
+> With the dataset indexed in the vector database, the querying process follows:
+
+7. **Query Processing:**
+   - Generate a 2-dimensional query vector by repeating the steps from word embeddings to indexing for a given query (e.g., "am I you").
+
+8. **Dot Products:**
+   - Compute dot products between the query vector and database vectors, all in 2 dimensions. 
+   - The objective is to leverage dot products for estimating similarity. Transposing the query vector transforms this step into a matrix multiplication.
+
+9. **Nearest Neighbor Search:**
+   - Identify the largest dot product through linear scan. The sentence with the highest dot product is considered the nearest neighbor (e.g., "who am I"). 
+   - For efficiency, in real-world scenarios involving billions of vectors, Approximate Nearest Neighbor (ANN) algorithms like Hierarchical Navigable Small Worlds (HNSW) are often employed.
+
+## Vector Search Explained through Real-World Stories:
+
+Imagine you're not searching for keywords on Google, but for the essence of what you're looking for. Vector search does exactly that, using stories to illustrate its power:
+
+- **Story 1**: Finding Similar Recipes:
+    - You loved your grandma's secret pasta sauce recipe, but can't remember the exact ingredients. Instead of keyword searching, you describe the taste: "rich, garlicky, with a hint of smokiness."
+    - Vector search analyzes text descriptions of thousands of recipes, understanding the semantic meaning beyond keywords. It finds recipes with similar "taste vectors," even if they don't mention "smokiness" explicitly. Bingo! You rediscover your grandma's magic.
+
+
 ## Prerequisites
 
 Before you begin, make sure you have the following prerequisites installed.
