@@ -14,6 +14,7 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
 - [Codebase Mastery: Building with Perfection](#codebase-mastery-building-with-perfection)
 - [What I am learning](#what-i-am-learning)
 - [Contributing](#contributing)
+- [License](#license)
 
 # In-Depth Articles 
 
