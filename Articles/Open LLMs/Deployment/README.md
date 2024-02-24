@@ -17,4 +17,14 @@
 | Langroid | Harness LLMs with Multi-Agent Programming | [🔗](https://github.com/langroid/langroid)|
 | Embedchain | Framework to create ChatGPT like bots over your dataset. | [🔗](https://github.com/embedchain/embedchain) | 
 | FastChat | A distributed multi-model LLM serving system with web UI and OpenAI-compatible RESTful APIs. | [🔗](https://github.com/lm-sys/FastChat) |
- 
+| Swiss Army Llama| Comprehensive set of tools for working with local LLMs for various tasks. | [🔗](https://github.com/Dicklesworthstone/swiss_army_llama)|
+| CometLLM | A 100% opensource LLMOps platform to log, manage, and visualize your LLM prompts and chains. Track prompt templates, prompt variables, prompt duration, token usage, and other metadata. Score prompt outputs and visualize chat history all within a single UI. | [🔗](https://github.com/comet-ml/comet-llm)|
+| IntelliServer | simplifies the evaluation of LLMs by providing a unified microservice to access and test multiple AI models. | [🔗](https://github.com/intelligentnode/IntelliServer)|
+| OpenLLM | Fine-tune, serve, deploy, and monitor any open-source LLMs in production. Used in production at [BentoML](https://bentoml.com/) for LLMs-based applications. | [🔗](https://github.com/intelligentnode/IntelliServer)|
+| DeepSpeed-Mii | MII makes low-latency and high-throughput inference, similar to vLLM powered by DeepSpeed. | [🔗](https://github.com/microsoft/DeepSpeed-MII) |
+| Text-Embeddings-Inference | Inference for text-embeddings in Rust, HFOIL Licence | [🔗](https://github.com/huggingface/text-embeddings-inference) |
+| infinity | Inference for text-embeddings in Python | [🔗](https://github.com/michaelfeil/infinity)|
+| TensorRT-LLM |  Nvidia Framework for LLM Inference | [🔗](https://github.com/NVIDIA/TensorRT-LLM)|
+| Flash-Attention  | A method designed to enhance the efficiency of Transformer models | [🔗](https://github.com/Dao-AILab/flash-attention)|
+| Langchain-Chatchat  | Formerly langchain-ChatGLM, local knowledge based LLM (like ChatGLM) QA app with langchain. | [🔗](https://github.com/chatchat-space/Langchain-Chatchat)|
+| Search with Lepton | Build your own conversational search engine using less than 500 lines of code by [LeptonAI](https://github.com/leptonai).| [🔗](https://github.com/leptonai/search_with_lepton)|
