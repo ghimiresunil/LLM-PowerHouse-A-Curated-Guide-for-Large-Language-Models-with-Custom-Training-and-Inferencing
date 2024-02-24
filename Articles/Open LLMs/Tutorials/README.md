@@ -19,3 +19,6 @@
 | What Is ChatGPT Doing … and Why Does It Work?  | Stephen Wolfram | [🔗](https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/) |
 | Why did all of the public reproduction of GPT-3 fail?  | Jingfeng Yang | [🔗](https://jingfengyang.github.io/gpt) |
 | Pure Rust implementation of a minimal Generative Pretrained Transformer  | Keyvan Kambakhsh | [🔗](https://github.com/keyvank/femtoGPT) |
+| Sequence-to-Sequence (seq2seq) Encoder-Decoder Neural Networks | StatQuest | [🔗](https://www.youtube.com/watch?v=L8HKweZIOmg)|
+| Transformer Neural Networks, ChatGPT's foundation | StatQuest | [🔗](https://www.youtube.com/watch?v=zxQyTK8quyY)|
+| Decoder-Only Transformers, ChatGPTs specific Transformer | StatQuest | [🔗](https://www.youtube.com/watch?v=bQ5BoolX9Ag)|
