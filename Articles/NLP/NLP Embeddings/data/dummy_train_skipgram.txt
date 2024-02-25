@@ -1,0 +1,4 @@
+Hello, I am Siddhartha Shrestha. I am from Nepal.
+I did my computer engineering from Tribhuwan University.
+Currently, I am working for renowned technology company
+as a Machine Learning Engineer. I was born on Jhapa.
