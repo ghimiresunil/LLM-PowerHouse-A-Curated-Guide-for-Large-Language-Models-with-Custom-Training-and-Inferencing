@@ -2,6 +2,8 @@
 
 Welcome to Vector Database, a versatile tool designed for efficient management and querying of vectors using Milvus! Follow the steps below to seamlessly set up and run the code.
 
+![Vector Database](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/51bb044d-4959-40f4-b2a6-f81eb820c97e)
+
 ## Overview
 
 Vector Databases have gained immense popularity with the rise of Foundational Models. Initially associated with Large Language Models, Vector Databases prove valuable in various Machine Learning applications dealing with Vector Embeddings.
@@ -21,8 +23,6 @@ Vector Databases have gained immense popularity with the rise of Foundational Mo
 - Clustering and Classification
 - Recommendation System
 - Anomaly and Fraud Detection
-
-![Vector Database](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/51bb044d-4959-40f4-b2a6-f81eb820c97e)
 
 ## Retrieval and Approximate Nearest Neighbour (ANN) Search
 
@@ -95,6 +95,8 @@ Understanding the functioning of vector databases involves breaking down the pro
    - For efficiency, in real-world scenarios involving billions of vectors, Approximate Nearest Neighbor (ANN) algorithms like Hierarchical Navigable Small Worlds (HNSW) are often employed.
 
 ## Vector Search Explained through Real-World Stories:
+
+![image](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/ea31fcb9-20f2-4244-92e4-c6f30ee6488f)
 
 Imagine you're not searching for keywords on Google, but for the essence of what you're looking for. Vector search does exactly that, using stories to illustrate its power:
 
@@ -288,5 +290,6 @@ if __name__ == "__main__":
     connection.stop()
 ```
 
-# Conclusion
+## Conclusion
+=======
 Now you are all set to explore the capabilities of Vector Database with Milvus! Feel free to reach out if you encounter any issues or have questions. Happy coding!
