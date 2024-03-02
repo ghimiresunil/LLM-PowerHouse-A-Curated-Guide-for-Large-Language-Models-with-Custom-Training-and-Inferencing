@@ -96,7 +96,7 @@ Understanding the functioning of vector databases involves breaking down the pro
 
 ## Vector Search Explained through Real-World Stories:
 
-![image](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/ea31fcb9-20f2-4244-92e4-c6f30ee6488f)
+![Real World Application](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/ea31fcb9-20f2-4244-92e4-c6f30ee6488f)
 
 Imagine you're not searching for keywords on Google, but for the essence of what you're looking for. Vector search does exactly that, using stories to illustrate its power:
 
