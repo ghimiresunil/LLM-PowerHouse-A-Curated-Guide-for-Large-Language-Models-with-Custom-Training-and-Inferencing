@@ -3,7 +3,6 @@ from pymilvus import utility
 from pymilvus import Collection, DataType, CollectionSchema, FieldSchema
 from data_access.collection_base import MilvusCollectionBase
 
-
 class ClassificationCollection(MilvusCollectionBase):
     def __init__(self):
         self.collection_name = "TicketClassification"
