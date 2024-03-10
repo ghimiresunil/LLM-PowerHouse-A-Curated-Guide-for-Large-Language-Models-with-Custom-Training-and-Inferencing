@@ -87,3 +87,11 @@ visualkeras.layered_view(model)
 11. [Netron](https://github.com/lutzroeder/Netron)
 12. [DotNet](https://github.com/martisak/dotnets)
 13. [Graphviz : Tutorial](https://tgmstat.wordpress.com/2013/06/12/draw-neural-network-diagrams-graphviz/)
+14. [Keras Visualization](https://keras.io/api/utils/model_plotting_utils/): The [keras.utils.vis_utils](https://keras.io/api/utils/model_plotting_utils/) module provides utility functions to plot a Keras model (using graphviz)
+15. [Conx](https://conx.readthedocs.io/en/latest/index.html): The Python package `conx` can visualize networks with activations with the function `net.picture()` to produce SVG, PNG, or PIL Images like this:
+16. [ENNUI](https://math.mit.edu/ennui/): Working on a drag-and-drop neural network visualizer (and more). Here's an example of a visualization for a LeNet-like architecture.
+17. [NNet - R Package](https://beckmw.wordpress.com/2013/03/04/visualizing-neural-networks-from-the-nnet-package/)
+```python
+data(infert, package="datasets")
+plot(neuralnet(case~parity+induced+spontaneous, infert))
+```
