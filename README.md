@@ -125,39 +125,39 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
 | Inf2 LLM SM Deployment | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/main/example_codebase/Inf2%20LLM%20SM%20Deployment)|
 
 # LLM-PlayLab
-| LLM Projects  |Respository Link   |
-| :------------: | :------------: |
-|CSVQConnect   | [link ](https://github.com/Sakil786/CSVQConnect "link ") |
-| AI_VIRTUAL_ASSISTANT  | [link](https://github.com/Sakil786/AI_VIRTUAL_ASSISTANT "link")|
-|  DocuBotMultiPDFConversationalAssistant | [link](https://github.com/Sakil786/DocuBotMultiPDFConversationalAssistant "link")  |
-|  autogpt |  [link ](https://github.com/Sakil786/autogpt "link ")|
-|  meta_llama_2finetuned_text_generation_summarization | [link](https://github.com/Sakil786/-meta_llama_2finetuned_text_generation_summarization "link")  |
-| text_generation_using_Llama|[ link](https://github.com/Sakil786/text_generation_using_Llama-2/tree/main " link") |
-| llm_using_petals|[link](https://github.com/Sakil786/llm_using_petals "link") |
-| llm_using_petals|[link](https://github.com/Sakil786/llm_using_petals "link") |
-| Salesforce-xgen|[link](https://github.com/Sakil786/Salesforce-xgen "link")|
-| text_summarization_using_open_llama_7b|[link](https://github.com/Sakil786/text_summarization_using_open_llama_7b "link")|
-| Text_summarization_using_GPT-J|[link](https://github.com/Sakil786/Text_summarization_using_GPT-J "link")|
-| codllama  | [ link](https://github.com/Sakil786/codllama " link") |
-| Image_to_text_using_LLaVA  | [ link](https://github.com/Sakil786/Image_to_text_using_LLaVA/tree/main " link") |
-| Tabular_data_using_llamaindex  | [ link](https://github.com/Sakil786/Tabular_data_using_llamaindex " link") |
-| nextword_sentence_prediction  | [ link](https://github.com/Sakil786/nextword_sentence_prediction " link") |
-| Text-Generation-using-DeciLM-7B-instruct  | [ link](https://github.com/Sakil786/Text-Generation-using-DeciLM-7B-instruct " link") |
-| Gemini-blog-creation  | [ link](https://github.com/Sakil786/Gemini-blog-creation/tree/main " link") |
-| Prepare_holiday_cards_with_Gemini_and_Sheets  | [ link](https://github.com/Sakil786/Prepare_holiday_cards_with_Gemini_and_Sheets/tree/main " link") |
-| Code-Generattion_using_phi2_llm  | [ link](https://github.com/Sakil786/Code-Generattion_using_phi2_llm " link") |
-| RAG-USING-GEMINI  | [ link](https://github.com/Sakil786/RAG-USING-GEMINI " link") |
-| Resturant-Recommendation-Multi-Modal-RAG-using-Gemini  | [ link](https://github.com/Sakil786/Resturant-Recommendation-Multi-Modal-RAG-using-Gemini " link") |
-| slim-sentiment-tool  | [ link](https://github.com/Sakil786/slim-sentiment-tool " link") |
-| Synthetic-Data-Generation-Using-LLM  | [ link](https://github.com/Sakil786/Corporate-Presentations-Synthetic-Data-Generation-Using-LLM " link") |
-| Architecture-for-building-a-Chat-Assistant | [ link](https://github.com/Sakil786/Design-an-Architecture-for-building-a-Chat-Assistant-for-an-ecommerce-platform " link") |
-| LLM-CHAT-ASSISTANT-WITH-DYNAMIC-CONTEXT-BASED-ON-QUERY | [ link](https://github.com/Sakil786/LLM-CHAT-ASSISTANT-WITH-DYNAMIC-CONTEXT-BASED-ON-QUERY " link") |
-| Text Classifier using LLM | [ link](https://github.com/Sakil786/AI-Powered-Text-Classifier-Harnessing-Large-Language-Models-for-Precise-Data-Categorization " link") |
-| Multiclass sentiment Analysis | [ link](https://github.com/Sakil786/multi-class-sentiment-analysis-model-using-LLM " link") |
-| Text-Generation-Using-GROQ | [ link](https://github.com/Sakil786/Text-Generation-Using-GROQ " link") |
-| DataAgents | [ link](https://github.com/Sakil786/DataAgents " link") |
-| PandasQuery_tabular_data | [ link](https://github.com/Sakil786/PandasQuery_tabular_data " link") |
-| Exploratory_Data_Analysis_using_LLM | [ link](https://github.com/Sakil786/Exploratory_Data_Analysis_using_LLM/tree/main " link") |
+| LLM Projects  |Respository|
+| ------------ | :------------: |
+|CSVQConnect   | [🔗](https://github.com/Sakil786/CSVQConnect) |
+| AI_VIRTUAL_ASSISTANT  | [🔗](https://github.com/Sakil786/AI_VIRTUAL_ASSISTANT)|
+|  DocuBotMultiPDFConversationalAssistant | [🔗](https://github.com/Sakil786/DocuBotMultiPDFConversationalAssistant)  |
+|  autogpt |  [🔗](https://github.com/Sakil786/autogpt)|
+|  meta_llama_2finetuned_text_generation_summarization | [🔗](https://github.com/Sakil786/-meta_llama_2finetuned_text_generation_summarization)  |
+| text_generation_using_Llama|[🔗](https://github.com/Sakil786/text_generation_using_Llama-2/tree/main) |
+| llm_using_petals|[🔗](https://github.com/Sakil786/llm_using_petals) |
+| llm_using_petals|[🔗](https://github.com/Sakil786/llm_using_petals) |
+| Salesforce-xgen|[🔗](https://github.com/Sakil786/Salesforce-xgen)|
+| text_summarization_using_open_llama_7b|[🔗](https://github.com/Sakil786/text_summarization_using_open_llama_7b)|
+| Text_summarization_using_GPT-J|[🔗](https://github.com/Sakil786/Text_summarization_using_GPT-J)|
+| codllama  | [🔗](https://github.com/Sakil786/codllama) |
+| Image_to_text_using_LLaVA  | [🔗](https://github.com/Sakil786/Image_to_text_using_LLaVA/tree/main) |
+| Tabular_data_using_llamaindex  | [🔗](https://github.com/Sakil786/Tabular_data_using_llamaindex) |
+| nextword_sentence_prediction  | [🔗](https://github.com/Sakil786/nextword_sentence_prediction) |
+| Text-Generation-using-DeciLM-7B-instruct  | [🔗](https://github.com/Sakil786/Text-Generation-using-DeciLM-7B-instruct) |
+| Gemini-blog-creation  | [🔗](https://github.com/Sakil786/Gemini-blog-creation/tree/main) |
+| Prepare_holiday_cards_with_Gemini_and_Sheets  | [🔗](https://github.com/Sakil786/Prepare_holiday_cards_with_Gemini_and_Sheets/tree/main) |
+| Code-Generattion_using_phi2_llm  | [🔗](https://github.com/Sakil786/Code-Generattion_using_phi2_llm) |
+| RAG-USING-GEMINI  | [🔗](https://github.com/Sakil786/RAG-USING-GEMINI) |
+| Resturant-Recommendation-Multi-Modal-RAG-using-Gemini  | [🔗](https://github.com/Sakil786/Resturant-Recommendation-Multi-Modal-RAG-using-Gemini) |
+| slim-sentiment-tool  | [🔗](https://github.com/Sakil786/slim-sentiment-tool) |
+| Synthetic-Data-Generation-Using-LLM  | [🔗](https://github.com/Sakil786/Corporate-Presentations-Synthetic-Data-Generation-Using-LLM) |
+| Architecture-for-building-a-Chat-Assistant | [🔗](https://github.com/Sakil786/Design-an-Architecture-for-building-a-Chat-Assistant-for-an-ecommerce-platform) |
+| LLM-CHAT-ASSISTANT-WITH-DYNAMIC-CONTEXT-BASED-ON-QUERY | [🔗](https://github.com/Sakil786/LLM-CHAT-ASSISTANT-WITH-DYNAMIC-CONTEXT-BASED-ON-QUERY) |
+| Text Classifier using LLM | [🔗](https://github.com/Sakil786/AI-Powered-Text-Classifier-Harnessing-Large-Language-Models-for-Precise-Data-Categorization) |
+| Multiclass sentiment Analysis | [🔗](https://github.com/Sakil786/multi-class-sentiment-analysis-model-using-LLM) |
+| Text-Generation-Using-GROQ | [🔗](https://github.com/Sakil786/Text-Generation-Using-GROQ) |
+| DataAgents | [🔗](https://github.com/Sakil786/DataAgents) |
+| PandasQuery_tabular_data | [🔗](https://github.com/Sakil786/PandasQuery_tabular_data) |
+| Exploratory_Data_Analysis_using_LLM | [🔗](https://github.com/Sakil786/Exploratory_Data_Analysis_using_LLM/tree/main) |
 
 
 
