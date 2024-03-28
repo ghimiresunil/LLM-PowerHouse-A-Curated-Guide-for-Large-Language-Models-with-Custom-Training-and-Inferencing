@@ -12,7 +12,8 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
     - [Open LLMs](#open-llms)
     - [Resources for cost analysis and network visualization](#resources-for-cost-analysis-and-network-visualization)
 - [Codebase Mastery: Building with Perfection](#codebase-mastery-building-with-perfection)
-- [LLM-PlayLab](https://github.com/Sakil786/LLM-PlayLab)
+- [Codebase Mastery: Building with Perfection](#codebase-mastery-building-with-perfection)
+- [LLM PlayLab](#llm-playlab)
 - [What I am learning](#what-i-am-learning)
 - [Contributing](#contributing)
 - [License](#license)
@@ -63,8 +64,6 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
 | Sharding | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/main/Articles/Model%20Compression/Sharding)|
 | Mixed Precision Training | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/main/Articles/Model%20Compression/Mixed%20Precision%20Training)|
 | Inference Optimization | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/main/Articles/Model%20Compression/Inference%20Optimization)|
-
-
 
 ## Evaluation Metrics 
 | Article | Resources |
@@ -124,7 +123,7 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
 | Multi Adapter Inference | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/main/example_codebase/multi_adapter_inference)|
 | Inf2 LLM SM Deployment | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/main/example_codebase/Inf2%20LLM%20SM%20Deployment)|
 
-# LLM-PlayLab
+# LLM PlayLab
 | LLM Projects  |Respository|
 | ------------ | :------------: |
 |CSVQConnect   | [🔗](https://github.com/Sakil786/CSVQConnect) |
