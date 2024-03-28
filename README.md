@@ -160,7 +160,6 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
 | Exploratory_Data_Analysis_using_LLM | [🔗](https://github.com/Sakil786/Exploratory_Data_Analysis_using_LLM/tree/main) |
 
 
-
 # What I am learning
 
 After immersing myself in the recent GenAI text-based language model hype for nearly a month, I have made several observations about its performance on my specific tasks.
@@ -179,6 +178,27 @@ Please note that these observations are subjective and specific to my own experi
 - I have tried but didn't use langchains and vector-dbs. I never needed them. Simple Python, embeddings, and efficient dot product operations worked well for me.
 - LLMs do not need to have complete world knowledge. Humans also don't possess comprehensive knowledge but can adapt. LLMs only need to know how to utilize the available knowledge. It might be possible to create smaller models by separating the knowledge component.
 - The next wave of innovation might involve simulating "thoughts" before answering, rather than simply predicting one word after another. This approach could lead to significant advancements.
+- The overparameterization of LLMs presents a significant challenge: they tend to memorize extensive amounts of training data. This becomes particularly problematic in RAG scenarios when the context conflicts with this "implicit" knowledge. However, the situation escalates further when the context itself contains contradictory information. A recent survey paper comprehensively analyzes these "knowledge conflicts" in LLMs, categorizing them into three distinct types:
+    - Context-Memory Conflicts: Arise when external context contradicts the LLM's internal knowledge.
+        - Solution
+            - Fine-tune on counterfactual contexts to prioritize external information.
+            - Utilize specialized prompts to reinforce adherence to context
+            - Apply decoding techniques to amplify context probabilities.
+            - Pre-train on diverse contexts across documents.
+
+    - Inter-Context Conflicts: Contradictions between multiple external sources.
+        - Solution:
+            - Employ specialized models for contradiction detection.
+            - Utilize fact-checking frameworks integrated with external tools.
+            - Fine-tune discriminators to identify reliable sources.
+            - Aggregate high-confidence answers from augmented queries.
+    - Intra-Memory Conflicts: The LLM gives inconsistent outputs for similar inputs due to conflicting internal knowledge.
+        - Solution:
+            - Fine-tune with consistency loss functions.
+            - Implement plug-in methods, retraining on word definitions.
+            - Ensemble one model's outputs with another's coherence scoring.
+            - Apply contrastive decoding, focusing on truthful layers/heads.
+
 
 # Contributing
 Contributions are welcome! If you'd like to contribute to this project, feel free to open an issue or submit a pull request.
