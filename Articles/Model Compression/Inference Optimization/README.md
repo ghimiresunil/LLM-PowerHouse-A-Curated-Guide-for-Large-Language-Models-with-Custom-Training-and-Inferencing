@@ -39,3 +39,52 @@
 # Low-rank Decomposition
 - Low-rank decomposition can be used to compress neural networks by representing the weight matrices as the product of smaller matrices, which requires less storage space and computational resources.
 - Low-rank decomposition can be used to compress large matrices (N * N) in neural networks by representing them as the product of two smaller matrices each of size $N * 1$. This can significantly reduce the space complexity of the matrices, from quadratic $O(N^2)$ to linear O(N), which can lead to significant improvements in computational efficiency.
+
+# Continuous Batching
+
+Continuous Batching is a technique that maximizes GPU utilization. It involves:
+
+- Streamlining computation: By continuously feeding batches of data to the GPU.
+- Reducing idle time: Ensures that the GPU always has work to do.
+- Enhancing throughput: By minimizing the time spent waiting for I/O operations.
+
+# Speculative Batching
+Speculative Batching is a predictive approach that:
+
+- Pre-executes tasks: Based on the likelihood of their necessity.
+- Saves time: By preemptively processing data that will probably be needed.
+- Increases efficiency: Through better resource utilization.
+- Speculations can be runin parallel to validate
+
+# Attention Mechanisms
+
+Attention mechanisms have revolutionized the way neural networks process data. Let’s look at some sophisticated variants:
+
+## Flash Attention 2
+- High-speed processing: Flash Attention 2 is designed for rapid computation.
+- Efficient memory usage: It optimizes the use of memory bandwidth.
+- Basis - “GPUs are good at computation rather than read and write”
+- Reduces the reads and writes, recomputes, partial softmax calculates to compensate
+
+## Multi-head Attention (MHA)
+- Parallel processing: MHA processes information in parallel across different representation subspaces.
+- Richer representations: It captures various aspects of the data simultaneously.
+- Each q have a seperate K and V
+
+## Multi-query Attention (MQA)
+- Multiple queries: MQA handles several queries in one go.
+- Enhanced context capture: It allows the model to consider multiple perspectives at once.
+- Single K and V across all attention heads
+- This ia majorly to reduce the memory burden, KV cache, of the system.
+
+## Group-query Attention (GQA)
+- Grouped processing: GQA processes sets of queries together.
+- Improved relational understanding: It’s adept at understanding the relationships between different data points.
+- Grouped K and V across all attention heads
+- This ia majorly to reduce the memory burden, KV cache, of the system.
+
+## Paged KV Cache for the Attention
+- Memory efficiency: This technique uses a paged mechanism to store key-value pairs.
+- Faster access: It allows for quicker retrieval of relevant information during the attention process.
+- Reduces memory fragmentation loss
+- Disdvantage - makes system memory bound
