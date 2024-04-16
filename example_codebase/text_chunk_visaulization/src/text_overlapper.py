@@ -11,7 +11,6 @@ def get_overlap_list(strings):
     overlaps = [get_overlap_length(strings[i], strings[i + 1]) for i in range(len(strings) - 1)]
     return overlaps
 
-
 def unoverlap_list(strings):
     overlaps = get_overlap_list(strings)
     new_list = []
