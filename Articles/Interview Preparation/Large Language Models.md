@@ -50,5 +50,11 @@ Answer: GPT (Generative Pre-trained Transformer) and BERT (Bidirectional Encoder
     - GPT models, particularly in their more recent versions like GPT-3, have demonstrated impressive capabilities in generating text that resembles human writing. Nevertheless, due to their autoregressive design, they may encounter inefficiencies when tasked with comprehensively understanding the complete context of input text.
 - BERT:
     - In contrast, BERT has represented a significant advancement in tasks that demand a thorough comprehension of textual context and relationships. Its bidirectional architecture enables it to surpass or complement autoregressive models in various such tasks.
+<hr>
 
+## 3. What limitations of Recurrent Neural Networks (RNNs) do transformer models effectively address?
+Answer: Transformer models effectively tackle several inherent limitations of Recurrent Neural Networks (RNNs):
+- Sequential Processing Constraint: RNNs process data sequentially, hindering parallel computation. Conversely, transformers leverage self-attention mechanisms to process entire sequences concurrently, significantly enhancing computational efficiency and speeding up training.
+- Long-Term Dependency Handling: RNNs struggle with capturing long-term dependencies due to issues like vanishing and exploding gradients. Transformers circumvent this by employing self-attention mechanisms that directly capture relationships between all elements of the input sequence, irrespective of their temporal distance.
+- Scalability: RNNs encounter scalability issues when processing long sequences, as computational complexity and memory requirements increase linearly with sequence length. Transformers mitigate this challenge through more efficient attention mechanisms, although addressing very long sequences may necessitate modifications such as sparse attention patterns.
 
