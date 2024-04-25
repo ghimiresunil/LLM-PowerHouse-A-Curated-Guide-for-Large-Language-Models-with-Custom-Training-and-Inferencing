@@ -18,6 +18,8 @@ Pre-trained language models have revolutionized NLP by providing a robust founda
 
 ## 2. What are the primary distinctions between models such as GPT (Generative Pre-trained Transformer) and BERT (Bidirectional Encoder Representations from Transformers)?
 
+![bert_vs_gpt](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/f5632f46-0986-4cbf-9e47-98e4b7274679)
+
 Answer: GPT (Generative Pre-trained Transformer) and BERT (Bidirectional Encoder Representations from Transformers) stand as two foundational architectures within the realm of NLP (Natural Language Processing). Each model presents its own distinctive approach and capabilities. Although both models utilize the Transformer architecture for text processing, they are engineered for diverse objectives and function in contrasting manners.
 
 <b> Architecture and Training Approach </b>
