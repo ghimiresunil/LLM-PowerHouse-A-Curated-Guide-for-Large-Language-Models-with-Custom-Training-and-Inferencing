@@ -18,6 +18,52 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
 - [Contributing](#contributing)
 - [License](#license)
 
+# LLM Scientist
+
+```mermaid
+graph LR
+    Scientist["LLM Scientist 👩‍🔬"] --> Architecture["The LLM architecture 🏗️"]
+    Scientist["LLM Scientist 👩‍🔬"] --> Instruction["Building an instruction dataset 📚"]
+    Scientist["LLM Scientist 👩‍🔬"] --> Pretraining["Pretraining models 🛠️"]
+    Scientist["LLM Scientist 👩‍🔬"] --> FineTuning["Supervised Fine-Tuning 🎯"]
+    Scientist["LLM Scientist 👩‍🔬"] --> RLHF["RLHF 🔍"]
+    Scientist["LLM Scientist 👩‍🔬"] --> Evaluation["Evaluation 📊"]
+    Scientist["LLM Scientist 👩‍🔬"] --> Quantization["Quantization ⚖️"]
+    Scientist["LLM Scientist 👩‍🔬"] --> Trends["New Trends 📈"]
+    Architecture["The LLM architecture 🏗️"] --> HLV["High Level View 🔍"]
+    Architecture["The LLM architecture 🏗️"] --> Tokenization["Tokenization 🔠"]
+    Architecture["The LLM architecture 🏗️"] --> Attention["Attention Mechanisms 🧠"]
+    Architecture["The LLM architecture 🏗️"] --> Generation["Text Generation ✍️"]
+    Instruction["Building an instruction dataset 📚"] --> Alpaca["Alpaca-like dataset 🦙"]
+    Instruction["Building an instruction dataset 📚"] --> Advanced["Advanced Techniques 📈"]
+    Instruction["Building an instruction dataset 📚"] --> Filtering["Filtering Data 🔍"]
+    Instruction["Building an instruction dataset 📚"] --> Prompt["Prompt Templates 📝"]
+    Pretraining["Pretraining models 🛠️"] --> Pipeline["Data Pipeline 🚀"]
+    Pretraining["Pretraining models 🛠️"] --> CLM["Casual Language Modeling 📝"]
+    Pretraining["Pretraining models 🛠️"] --> Scaling["Scaling Laws 📏"]
+    Pretraining["Pretraining models 🛠️"] --> HPC["High-Performance Computing 💻"]
+    FineTuning["Supervised Fine-Tuning 🎯"] --> Full["Full fine-tuning 🛠️"]
+    FineTuning["Supervised Fine-Tuning 🎯"] --> Lora["Lora and QLoRA 🌀"]
+    FineTuning["Supervised Fine-Tuning 🎯"] --> Axoloti["Axoloti 🦠"]
+    FineTuning["Supervised Fine-Tuning 🎯"] --> DeepSpeed["DeepSpeed ⚡"]
+    RLHF["RLHF 🔍"] --> Preference["Preference Datasets 📝"]
+    RLHF["RLHF 🔍"] --> Optimization["Proximal Policy Optimization 🎯"]
+    RLHF["RLHF 🔍"] --> DPO["Direct Preference Optimization 📈"]
+    Evaluation["Evaluation 📊"] --> Traditional["Traditional Metrics 📏"]
+    Evaluation["Evaluation 📊"] --> General["General Benchmarks 📈"]
+    Evaluation["Evaluation 📊"] --> Task["Task-specific Benchmarks 📋"]
+    Evaluation["Evaluation 📊"] --> HF["Human Evaluation 👩‍🔬"]
+    Quantization["Quantization ⚖️"] --> Base["Base Techniques 🛠️"]
+    Quantization["Quantization ⚖️"] --> GGUF["GGUF and llama.cpp 🐐"]
+    Quantization["Quantization ⚖️"] --> GPTQ["GPTQ and EXL2 🤖"]
+    Quantization["Quantization ⚖️"] --> AWQ["AWQ 🚀"]
+    Trends["New Trends 📈"] --> Positional["Positional Embeddings 🎯"]
+    Trends["New Trends 📈"] --> Merging["Model Merging 🔄"]
+    Trends["New Trends 📈"] --> MOE["Mixture of Experts 🎭"]
+    Trends["New Trends 📈"] --> Multimodal["Multimodal Models 📷"]
+```    
+
+
 # In-Depth Articles 
 
 ## NLP
