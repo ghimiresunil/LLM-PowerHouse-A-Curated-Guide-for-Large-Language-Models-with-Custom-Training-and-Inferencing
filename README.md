@@ -2,7 +2,7 @@
 Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potential of Large Language Models (LLMs) with custom training and inferencing. This GitHub repository is a comprehensive and curated guide designed to empower developers, researchers, and enthusiasts to harness the true capabilities of LLMs and build intelligent applications that push the boundaries of natural language understanding.
 
 # Table of contents 
-
+- [🧑‍🔬 LLM Scientist](#🧑‍🔬-llm-scientist)
 - [In-Depth Articles](#in-depth-articles)
     - [NLP](#nlp)
     - [Models](#models)
@@ -18,7 +18,12 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
 - [Contributing](#contributing)
 - [License](#license)
 
-# LLM Scientist
+# 🧑‍🔬 LLM Scientist
+
+In this segment of the curriculum, participants delve into mastering the creation of top-notch LLMs through cutting-edge methodologies.
+
+<details>
+<summary>Toggle section</summary>
 
 ```mermaid
 graph LR
@@ -63,9 +68,60 @@ graph LR
     Trends["New Trends 📈"] --> Multimodal["Multimodal Models 📷"]
 ```    
 
+## 1. The LLM architecture 🏗️
+
+An overview of the Transformer architecture, with emphasis on inputs (tokens) and outputs (logits), and the importance of understanding the vanilla attention mechanism and its improved versions.
+
+| concept | Description |
+| --- | --- |
+| Transformer Architecture (High-Level) | Review encoder-decoder Transformers, specifically the decoder-only GPT architecture used in modern LLMs. |
+| Tokenization | Understand how raw text is converted into tokens (words or subwords) for the model to process. |
+| Attention Mechanisms | Grasp the theory behind attention, including self-attention and scaled dot-product attention, which allows the model to focus on relevant parts of the input during output generation.|
+| Text Generation | Learn different methods the model uses to generate output sequences. Common strategies include greedy decoding, beam search, top-k sampling, and nucleus sampling.|
+
+### Further Exploration
+
+Consider these resources (not included here to avoid plagiarism) for a deeper dive:
+
+| Reference | Description | Link |
+| --- | --- | :---: |
+| The Illustrated Transformer by Jay Alammar | A visual and intuitive explanation of the Transformer model | [🔗](https://jalammar.github.io/illustrated-transformer/) |
+| The Illustrated GPT-2 by Jay Alammar | Focuses on the GPT architecture, similar to Llama's. | [🔗](https://jalammar.github.io/illustrated-gpt2/) |
+| Visual intro to Transformers by 3Blue1Brown | Simple visual intro to Transformers | [🔗](https://www.youtube.com/watch?v=wjZofJX0v4M&t=187s) |
+| LLM Visualization by Brendan Bycroft | 3D visualization of LLM internals | [🔗](https://bbycroft.net/llm) |
+| nanoGPT by Andrej Karpathy | Reimplementation of GPT from scratch (for programmers) | [🔗](https://www.youtube.com/watch?v=kCc8FmEb1nY) |
+| Decoding Strategies in LLMs | Provides code and visuals for decoding strategies | [🔗](https://mlabonne.github.io/blog/posts/2023-06-07-Decoding_strategies.html) |
+
+
+## 2. Building an instruction dataset 📚
+
+While it's easy to find raw data from Wikipedia and other websites, it's difficult to collect pairs of instructions and answers in the wild. Like in traditional machine learning, the quality of the dataset will directly influence the quality of the model, which is why it might be the most important component in the fine-tuning process.
+
+| Concept | Description |
+| --- | --- |
+| Alpaca-like dataset | Generate synthetic data from scratch with the OpenAI API (GPT). You can specify seeds and system prompts to create a diverse dataset. |
+| Advanced techniques | Learn how to improve existing datasets with Evol-Instruct, how to generate high-quality synthetic data like in the Orca and phi-1 papers.|
+| Filtering data | Traditional techniques involving regex, removing near-duplicates, focusing on answers with a high number of tokens, etc.|
+| Prompt templates  | There's no true standard way of formatting instructions and answers, which is why it's important to know about the different chat templates, such as ChatML, Alpaca, etc.|
+
+### Further Exploration
+
+Consider these resources (not included here to avoid plagiarism) for a deeper dive:
+
+| Reference | Description | Link |
+| --- | --- | :---: |
+| The Illustrated Transformer by Jay Alammar | A visual and intuitive explanation of the Transformer model | [🔗](https://jalammar.github.io/illustrated-transformer/) |
+| The Illustrated GPT-2 by Jay Alammar | Focuses on the GPT architecture, similar to Llama's. | [🔗](https://jalammar.github.io/illustrated-gpt2/) |
+| Visual intro to Transformers by 3Blue1Brown | Simple visual intro to Transformers | [🔗](https://www.youtube.com/watch?v=wjZofJX0v4M&t=187s) |
+| LLM Visualization by Brendan Bycroft | 3D visualization of LLM internals | [🔗](https://bbycroft.net/llm) |
+| nanoGPT by Andrej Karpathy | Reimplementation of GPT from scratch (for programmers) | [🔗](https://www.youtube.com/watch?v=kCc8FmEb1nY) |
+| Decoding Strategies in LLMs | Provides code and visuals for decoding strategies | [🔗](https://mlabonne.github.io/blog/posts/2023-06-07-Decoding_strategies.html) |
+
+
+</details>
+<br>
 
 # In-Depth Articles 
-
 ## NLP
 
 | Article | Resources |
