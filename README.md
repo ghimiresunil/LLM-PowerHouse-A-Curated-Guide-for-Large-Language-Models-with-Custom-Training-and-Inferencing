@@ -68,7 +68,7 @@ graph LR
     Trends["New Trends 📈"] --> Multimodal["Multimodal Models 📷"]
 ```    
 
-## 1. The LLM architecture 🏗️
+### 1. The LLM architecture 🏗️
 
 An overview of the Transformer architecture, with emphasis on inputs (tokens) and outputs (logits), and the importance of understanding the vanilla attention mechanism and its improved versions.
 
@@ -79,7 +79,7 @@ An overview of the Transformer architecture, with emphasis on inputs (tokens) an
 | Attention Mechanisms | Grasp the theory behind attention, including self-attention and scaled dot-product attention, which allows the model to focus on relevant parts of the input during output generation.|
 | Text Generation | Learn different methods the model uses to generate output sequences. Common strategies include greedy decoding, beam search, top-k sampling, and nucleus sampling.|
 
-### Further Exploration
+#### Further Exploration
 
 | Reference | Description | Link |
 | --- | --- | :---: |
@@ -91,7 +91,7 @@ An overview of the Transformer architecture, with emphasis on inputs (tokens) an
 | Decoding Strategies in LLMs | Provides code and visuals for decoding strategies | [🔗](https://mlabonne.github.io/blog/posts/2023-06-07-Decoding_strategies.html) |
 
 
-## 2. Building an instruction dataset 📚
+### 2. Building an instruction dataset 📚
 
 While it's easy to find raw data from Wikipedia and other websites, it's difficult to collect pairs of instructions and answers in the wild. Like in traditional machine learning, the quality of the dataset will directly influence the quality of the model, which is why it might be the most important component in the fine-tuning process.
 
@@ -102,7 +102,7 @@ While it's easy to find raw data from Wikipedia and other websites, it's difficu
 | Filtering data | Employ traditional techniques such as regex, near-duplicate removal, and prioritizing answers with substantial token counts to refine datasets.|
 | Prompt templates  | Recognize the absence of a definitive standard for structuring instructions and responses, underscoring the importance of familiarity with various chat templates like [ChatML](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/chatgpt?tabs=python&pivots=programming-language-chat-ml) and [Alpaca](https://crfm.stanford.edu/2023/03/13/alpaca.html).|
 
-### Further Exploration
+#### Further Exploration
 
 | Reference | Description | Link |
 | --- | --- | :---:|
@@ -112,7 +112,7 @@ While it's easy to find raw data from Wikipedia and other websites, it's difficu
 | Dataset creation for fine-tuning LLM | Notebook containing techniques to filter a dataset and upload the result. | [🔗]() |
 | Chat Template by Matthew Carrigan | Hugging Face's page about prompt templates | [🔗](https://huggingface.co/blog/chat-templates) |
 
-## 3. Pretraining models 🛠️
+### 3. Pretraining models 🛠️
 
 Pre-training, being both lengthy and expensive, is not the primary focus of this course. While it's beneficial to grasp the fundamentals of pre-training, practical experience in this area is not mandatory.
 
@@ -123,7 +123,7 @@ Pre-training, being both lengthy and expensive, is not the primary focus of this
 | Scaling laws  | Delve into the [scaling laws](https://arxiv.org/pdf/2001.08361), which elucidate the anticipated model performance based on factors like model size, dataset size, and computational resources utilized during training. |
 | High-Performance Computing  | While beyond the scope of this discussion, a deeper understanding of HPC becomes essential for those considering building their own LLMs from scratch, encompassing aspects like hardware selection and distributed workload management. |
 
-### Further Exploration
+#### Further Exploration
 
 | Reference | Description | Link |
 | --- | --- | :---:|
@@ -136,7 +136,7 @@ Pre-training, being both lengthy and expensive, is not the primary focus of this
 | OPT-175 Logbook by Meta | Offers research logs detailing the successes and failures encountered during the pre-training of a large language model with 175B parameters. | [🔗](https://github.com/facebookresearch/metaseq/blob/main/projects/OPT/chronicles/OPT175B_Logbook.pdf) |
 | LLM 360 | Presents a comprehensive framework for open-source LLMs, encompassing training and data preparation code, datasets, evaluation metrics, and models. | [🔗](https://www.llm360.ai/) |
 
-## 4. Supervised Fine-Tuning 🎯
+### 4. Supervised Fine-Tuning 🎯
 Pre-trained models are trained to predict the next word, so they're not great as assistants. But with SFT, you can adjust them to follow instructions. Plus, you can fine-tune them on different data, even private stuff GPT-4 hasn't seen, and use them without needing paid APIs like OpenAI's.
 
 | Concept | Description |
@@ -147,7 +147,7 @@ Pre-trained models are trained to predict the next word, so they're not great as
 | [Axolotl](https://github.com/OpenAccess-AI-Collective/axolotl) | Axolotl stands as a user-friendly and potent fine-tuning tool, extensively utilized in numerous state-of-the-art open-source models. |
 | [DeepSpeed](https://www.deepspeed.ai/) | DeepSpeed facilitates efficient pre-training and fine-tuning of large language models across multi-GPU and multi-node settings, often integrated within Axolotl for enhanced performance. |
 
-### Further Exploration
+#### Further Exploration
 | Reference | Description | Link |
 | --- | --- | :---: |
 | The Novice's LLM Training Guide by Alpin | Provides an overview of essential concepts and parameters for fine-tuning LLMs. | [🔗](https://rentry.org/llm-training)|
@@ -155,7 +155,7 @@ Pre-trained models are trained to predict the next word, so they're not great as
 | Fine-Tune Your Own Llama 2 Model | Presents a hands-on tutorial on fine-tuning a Llama 2 model using Hugging Face libraries. | [🔗](https://mlabonne.github.io/blog/posts/Fine_Tune_Your_Own_Llama_2_Model_in_a_Colab_Notebook.html)|
 | Padding Large Language Models by Benjamin Marie | Outlines best practices for padding training examples in causal LLMs. | [🔗](https://towardsdatascience.com/padding-large-language-models-examples-with-llama-2-199fb10df8ff)|
 
-## RLHF 🔍
+### RLHF 🔍
 Following supervised fine-tuning, RLHF serves as a crucial step in harmonizing the LLM's responses with human expectations. This entails acquiring preferences from human or artificial feedback, thereby mitigating biases, implementing model censorship, or fostering more utilitarian behavior. RLHF is notably more intricate than SFT and is frequently regarded as discretionary.
 
 | Concept | Description |
@@ -164,7 +164,7 @@ Following supervised fine-tuning, RLHF serves as a crucial step in harmonizing t
 | [Proximal Policy Optimization](https://arxiv.org/abs/1707.06347) | This algorithm utilizes a reward model to predict whether a given text is highly ranked by humans. It then optimizes the SFT model using a penalty based on KL divergence. |
 | [Direct Preference Optimization](https://arxiv.org/abs/2305.18290) | DPO simplifies the process by framing it as a classification problem. It employs a reference model instead of a reward model (requiring no training) and only necessitates one hyperparameter, rendering it more stable and efficient. |
 
-### Further Exploration
+#### Further Exploration
 
 | Reference | Description | Link |
 | --- | --- | :---: |
@@ -174,7 +174,7 @@ Following supervised fine-tuning, RLHF serves as a crucial step in harmonizing t
 | LLM Training RLHF and Its Alternatives by Sebastian Rashcka | Overview of the RLHF process and alternatives like RLAIF. | [🔗](https://magazine.sebastianraschka.com/p/llm-training-rlhf-and-its-alternatives)|
 | Fine-tune Llama2 with DPO | Tutorial to fine-tune a Llama2 model with DPO| [🔗](https://huggingface.co/blog/dpo-trl)|
 
-## 6. Evaluation 📊
+### 6. Evaluation 📊
 
 Assessing LLMs is an often overlooked aspect of the pipeline, characterized by its time-consuming nature and moderate reliability. Your evaluation criteria should be tailored to your downstream task, while bearing in mind Goodhart's law: "When a measure becomes a target, it ceases to be a good measure."
 
@@ -185,7 +185,7 @@ Assessing LLMs is an often overlooked aspect of the pipeline, characterized by i
 | Task-specific benchmarks | Tasks like summarization, translation, and question answering boast dedicated benchmarks, metrics, and even subdomains (e.g., medical, financial), exemplified by [PubMedQA](https://pubmedqa.github.io/) for biomedical question answering. |
 | Human evaluation | The most dependable evaluation method entails user acceptance rates or human-comparison metrics. Additionally, logging user feedback alongside chat traces, facilitated by tools like [LangSmith](https://docs.smith.langchain.com/old/evaluation), aids in pinpointing potential areas for enhancement. |
 
-### Further Evaluation
+#### Further Evaluation
 
 | Reference | Description | Link |
 | --- | --- | :---: |
@@ -194,7 +194,7 @@ Assessing LLMs is an often overlooked aspect of the pipeline, characterized by i
 | A Survey on Evaluation of LLMs by Chang et al. | Presents a comprehensive paper covering what to evaluate, where to evaluate, and how to evaluate language models. | [🔗](https://arxiv.org/abs/2307.03109)|
 | Chatbot Arena Leaderboard by lmsys | Showcases an Elo rating system for general-purpose language models, based on comparisons made by humans. | [🔗](https://huggingface.co/spaces/lmsys/chatbot-arena-leaderboard)|
 
-## 7. Quantization ⚖️
+### 7. Quantization ⚖️
 
 Quantization involves converting the weights (and activations) of a model to lower precision. For instance, weights initially stored using 16 bits may be transformed into a 4-bit representation. This technique has gained significance in mitigating the computational and memory expenses linked with LLMs
 
@@ -205,7 +205,7 @@ Quantization involves converting the weights (and activations) of a model to low
 | GPTQ and EXL2 | [GPTQ](https://arxiv.org/abs/2210.17323) and its variant, the [EXL2](https://github.com/turboderp/exllamav2) format, offer remarkable speed but are limited to GPU execution. However, quantizing models using these formats can be time-consuming. |
 | AWQ | This newer format boasts higher accuracy compared to GPTQ, as indicated by lower perplexity, but demands significantly more VRAM and may not necessarily exhibit faster performance. |
 
-### Further Exploration
+#### Further Exploration
 
 | Reference | Description | Link |
 | --- | --- | :---: |
@@ -216,7 +216,7 @@ Quantization involves converting the weights (and activations) of a model to low
 | Understanding Activation-Aware Weight Quantization by FriendliAI | Provides an overview of the AWQ technique and its associated benefits. | [🔗](https://medium.com/friendliai/understanding-activation-aware-weight-quantization-awq-boosting-inference-serving-efficiency-in-10bb0faf63a8) |
 
 
-## 8. New Trends 📈
+### 8. New Trends 📈
 
 | Concept | Description |
 | --- | --- |
@@ -225,7 +225,7 @@ Quantization involves converting the weights (and activations) of a model to low
 | Mixture of Experts | The resurgence of the MoE architecture, exemplified by [Mixtral](https://arxiv.org/abs/2401.04088), has led to the emergence of alternative approaches like frankenMoE, seen in community-developed models such as [Phixtral](https://huggingface.co/mlabonne/phixtral-2x2_8), offering cost-effective and high-performance alternatives. |
 | Multimodal models | These models, such as [CLIP](https://openai.com/index/clip/), [Stable Diffusion](https://stability.ai/stable-image), or [LLaVA](https://llava-vl.github.io/), process diverse inputs (text, images, audio, etc.) within a unified embedding space, enabling versatile applications like text-to-image generation. |
 
-### Further Exploration
+#### Further Exploration
 
 | Reference | Description | Link |
 | --- | --- | :---: |
