@@ -72,7 +72,7 @@ graph LR
 
 An overview of the Transformer architecture, with emphasis on inputs (tokens) and outputs (logits), and the importance of understanding the vanilla attention mechanism and its improved versions.
 
-| concept | Description |
+| Concept | Description |
 | --- | --- |
 | Transformer Architecture (High-Level) | Review encoder-decoder Transformers, specifically the decoder-only GPT architecture used in modern LLMs. |
 | Tokenization | Understand how raw text is converted into tokens (words or subwords) for the model to process. |
@@ -234,8 +234,6 @@ Quantization involves converting the weights (and activations) of a model to low
 | Merge LLMs with mergekit | Tutorial on model merging using mergekit. | [🔗](https://mlabonne.github.io/blog/posts/2024-01-08_Merge_LLMs_with_mergekit.html) |
 | Mixture of Experts Explained by Hugging Face | Comprehensive guide on MoEs and their functioning. | [🔗](https://huyenchip.com/2023/10/10/multimodal.html) |
 | Large Multimodal Models by Chip Huyen: | Overview of multimodal systems and recent developments in the field. | [🔗](https://huyenchip.com/2023/10/10/multimodal.html) |
-
-
 </details>
 <br>
 
