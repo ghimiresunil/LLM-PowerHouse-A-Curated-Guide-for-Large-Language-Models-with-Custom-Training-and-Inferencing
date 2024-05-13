@@ -23,7 +23,7 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
 In this segment of the curriculum, participants delve into mastering the creation of top-notch LLMs through cutting-edge methodologies.
 
 <details>
-<summary>Toggle section</summary>
+<summary>⬇️ Would you love to become an LLM scientist? ⬇️ </summary>
 
 ```mermaid
 graph LR
