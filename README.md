@@ -27,14 +27,14 @@ In this segment of the curriculum, participants delve into mastering the creatio
 
 ```mermaid
 graph LR
-    Scientist["LLM Scientist 👩‍🔬"] --> Architecture["The LLM architecture 🏗️"]
-    Scientist["LLM Scientist 👩‍🔬"] --> Instruction["Building an instruction dataset 📚"]
-    Scientist["LLM Scientist 👩‍🔬"] --> Pretraining["Pretraining models 🛠️"]
-    Scientist["LLM Scientist 👩‍🔬"] --> FineTuning["Supervised Fine-Tuning 🎯"]
-    Scientist["LLM Scientist 👩‍🔬"] --> RLHF["RLHF 🔍"]
-    Scientist["LLM Scientist 👩‍🔬"] --> Evaluation["Evaluation 📊"]
-    Scientist["LLM Scientist 👩‍🔬"] --> Quantization["Quantization ⚖️"]
-    Scientist["LLM Scientist 👩‍🔬"] --> Trends["New Trends 📈"]
+    Scientist["Art of LLM Science 👩‍🔬"] --> Architecture["The LLM architecture 🏗️"]
+    Scientist["Art of LLM Science 👩‍🔬"] --> Instruction["Building an instruction dataset 📚"]
+    Scientist["Art of LLM Science 👩‍🔬"] --> Pretraining["Pretraining models 🛠️"]
+    Scientist["Art of LLM Science 👩‍🔬"] --> FineTuning["Supervised Fine-Tuning 🎯"]
+    Scientist["Art of LLM Science 👩‍🔬"] --> RLHF["RLHF 🔍"]
+    Scientist["Art of LLM Science 👩‍🔬"] --> Evaluation["Evaluation 📊"]
+    Scientist["Art of LLM Science 👩‍🔬"] --> Quantization["Quantization ⚖️"]
+    Scientist["Art of LLM Science 👩‍🔬"] --> Trends["New Trends 📈"]
     Architecture["The LLM architecture 🏗️"] --> HLV["High Level View 🔍"]
     Architecture["The LLM architecture 🏗️"] --> Tokenization["Tokenization 🔠"]
     Architecture["The LLM architecture 🏗️"] --> Attention["Attention Mechanisms 🧠"]
