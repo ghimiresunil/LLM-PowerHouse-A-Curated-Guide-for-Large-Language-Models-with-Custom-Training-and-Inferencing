@@ -18,6 +18,36 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
 - [Contributing](#contributing)
 - [License](#license)
 
+## Foundations of LLMs
+
+```mermaid
+graph LR
+    Foundations["📚 Foundations of Large Language Models (LLMs)"] --> ML["1️⃣ Mathematics for Machine Learning"]
+    Foundations["📚 Foundations of Large Language Models (LLMs)"] --> Python["2️⃣ Python for Machine Learning"]
+    Foundations["📚 Foundations of Large Language Models (LLMs)"] --> NN["3️⃣ Neural Networks"]
+    Foundations["📚 Foundations of Large Language Models (LLMs)"] --> NLP["4️⃣ Natural Language Processing (NLP)"]
+    
+    ML["1️⃣ Mathematics for Machine Learning"] --> LA["📐 Linear Algebra"]
+    ML["1️⃣ Mathematics for Machine Learning"] --> Calculus["📏 Calculus"]
+    ML["1️⃣ Mathematics for Machine Learning"] --> Probability["📊 Probability & Statistics"]
+    
+    Python["2️⃣ Python for Machine Learning"] --> PB["🐍 Python Basics"]
+    Python["2️⃣ Python for Machine Learning"] --> DS["📊 Data Science Libraries"]
+    Python["2️⃣ Python for Machine Learning"] --> DP["🔄 Data Preprocessing"]
+    Python["2️⃣ Python for Machine Learning"] --> MLL["🤖 Machine Learning Libraries"]
+    
+    NN["3️⃣ Neural Networks"] --> Fundamentals["🔧 Fundamentals"]
+    NN["3️⃣ Neural Networks"] --> TO["⚙️ Training & Optimization"]
+    NN["3️⃣ Neural Networks"] --> Overfitting["📉 Overfitting"]
+    NN["3️⃣ Neural Networks"] --> MLP["🧠 Implementation of MLP"]
+    
+    NLP["4️⃣ Natural Language Processing (NLP)"] --> TP["📝 Text Preprocessing"]
+    NLP["4️⃣ Natural Language Processing (NLP)"] --> FET["🔍 Feature Extraction Techniques"]
+    NLP["4️⃣ Natural Language Processing (NLP)"] --> WE["🌐 Word Embedding"]
+    NLP["4️⃣ Natural Language Processing (NLP)"] --> RNN["🔄 Recurrent Neural Network"]
+
+```
+
 ## Unlock the Art of LLM Science
 
 In this segment of the curriculum, participants delve into mastering the creation of top-notch LLMs through cutting-edge methodologies.
