@@ -21,6 +21,11 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
 
 ## Foundations of LLMs
 
+This section offers fundamental insights into mathematics, Python, and neural networks. It may not be the ideal starting point, but you can consult it whenever necessary.
+
+<details>
+<summary>⬇️ Ready to Embrace Foundations of LLMs? ⬇️ </summary>
+
 ```mermaid
 graph LR
     Foundations["📚 Foundations of Large Language Models (LLMs)"] --> ML["1️⃣ Mathematics for Machine Learning"]
@@ -48,6 +53,9 @@ graph LR
     NLP["4️⃣ Natural Language Processing (NLP)"] --> RNN["🔄 Recurrent Neural Network"]
 
 ```
+</details>
+<br>
+
 
 ## Unlock the Art of LLM Science
 
