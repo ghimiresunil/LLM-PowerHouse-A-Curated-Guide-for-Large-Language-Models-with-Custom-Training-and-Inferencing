@@ -578,4 +578,7 @@ Contributions are welcome! If you'd like to contribute to this project, feel fre
 # License
 This project is licensed under the [MIT License](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/blob/main/LICENSE).
 
+# About The Author
+[Sunil Ghimire](https://sunilghimire.com.np/) is a NLP Engineer passionate about literature. He believes that words and data are the two most powerful tools to change the world. 
+
 Created with ❤️ by [Sunil Ghimire](https://sunilghimire.com.np/)
