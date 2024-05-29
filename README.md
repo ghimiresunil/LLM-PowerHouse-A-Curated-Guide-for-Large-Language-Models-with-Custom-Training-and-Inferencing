@@ -18,6 +18,7 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
 - [What I am learning](#what-i-am-learning)
 - [Contributing](#contributing)
 - [License](#license)
+- [About The Author](#about-the-author)
 
 ## Foundations of LLMs
 
