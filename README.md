@@ -1,4 +1,16 @@
-# LLM-PowerHouse: A Curated Guide for Large Language Models with Custom Training and Inferencing
+<div align="center">
+  <h1>🗣️ LLM PowerHouse</h1>
+  <p>
+    <p>
+  <a href="https://twitter.com/Ghimire12Sunil"><img src="https://img.shields.io/badge/twitter-%231DA1F2.svg?&style=for-the-badge&logo=twitter&logoColor=white" height=25></a>
+  <a href="https://www.linkedin.com/in/ghimiresunil/"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" height=25></a>
+  <a href="https://www.instagram.com/_tech_tutor/"><img src="https://img.shields.io/badge/instagram-%23E4405F.svg?&style=for-the-badge&logo=instagram&logoColor=white" height=25></a>
+  <a href="https://sunilghimire.com.np"><img src="https://img.shields.io/badge/website-25D366?style=for-the-badge&logo=website&logoColor=white" height=25></a>
+  </p>
+   <p><em>Unleash LLMs' potential through curated tutorials, best practices, and ready-to-use code for custom training and inferencing.</em></p>
+</div>
+
+# Overview
 Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potential of Large Language Models (LLMs) with custom training and inferencing. This GitHub repository is a comprehensive and curated guide designed to empower developers, researchers, and enthusiasts to harness the true capabilities of LLMs and build intelligent applications that push the boundaries of natural language understanding.
 
 # Table of contents 
