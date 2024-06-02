@@ -30,6 +30,7 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
 - [What I am learning](#what-i-am-learning)
 - [Contributing](#contributing)
 - [License](#license)
+- [About The Author](#about-the-author)
 
 ## Foundations of LLMs
 
@@ -477,7 +478,7 @@ Quantization involves converting the weights (and activations) of a model to low
 | Text Chunk Visualization `In Progress` | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/main/example_codebase/text_chunk_visaulization)|
 | Fine-tune Llama 3 with ORPO | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/blob/main/example_codebase/Efficiently%20Fine%20Tune%20LLM/Fine_tune_Llama_3_with_ORPO.ipynb)|
 | 4 bit LLM Quantization with GPTQ | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/blob/main/example_codebase/Efficiently%20Fine%20Tune%20LLM/4_bit_LLM_Quantization_with_GPTQ.ipynb)|
-
+| Model Family Tree | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/edit/main/README.md)|
 
 # LLM PlayLab
 | LLM Projects  |Respository|
@@ -589,5 +590,8 @@ Contributions are welcome! If you'd like to contribute to this project, feel fre
 
 # License
 This project is licensed under the [MIT License](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/blob/main/LICENSE).
+
+# About The Author
+[Sunil Ghimire](https://sunilghimire.com.np/) is a NLP Engineer passionate about literature. He believes that words and data are the two most powerful tools to change the world. 
 
 Created with ❤️ by [Sunil Ghimire](https://sunilghimire.com.np/)
