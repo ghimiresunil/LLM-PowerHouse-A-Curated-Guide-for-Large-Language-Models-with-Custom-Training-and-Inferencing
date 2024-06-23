@@ -26,6 +26,7 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
     - [Resources for cost analysis and network visualization](#resources-for-cost-analysis-and-network-visualization)
 - [Codebase Mastery: Building with Perfection](#codebase-mastery-building-with-perfection)
 - [LLM PlayLab](#llm-playlab)
+- [LLM Datasets](#llm-datasets)
 - [What I am learning](#what-i-am-learning)
 - [Contributing](#contributing)
 - [License](#license)
