@@ -651,3 +651,10 @@ This project is licensed under the [MIT License](https://github.com/ghimiresunil
 [Sunil Ghimire](https://sunilghimire.com.np/) is a NLP Engineer passionate about literature. He believes that words and data are the two most powerful tools to change the world. 
 
 Created with ❤️ by [Sunil Ghimire](https://sunilghimire.com.np/)
+
+---
+<p align="center">
+  <a href="[https://star-history.com/#mlabonne/llm-course&Date](https://star-history.com/#ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing&Date)">
+    <img src="https://api.star-history.com/svg?repos=ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing&type=Date" alt="Star History Chart">
+  </a>
+</p>
