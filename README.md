@@ -372,8 +372,18 @@ Quantization involves converting the weights (and activations) of a model to low
 </details>
 <br>
 
-# In-Depth Articles 
 
+## Building Production-Ready LLM Applications
+
+Learn to create and deploy robust LLM-powered applications, focusing on model augmentation and practical deployment strategies for production environments.
+
+<details>
+<summary>⬇️ Ready to Build Production-Ready LLM Applications?⬇️ </summary>
+
+</details>
+<br>
+
+# In-Depth Articles 
 ## NLP
 
 | Article | Resources |
