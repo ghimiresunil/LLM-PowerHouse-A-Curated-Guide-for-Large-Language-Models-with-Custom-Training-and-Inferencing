@@ -16,6 +16,7 @@ Welcome to LLM-PowerHouse, your ultimate resource for unleashing the full potent
 # Table of contents 
 - [Foundations of LLMs](#foundations-of-llms)
 - [Unlock the Art of LLM Science](#unlock-the-art-of-llm-science)
+- [Building Production-Ready LLM Applications](#building-production-ready-llm-applications)
 - [In-Depth Articles](#in-depth-articles)
     - [NLP](#nlp)
     - [Models](#models)
