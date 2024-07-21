@@ -381,6 +381,50 @@ Learn to create and deploy robust LLM-powered applications, focusing on model au
 <details>
 <summary>⬇️ Ready to Build Production-Ready LLM Applications?⬇️ </summary>
 
+```mermaid
+graph LR
+    Scientist["Production-Ready LLM Applications 👩‍🔬"] --> Architecture["Running LLMs"]
+    Scientist --> Storage["Building a Vector Storage"]
+    Scientist --> Retrieval["Retrieval Augmented Generation"]
+    Scientist --> AdvancedRAG["Advanced RAG"]
+    Scientist --> Optimization["Inference Optimization"]
+    Scientist --> Deployment["Deploying LLMs"]
+    Scientist --> Secure["Securing LLMs"]
+
+    Architecture --> APIs["LLM APIs"]
+    Architecture --> OpenSource["Open Source LLMs"]
+    Architecture --> PromptEng["Prompt Engineering"]
+    Architecture --> StructOutputs["Structure Outputs"]
+
+    Storage --> Ingest["Ingesting Documents"]
+    Storage --> Split["Splitting Documents"]
+    Storage --> Embed["Embedding Models"]
+    Storage --> VectorDB["Vector Databases"]
+
+    Retrieval --> Orchestrators["Orchestrators"]
+    Retrieval --> Retrievers["Retrievers"]
+    Retrieval --> Memory["Memory"]
+    Retrieval --> Evaluation["Evaluation"]
+
+    AdvancedRAG --> Query["Query Construction"]
+    AdvancedRAG --> Agents["Agents and Tools"]
+    AdvancedRAG --> PostProcess["Post Processing"]
+    AdvancedRAG --> Program["Program LLMs"]
+
+    Optimization --> FlashAttention["Flash Attention"]
+    Optimization --> KeyValue["Key-value Cache"]
+    Optimization --> SpecDecoding["Speculative Decoding"]
+
+    Deployment --> LocalDeploy["Local Deployment"]
+    Deployment --> DemoDeploy["Demo Deployment"]
+    Deployment --> ServerDeploy["Server Deployment"]
+    Deployment --> EdgeDeploy["Edge Deployment"]
+
+    Secure --> PromptEngSecure["Prompt Engineering"]
+    Secure --> Backdoors["Backdoors"]
+    Secure --> Defensive["Defensive measures"]
+
+```
 </details>
 <br>
 
