@@ -424,7 +424,29 @@ graph LR
     Secure --> Backdoors["Backdoors 🚪"]
     Secure --> Defensive["Defensive measures 🛡️"]
 ```
+
+# Running LLMs
+Running LLMs can be demanding due to significant hardware requirements. Based on your use case, you might opt to use a model through an API (like GPT-4) or run it locally. In either scenario, employing additional prompting and guidance techniques can improve and constrain the output for your applications.
+
+| **Category**            | **Details**                                                                                                                                                                                                                                                                                                        |
+|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **LLM APIs**            | APIs offer a convenient way to deploy LLMs. This space is divided between private LLMs ([OpenAI](https://platform.openai.com/), [Google](https://cloud.google.com/vertex-ai/docs/generative-ai/learn/overview), [Anthropic](https://docs.anthropic.com/claude/reference/getting-started-with-the-api), [Cohere](https://docs.cohere.com/docs), etc.) and open-source LLMs ([OpenRouter](https://openrouter.ai/), [Hugging Face](https://huggingface.co/inference-api), [Together AI](https://www.together.ai/), etc.). |
+| **Open-source LLMs**    | The [Hugging Face Hub](https://huggingface.co/models) is an excellent resource for finding LLMs. Some can be run directly in [Hugging Face Spaces](https://huggingface.co/spaces), or downloaded and run locally using apps like [LM Studio](https://lmstudio.ai/) or through the command line interface with [llama.cpp](https://github.com/ggerganov/llama.cpp) or [Ollama](https://ollama.ai/).                     |
+| **Prompt Engineering**  | Techniques such as zero-shot prompting, few-shot prompting, chain of thought, and ReAct are commonly used in prompt engineering. These methods are more effective with larger models but can also be adapted for smaller ones.                                                                                       |
+| **Structuring Outputs** | Many tasks require outputs to be in a specific format, such as a strict template or JSON. Libraries like [LMQL](https://lmql.ai/), [Outlines](https://github.com/outlines-dev/outlines), and [Guidance](https://github.com/guidance-ai/guidance) can help guide the generation process to meet these structural requirements.                       |
+
+## Further Exploration
+
+| **Reference**                                                                                                          | **Description**                                                                                                           | **Link**   |
+|------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|------------|
+| Run an LLM locally with LM Studio by Nisha Arya                                                                        | A brief guide on how to use LM Studio for running a local LLM.                                                            | [🔗](https://www.kdnuggets.com/run-an-llm-locally-with-lm-studio) |
+| Prompt engineering guide by DAIR.AI                                                                                    | An extensive list of prompt techniques with examples.                                                                     | [🔗](https://www.promptingguide.ai/)                              |
+| Outlines - Quickstart                                                                                                  | A quickstart guide detailing the guided generation techniques enabled by the Outlines library.                            | [🔗](https://outlines-dev.github.io/outlines/quickstart/)        |
+| LMQL - Overview                                                                                                        | An introduction to the LMQL language, explaining its features and usage.                                                  | [🔗](https://lmql.ai/docs/language/overview.html)                |
+
+
 </details>
+
 <br>
 
 # In-Depth Articles 
