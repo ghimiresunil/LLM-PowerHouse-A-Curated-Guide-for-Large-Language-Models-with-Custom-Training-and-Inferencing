@@ -444,6 +444,25 @@ Running LLMs can be demanding due to significant hardware requirements. Based on
 | Outlines - Quickstart                                                                                                  | A quickstart guide detailing the guided generation techniques enabled by the Outlines library.                            | [🔗](https://outlines-dev.github.io/outlines/quickstart/)        |
 | LMQL - Overview                                                                                                        | An introduction to the LMQL language, explaining its features and usage.                                                  | [🔗](https://lmql.ai/docs/language/overview.html)                |
 
+# Building a Vector Storage
+
+Creating a vector storage is the first step in building a Retrieval Augmented Generation (RAG) pipeline. This involves loading and splitting documents, and then using the relevant chunks to produce vector representations (embeddings) that are stored for future use during inference.
+
+| **Category**           | **Details**                                                                                                                                                                                                                       |
+|------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Ingesting Documents**| Document loaders are convenient wrappers that handle various formats such as PDF, JSON, HTML, Markdown, etc. They can also retrieve data directly from some databases and APIs (e.g., GitHub, Reddit, Google Drive).                 |
+| **Splitting Documents**| Text splitters break down documents into smaller, semantically meaningful chunks. Instead of splitting text after a certain number of characters, it's often better to split by header or recursively, with some additional metadata. |
+| **Embedding Models**   | Embedding models convert text into vector representations, providing a deeper and more nuanced understanding of language, which is essential for performing semantic search.                                                       |
+| **Vector Databases**   | Vector databases (like [Chroma](https://www.trychroma.com/), [Pinecone](https://www.pinecone.io/), [Milvus](https://milvus.io/), [FAISS](https://faiss.ai/), [Annoy](https://github.com/spotify/annoy), etc.) store embedding vectors and enable efficient retrieval of data based on vector similarity. |
+
+## Further Exploration
+
+| **Reference**                                                                                                           | **Description**                                                                                                           | **Link**   |
+|------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|------------|
+| LangChain - Text splitters                                                                                             | A list of different text splitters implemented in LangChain.                                                              | [🔗](https://python.langchain.com/docs/modules/data_connection/document_transformers/) |
+| Sentence Transformers library                                                                                          | A popular library for embedding models.                                                                                   | [🔗](https://www.sbert.net/)                              |
+| MTEB Leaderboard                                                                                                       | Leaderboard for evaluating embedding models.                                                                              | [🔗](https://huggingface.co/spaces/mteb/leaderboard)        |
+| The Top 5 Vector Databases by Moez Ali                                                                                 | A comparison of the best and most popular vector databases.                                                               | [🔗](https://www.datacamp.com/blog/the-top-5-vector-databases)                |
 
 </details>
 
