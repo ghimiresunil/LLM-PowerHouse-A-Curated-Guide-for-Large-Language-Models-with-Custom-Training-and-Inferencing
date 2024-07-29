@@ -486,7 +486,27 @@ Using RAG, LLMs access relevant documents from a database to enhance the precisi
 | LangChain - Memory types                        | List of different types of memories with relevant usage.         | [🔗](https://python.langchain.com/docs/modules/memory/types/) |
 | RAG pipeline - Metrics                          | Overview of the main metrics used to evaluate RAG pipelines.     | [🔗](https://docs.ragas.io/en/stable/concepts/metrics/index.html) |
 
-### 4. 
+### 4. Advanced RAG
+
+Real-world applications often demand intricate pipelines that utilize SQL or graph databases and dynamically choose the appropriate tools and APIs. These sophisticated methods can improve a basic solution and offer extra capabilities.
+
+| Category            | Details                                                                                                                                                                                                                                        |
+|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Query construction** | Structured data stored in traditional databases requires a specific query language like SQL, Cypher, metadata, etc. We can directly translate the user instruction into a query to access the data with query construction.                        |
+| **Agents and tools**    | Agents augment LLMs by automatically selecting the most relevant tools to provide an answer. These tools can be as simple as using Google or Wikipedia, or more complex like a Python interpreter or Jira.                                         |
+| **Post-processing**     | The final step processes the inputs that are fed to the LLM. It enhances the relevance and diversity of documents retrieved with re-ranking, [RAG-fusion](https://github.com/Raudaschl/rag-fusion), and classification.                           |
+| **Program LLMs**        | Frameworks like [DSPy](https://github.com/stanfordnlp/dspy) allow you to optimize prompts and weights based on automated evaluations in a programmatic way.                                                                                      |
+
+#### Further Exploration
+
+| Reference                                             | Description                                                            | Link     |
+|-------------------------------------------------------|------------------------------------------------------------------------|----------|
+| LangChain - Query Construction                        | Blog post about different types of query construction.                 | [🔗](https://blog.langchain.dev/query-construction/) |
+| LangChain - SQL                                       | Tutorial on how to interact with SQL databases with LLMs, involving Text-to-SQL and an optional SQL agent. | [🔗](https://python.langchain.com/docs/use_cases/qa_structured/sql) |
+| Pinecone - LLM agents                                 | Introduction to agents and tools with different types.                 | [🔗](https://www.pinecone.io/learn/series/langchain/langchain-agents/) |
+| LLM Powered Autonomous Agents by Lilian Weng          | More theoretical article about LLM agents.                             | [🔗](https://lilianweng.github.io/posts/2023-06-23-agent/) |
+| LangChain - OpenAI's RAG                              | Overview of the RAG strategies employed by OpenAI, including post-processing. | [🔗](https://blog.langchain.dev/applying-openai-rag/) |
+| DSPy in 8 Steps                                       | General-purpose guide to DSPy introducing modules, signatures, and optimizers. | [🔗](https://dspy-docs.vercel.app/docs/building-blocks/solving_your_task) |
 
 </details>
 
