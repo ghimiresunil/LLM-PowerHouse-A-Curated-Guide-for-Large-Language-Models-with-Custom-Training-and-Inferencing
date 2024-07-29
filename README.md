@@ -529,7 +529,26 @@ Text generation is an expensive process that requires powerful hardware. Besides
 
 ### 6. Deploying LLMs
 
+Deploying LLMs at scale is a complex engineering task that may require multiple GPU clusters. However, demos and local applications can often be achieved with significantly less complexity.
 
+| Category            | Details                                                                                                                                                                                                                       |
+|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Local deployment** | Privacy is an important advantage that open-source LLMs have over private ones. Local LLM servers ([LM Studio](https://lmstudio.ai/), [Ollama](https://ollama.ai/), [oobabooga](https://github.com/oobabooga/text-generation-webui), [kobold.cpp](https://github.com/LostRuins/koboldcpp), etc.) capitalize on this advantage to power local apps. |
+| **Demo deployment**  | Frameworks like [Gradio](https://www.gradio.app/) and [Streamlit](https://docs.streamlit.io/) are helpful to prototype applications and share demos. You can also easily host them online, for example using [Hugging Face Spaces](https://huggingface.co/spaces). |
+| **Server deployment** | Deploying LLMs at scale requires cloud infrastructure (see also [SkyPilot](https://skypilot.readthedocs.io/en/latest/)) or on-prem infrastructure and often leverages optimized text generation frameworks like [TGI](https://github.com/huggingface/text-generation-inference), [vLLM](https://github.com/vllm-project/vllm/tree/main), etc. |
+| **Edge deployment**  | In constrained environments, high-performance frameworks like [MLC LLM](https://github.com/mlc-ai/mlc-llm) and [mnn-llm](https://github.com/wangzhaode/mnn-llm/blob/master/README_en.md) can deploy LLMs in web browsers, Android, and iOS. |
+
+
+#### Further Exploration
+| Reference                                             | Description                                                                                                        | Link     |
+|-------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|----------|
+| Streamlit - Build a basic LLM app                     | Tutorial to make a basic ChatGPT-like app using Streamlit.                                                         | [🔗](https://docs.streamlit.io/knowledge-base/tutorials/build-conversational-apps) |
+| HF LLM Inference Container                            | Deploy LLMs on Amazon SageMaker using Hugging Face's inference container.                                          | [🔗](https://huggingface.co/blog/sagemaker-huggingface-llm) |
+| Philschmid blog by Philipp Schmid                     | Collection of high-quality articles about LLM deployment using Amazon SageMaker.                                   | [🔗](https://www.philschmid.de/) |
+| Optimizing latency by Hamel Husain                    | Comparison of TGI, vLLM, CTranslate2, and mlc in terms of throughput and latency.                                  | [🔗](https://hamel.dev/notes/llm/inference/03_inference.html) |
+
+
+### 7. 
 </details>
 
 <br>
