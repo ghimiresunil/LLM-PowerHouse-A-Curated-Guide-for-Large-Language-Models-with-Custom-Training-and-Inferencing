@@ -548,7 +548,25 @@ Deploying LLMs at scale is a complex engineering task that may require multiple 
 | Optimizing latency by Hamel Husain                    | Comparison of TGI, vLLM, CTranslate2, and mlc in terms of throughput and latency.                                  | [🔗](https://hamel.dev/notes/llm/inference/03_inference.html) |
 
 
-### 7. 
+### 7. Securing LLMs 
+
+Along with the usual security concerns of software, LLMs face distinct vulnerabilities arising from their training and prompting methods.
+
+| Category            | Details                                                                                                                                                                                                                                    |
+|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Prompt hacking** | Techniques related to prompt engineering, including prompt injection (adding instructions to alter the model’s responses), data/prompt leaking (accessing original data or prompts), and jailbreaking (crafting prompts to bypass safety features). |
+| **Backdoors**       | Attack vectors targeting the training data itself, such as poisoning the training data with false information or creating backdoors (hidden triggers to alter the model’s behavior during inference).                                     |
+| **Defensive measures** | Protecting LLM applications involves testing them for vulnerabilities (e.g., using red teaming and tools like [garak](https://github.com/leondz/garak/)) and monitoring them in production (using a framework like [langfuse](https://github.com/langfuse/langfuse)). |
+
+#### Further Exploration
+| Reference                                             | Description                                                                                                      | Link     |
+|-------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|----------|
+| OWASP LLM Top 10 by HEGO Wiki                        | List of the 10 most critical vulnerabilities found in LLM applications.                                           | [🔗](https://owasp.org/www-project-top-10-for-large-language-model-applications/) |
+| Prompt Injection Primer by Joseph Thacker            | Short guide dedicated to prompt injection techniques for engineers.                                               | [🔗](https://github.com/jthack/PIPE) |
+| LLM Security by @llm_sec                              | Extensive list of resources related to LLM security.                                                              | [🔗](https://llmsecurity.net/) |
+| Red teaming LLMs by Microsoft                         | Guide on how to perform red teaming assessments with LLMs.                                                          | [🔗](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/red-teaming) |
+
+
 </details>
 
 <br>
