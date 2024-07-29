@@ -425,7 +425,7 @@ graph LR
     Secure --> Defensive["Defensive measures 🛡️"]
 ```
 
-# Running LLMs
+### 1. Running LLMs
 Running LLMs can be demanding due to significant hardware requirements. Based on your use case, you might opt to use a model through an API (like GPT-4) or run it locally. In either scenario, employing additional prompting and guidance techniques can improve and constrain the output for your applications.
 
 | **Category**            | **Details**                                                                                                                                                                                                                                                                                                        |
@@ -435,7 +435,7 @@ Running LLMs can be demanding due to significant hardware requirements. Based on
 | **Prompt Engineering**  | Techniques such as zero-shot prompting, few-shot prompting, chain of thought, and ReAct are commonly used in prompt engineering. These methods are more effective with larger models but can also be adapted for smaller ones.                                                                                       |
 | **Structuring Outputs** | Many tasks require outputs to be in a specific format, such as a strict template or JSON. Libraries like [LMQL](https://lmql.ai/), [Outlines](https://github.com/outlines-dev/outlines), and [Guidance](https://github.com/guidance-ai/guidance) can help guide the generation process to meet these structural requirements.                       |
 
-## Further Exploration
+#### Further Exploration
 
 | **Reference**                                                                                                          | **Description**                                                                                                           | **Link**   |
 |------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|------------|
@@ -444,7 +444,7 @@ Running LLMs can be demanding due to significant hardware requirements. Based on
 | Outlines - Quickstart                                                                                                  | A quickstart guide detailing the guided generation techniques enabled by the Outlines library.                            | [🔗](https://outlines-dev.github.io/outlines/quickstart/)        |
 | LMQL - Overview                                                                                                        | An introduction to the LMQL language, explaining its features and usage.                                                  | [🔗](https://lmql.ai/docs/language/overview.html)                |
 
-# Building a Vector Storage
+### 2. Building a Vector Storage
 
 Creating a vector storage is the first step in building a Retrieval Augmented Generation (RAG) pipeline. This involves loading and splitting documents, and then using the relevant chunks to produce vector representations (embeddings) that are stored for future use during inference.
 
@@ -455,7 +455,7 @@ Creating a vector storage is the first step in building a Retrieval Augmented Ge
 | **Embedding Models**   | Embedding models convert text into vector representations, providing a deeper and more nuanced understanding of language, which is essential for performing semantic search.                                                       |
 | **Vector Databases**   | Vector databases (like [Chroma](https://www.trychroma.com/), [Pinecone](https://www.pinecone.io/), [Milvus](https://milvus.io/), [FAISS](https://faiss.ai/), [Annoy](https://github.com/spotify/annoy), etc.) store embedding vectors and enable efficient retrieval of data based on vector similarity. |
 
-## Further Exploration
+#### Further Exploration
 
 | **Reference**                                                                                                           | **Description**                                                                                                           | **Link**   |
 |------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|------------|
@@ -463,6 +463,30 @@ Creating a vector storage is the first step in building a Retrieval Augmented Ge
 | Sentence Transformers library                                                                                          | A popular library for embedding models.                                                                                   | [🔗](https://www.sbert.net/)                              |
 | MTEB Leaderboard                                                                                                       | Leaderboard for evaluating embedding models.                                                                              | [🔗](https://huggingface.co/spaces/mteb/leaderboard)        |
 | The Top 5 Vector Databases by Moez Ali                                                                                 | A comparison of the best and most popular vector databases.                                                               | [🔗](https://www.datacamp.com/blog/the-top-5-vector-databases)                |
+
+### 3. Retrieval Augmented Generation
+
+Using RAG, LLMs access relevant documents from a database to enhance the precision of their responses. This method is widely used to expand the model's knowledge base without the need for fine-tuning.
+
+| Category      | Details                                                                                                                                                                                                                                  |
+|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Orchestrators** | Orchestrators (like [LangChain](https://python.langchain.com/docs/get_started/introduction), [LlamaIndex](https://docs.llamaindex.ai/en/stable/), [FastRAG](https://github.com/IntelLabs/fastRAG), etc.) are popular frameworks to connect your LLMs with tools, databases, memories, etc. and augment their abilities. |
+| **Retrievers**    | User instructions are not optimized for retrieval. Different techniques (e.g., multi-query retriever, [HyDE](https://arxiv.org/abs/2212.10496), etc.) can be applied to rephrase/expand them and improve performance.                                                      |
+| **Memory**        | To remember previous instructions and answers, LLMs and chatbots like ChatGPT add this history to their context window. This buffer can be improved with summarization (e.g., using a smaller LLM), a vector store + RAG, etc.                                           |
+| **Evaluation**    | We need to evaluate both the document retrieval (context precision and recall) and generation stages (faithfulness and answer relevancy). It can be simplified with tools [Ragas](https://github.com/explodinggradients/ragas/tree/main) and [DeepEval](https://github.com/confident-ai/deepeval).                 |
+
+
+#### Further Exploration
+
+| Reference                                       | Description                                                      | Link     |
+|-------------------------------------------------|------------------------------------------------------------------|----------|
+| Llamaindex - High-level concepts                | Main concepts to know when building RAG pipelines.               | [🔗](https://docs.llamaindex.ai/en/stable/getting_started/concepts.html) |
+| Pinecone - Retrieval Augmentation               | Overview of the retrieval augmentation process.                  | [🔗](https://www.pinecone.io/learn/series/langchain/langchain-retrieval-augmentation/) |
+| LangChain - Q&A with RAG                        | Step-by-step tutorial to build a typical RAG pipeline.           | [🔗](https://python.langchain.com/docs/use_cases/question_answering/quickstart) |
+| LangChain - Memory types                        | List of different types of memories with relevant usage.         | [🔗](https://python.langchain.com/docs/modules/memory/types/) |
+| RAG pipeline - Metrics                          | Overview of the main metrics used to evaluate RAG pipelines.     | [🔗](https://docs.ragas.io/en/stable/concepts/metrics/index.html) |
+
+### 4. 
 
 </details>
 
