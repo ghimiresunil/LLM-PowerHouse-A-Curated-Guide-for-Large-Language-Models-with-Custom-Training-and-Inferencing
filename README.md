@@ -508,6 +508,28 @@ Real-world applications often demand intricate pipelines that utilize SQL or gra
 | LangChain - OpenAI's RAG                              | Overview of the RAG strategies employed by OpenAI, including post-processing. | [🔗](https://blog.langchain.dev/applying-openai-rag/) |
 | DSPy in 8 Steps                                       | General-purpose guide to DSPy introducing modules, signatures, and optimizers. | [🔗](https://dspy-docs.vercel.app/docs/building-blocks/solving_your_task) |
 
+### 5. Inference Optimization
+
+Text generation is an expensive process that requires powerful hardware. Besides quantization, various techniques have been proposed to increase throughput and lower inference costs.
+
+| Category            | Details                                                                                                                                            |
+|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Flash Attention** | Optimization of the attention mechanism to transform its complexity from quadratic to linear, speeding up both training and inference.             |
+| **Key-value cache** | Understanding the key-value cache and the improvements introduced in [Multi-Query Attention](https://arxiv.org/abs/1911.02150) (MQA) and [Grouped-Query Attention](https://arxiv.org/abs/2305.13245) (GQA). |
+| **Speculative decoding** | Using a small model to produce drafts that are then reviewed by a larger model to speed up text generation.                                      |
+
+#### Further Exploration
+
+| Reference                                             | Description                                                                                                 | Link     |
+|-------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|----------|
+| GPU Inference by Hugging Face                         | Explain how to optimize inference on GPUs.                                                                  | [🔗](https://huggingface.co/docs/transformers/main/en/perf_infer_gpu_one) |
+| LLM Inference by Databricks                           | Best practices for how to optimize LLM inference in production.                                             | [🔗](https://www.databricks.com/blog/llm-inference-performance-engineering-best-practices) |
+| Optimizing LLMs for Speed and Memory by Hugging Face  | Explain three main techniques to optimize speed and memory, namely quantization, Flash Attention, and architectural innovations. | [🔗](https://huggingface.co/docs/transformers/main/en/llm_tutorial_optimization) |
+| Assisted Generation by Hugging Face                   | HF's version of speculative decoding, it's an interesting blog post about how it works with code to implement it. | [🔗](https://huggingface.co/blog/assisted-generation) |
+
+### 6. Deploying LLMs
+
+
 </details>
 
 <br>
