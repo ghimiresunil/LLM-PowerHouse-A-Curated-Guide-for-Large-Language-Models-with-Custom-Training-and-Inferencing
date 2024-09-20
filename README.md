@@ -798,6 +798,15 @@ In theory, it is as simple as that. However, implementation isn’t that easy - 
 - ORPO combines the steps using a single objective function by incorporating an odds ratio (OR) term - reward preferred responses & penalizing rejected responses. 
 - Blog on ORPO : [ORPO Outperforms SFT+DPO | Train Phi-2 with ORPO](https://medium.com/@zaiinn440/orpo-outperforms-sft-dpo-train-phi-2-with-orpo-3ee6bf18dbf2)
 
+# Data Generation
+
+## SFT Datasets
+
+| Datasets | Descriptions | Link | 
+| --------- | -------- | :-----: |
+|  Distilabel | General-purpose framework that can generate and augment data (SFT, DPO) with techniques like UltraFeedback and DEITA | [🔗](https://github.com/argilla-io/distilabel) |
+
+
 
 # What I am learning
 
