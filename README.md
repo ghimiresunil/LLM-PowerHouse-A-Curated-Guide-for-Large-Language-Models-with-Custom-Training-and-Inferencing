@@ -807,10 +807,7 @@ In theory, it is as simple as that. However, implementation isn’t that easy - 
 |  Distilabel | General-purpose framework that can generate and augment data (SFT, DPO) with techniques like UltraFeedback and DEITA | [🔗](https://github.com/argilla-io/distilabel) |
 | Auto Data | Lightweight library to automatically generate fine-tuning datasets with API models.|  [🔗](https://github.com/Itachi-Uchiha581/Auto-Data) |
 | Bonito |  Library for generating synthetic instruction tuning datasets for your data without GPT (see also [AutoBonito](https://colab.research.google.com/drive/1l9zh_VX0X4ylbzpGckCjH5yEflFsLW04?usp=sharing)). |  [🔗](https://github.com/BatsResearch/bonito) | 
-
-
-
-
+| Augmentoolkit | Framework to convert raw text into datasets using open-source and closed-source models. | [🔗](https://github.com/e-p-armstrong/augmentoolkit)| 
 
 # What I am learning
 
