@@ -810,6 +810,7 @@ In theory, it is as simple as that. However, implementation isn’t that easy - 
 | Augmentoolkit | Framework to convert raw text into datasets using open-source and closed-source models. | [🔗](https://github.com/e-p-armstrong/augmentoolkit)| 
 | Magpie | Your efficient and high-quality synthetic data generation pipeline by prompting aligned LLMs with nothing. | [🔗](https://github.com/magpie-align/magpie)|
 | Genstruct | An instruction generation model, which is designed to generate valid instructions from raw data | [🔗](https://huggingface.co/NousResearch/Genstruct-7B)|
+| DataDreamer | A python library for prompting and synthetic data generation. | [🔗](https://datadreamer.dev/docs/latest/)|
 
 # What I am learning
 
