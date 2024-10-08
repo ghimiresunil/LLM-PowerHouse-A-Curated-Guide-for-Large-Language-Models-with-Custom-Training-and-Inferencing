@@ -813,7 +813,11 @@ In theory, it is as simple as that. However, implementation isn’t that easy - 
 | DataDreamer | A python library for prompting and synthetic data generation. | [🔗](https://datadreamer.dev/docs/latest/)|
 
 ## Pre-training datasets
-   
+
+| Datasets | Descriptions | Link | 
+| --------- | -------- | :-----: |
+| llm-swarm |Generate synthetic datasets for pretraining or fine-tuning using either local LLMs or Inference Endpoints on the Hugging Face Hub| [🔗](https://github.com/huggingface/llm-swarm)|
+
 # What I am learning
 
 After immersing myself in the recent GenAI text-based language model hype for nearly a month, I have made several observations about its performance on my specific tasks.
