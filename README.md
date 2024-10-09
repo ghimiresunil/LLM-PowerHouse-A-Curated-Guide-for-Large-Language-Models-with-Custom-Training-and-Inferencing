@@ -817,6 +817,8 @@ In theory, it is as simple as that. However, implementation isn’t that easy - 
 | Datasets | Descriptions | Link | 
 | --------- | -------- | :-----: |
 | llm-swarm |Generate synthetic datasets for pretraining or fine-tuning using either local LLMs or Inference Endpoints on the Hugging Face Hub| [🔗](https://github.com/huggingface/llm-swarm)|
+| Cosmopedia | Hugging Face's code for generating the Cosmopedia dataset. | [🔗](https://github.com/huggingface/cosmopedia)|
+
 
 # What I am learning
 
