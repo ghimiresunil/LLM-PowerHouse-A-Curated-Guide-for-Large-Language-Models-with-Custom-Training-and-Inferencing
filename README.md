@@ -818,7 +818,7 @@ In theory, it is as simple as that. However, implementation isn’t that easy - 
 | --------- | -------- | :-----: |
 | llm-swarm |Generate synthetic datasets for pretraining or fine-tuning using either local LLMs or Inference Endpoints on the Hugging Face Hub| [🔗](https://github.com/huggingface/llm-swarm)|
 | Cosmopedia | Hugging Face's code for generating the Cosmopedia dataset. | [🔗](https://github.com/huggingface/cosmopedia)|
-
+| textbook_quality | A repository for generating textbook-quality data, mimicking the approach of the Microsoft's Phi models. | [🔗](https://github.com/VikParuchuri/textbook_quality)|
 
 # What I am learning
 
