@@ -824,6 +824,7 @@ In theory, it is as simple as that. However, implementation isn’t that easy - 
 | Datasets | Descriptions | Link | 
 | --------- | -------- | :-----: |
 | sentence-transformers | A python module for working with popular language embedding models. | [🔗](https://sbert.net/)|
+| Lilac | Tool to curate better data for LLMs, used by NousResearch, databricks, cohere, Alignment Lab AI. It can also apply filters.| [🔗](https://github.com/lilacai/lilac)|
 
 # What I am learning
 
