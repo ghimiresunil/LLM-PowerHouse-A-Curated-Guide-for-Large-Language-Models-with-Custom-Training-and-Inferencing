@@ -820,6 +820,11 @@ In theory, it is as simple as that. However, implementation isn’t that easy - 
 | Cosmopedia | Hugging Face's code for generating the Cosmopedia dataset. | [🔗](https://github.com/huggingface/cosmopedia)|
 | textbook_quality | A repository for generating textbook-quality data, mimicking the approach of the Microsoft's Phi models. | [🔗](https://github.com/VikParuchuri/textbook_quality)|
 
+## Data exploration
+| Datasets | Descriptions | Link | 
+| --------- | -------- | :-----: |
+| sentence-transformers | A python module for working with popular language embedding models. | [🔗](https://sbert.net/)|
+
 # What I am learning
 
 After immersing myself in the recent GenAI text-based language model hype for nearly a month, I have made several observations about its performance on my specific tasks.
