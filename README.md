@@ -681,6 +681,9 @@ Along with the usual security concerns of software, LLMs face distinct vulnerabi
 | 4 bit LLM Quantization with GPTQ | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/blob/main/example_codebase/Efficiently%20Fine%20Tune%20LLM/4_bit_LLM_Quantization_with_GPTQ.ipynb)|
 | Model Family Tree | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/blob/main/example_codebase/Efficiently%20Fine%20Tune%20LLM/Model_Family_Tree.ipynb)|
 | Create MoEs with MergeKit | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/blob/main/example_codebase/Efficiently%20Fine%20Tune%20LLM/merge_model_mergekit.ipynb)|
+| Finetune Llama 3.1 on AWS, GCP or Azure | [🔗](https://www.zenml.io/blog/how-to-finetune-llama-3-1-with-zenml)|
+| Finetune Phi 3.5 on AWS, GCP or Azure | [🔗](https://www.zenml.io/blog/how-to-finetune-phi-3-5-with-zenml)|
+
 
 # LLM PlayLab
 | LLM Projects  |Respository|
