@@ -470,7 +470,7 @@ Using RAG, LLMs access relevant documents from a database to enhance the precisi
 
 | Category      | Details                                                                                                                                                                                                                                  |
 |---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Orchestrators** | Orchestrators (like [LangChain](https://python.langchain.com/docs/get_started/introduction), [LlamaIndex](https://docs.llamaindex.ai/en/stable/), [FastRAG](https://github.com/IntelLabs/fastRAG), etc.) are popular frameworks to connect your LLMs with tools, databases, memories, etc. and augment their abilities. |
+| **Orchestrators** | Orchestrators (like [LangChain](https://python.langchain.com/docs/get_started/introduction), [LlamaIndex](https://docs.llamaindex.ai/en/stable/), [FastRAG](https://github.com/IntelLabs/fastRAG), [CAMEL](https://docs.camel-ai.org/cookbooks/agents_with_rag.html),etc.) are popular frameworks to connect your LLMs with tools, databases, memories, etc. and augment their abilities. |
 | **Retrievers**    | User instructions are not optimized for retrieval. Different techniques (e.g., multi-query retriever, [HyDE](https://arxiv.org/abs/2212.10496), etc.) can be applied to rephrase/expand them and improve performance.                                                      |
 | **Memory**        | To remember previous instructions and answers, LLMs and chatbots like ChatGPT add this history to their context window. This buffer can be improved with summarization (e.g., using a smaller LLM), a vector store + RAG, etc.                                           |
 | **Evaluation**    | We need to evaluate both the document retrieval (context precision and recall) and generation stages (faithfulness and answer relevancy). It can be simplified with tools [Ragas](https://github.com/explodinggradients/ragas/tree/main) and [DeepEval](https://github.com/confident-ai/deepeval).                 |
@@ -485,6 +485,7 @@ Using RAG, LLMs access relevant documents from a database to enhance the precisi
 | LangChain - Q&A with RAG                        | Step-by-step tutorial to build a typical RAG pipeline.           | [🔗](https://python.langchain.com/docs/use_cases/question_answering/quickstart) |
 | LangChain - Memory types                        | List of different types of memories with relevant usage.         | [🔗](https://python.langchain.com/docs/modules/memory/types/) |
 | RAG pipeline - Metrics                          | Overview of the main metrics used to evaluate RAG pipelines.     | [🔗](https://docs.ragas.io/en/stable/concepts/metrics/index.html) |
+| CAMEL - RAG cookbook                            | Build RAG pipline with CAEML                                     | [🔗](https://docs.camel-ai.org/cookbooks/agents_with_rag.html) |
 
 ### 4. Advanced RAG
 
