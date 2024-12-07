@@ -825,13 +825,15 @@ In theory, it is as simple as that. However, implementation isn’t that easy - 
 | --------- | -------- | :-----: |
 | sentence-transformers | A python module for working with popular language embedding models. | [🔗](https://sbert.net/)|
 | Lilac | Tool to curate better data for LLMs, used by NousResearch, databricks, cohere, Alignment Lab AI. It can also apply filters.| [🔗](https://github.com/lilacai/lilac)|
+| Nomic Atlas | Interact with instructed data to find insights and store embeddings. | [🔗](https://github.com/nomic-ai/nomic)|
+| text-clustering) | Easily embed, cluster and semantically label text datasets | [🔗](https://github.com/huggingface/text-clustering)|
+
 
 ## Understand LLM
 | Resources |  Link | 
 | --------- |  :-----: |
 | Brown, Tom B. "Language models are few-shot learners." arXiv preprint arXiv:2005.14165 (2020). | [🔗](https://rosanneliu.com/dlctfs/dlct_200724.pdf) |
 | Kambhampati, Subbarao, et al. "LLMs can't plan, but can help planning in LLM-modulo frameworks." arXiv preprint arXiv:2402.01817 (2024). | [🔗](https://arxiv.org/abs/2402.01817) | 
-
 
 
 # What I am learning
