@@ -828,6 +828,10 @@ In theory, it is as simple as that. However, implementation isn’t that easy - 
 | Nomic Atlas | Interact with instructed data to find insights and store embeddings. | [🔗](https://github.com/nomic-ai/nomic)|
 | text-clustering) | Easily embed, cluster and semantically label text datasets | [🔗](https://github.com/huggingface/text-clustering)|
 
+## Data scraping
+| Datasets | Descriptions | Link | 
+| --------- | -------- | :-----: |
+| Trafilatura | Python and command-line tool to gather text and metadata on the web. Used for the creation of RefinedWeb(https://arxiv.org/abs/2306.01116). | [🔗](https://arxiv.org/abs/2306.01116)|
 
 ## Understand LLM
 | Resources |  Link | 
