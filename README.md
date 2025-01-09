@@ -832,7 +832,7 @@ In theory, it is as simple as that. However, implementation isn’t that easy - 
 | Datasets | Descriptions | Link | 
 | --------- | -------- | :-----: |
 | Trafilatura | Python and command-line tool to gather text and metadata on the web. Used for the creation of RefinedWeb(https://arxiv.org/abs/2306.01116). | [🔗](https://arxiv.org/abs/2306.01116)|
-| marker | Convert PDF to markdown + JSON quickly with high accuracy [🔗](https://github.com/VikParuchuri/marker)|
+| marker | Convert PDF to markdown + JSON quickly with high accuracy | [🔗](https://github.com/VikParuchuri/marker)|
 
 ## Understand LLM
 | Resources |  Link | 
