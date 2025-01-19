@@ -800,6 +800,14 @@ In theory, it is as simple as that. However, implementation isn’t that easy - 
 
 # Data Generation
 
+## Data Filtering 
+
+| Datasets | Descriptions | Link | 
+| --------- | -------- | :-----: |
+| Rule-based filtering | Remove samples based on a list of unwanted words, like refusals and "As an AI assistant" | [🔗](https://huggingface.co/datasets/cognitivecomputations/WizardLM_alpaca_evol_instruct_70k_unfiltered/blob/main/wizardlm_clean.py) |
+| SemHash | Fuzzy deduplication based on fast embedding generation with a distilled model. | [🔗](https://github.com/MinishLab/semhash) |
+ 
+
 ## SFT Datasets
 
 | Datasets | Descriptions | Link | 
