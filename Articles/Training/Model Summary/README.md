@@ -6,7 +6,7 @@
 
 # Deep Learning
 
-![deep_learning_compared_with_human_brain](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/3c453267-40b7-43a5-9727-c21a4654cb36)
+![deep_learning_compared_with_human_brain](https://github.com/jzsmoreno/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/3c453267-40b7-43a5-9727-c21a4654cb36)
 
 - Deep Learning is a subset of machine learning.
 - The algorithms of Deep Learning aim to imitate the workings of the human brain in processing data and creating patterns for use in decision making.
@@ -28,7 +28,7 @@ Parameters in general are weights that are learned during training. They are wei
 
 # Summary of `Model 01`
 
-![summary_model_01](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/6f9c2dc4-1977-4943-9648-2b75e0d8db9f)
+![summary_model_01](https://github.com/jzsmoreno/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/6f9c2dc4-1977-4943-9648-2b75e0d8db9f)
 
 The CNN consist layer of neurons and it is optimized for two-dimensional pattern recognition. CNN has three types of layer namely convolutional layer, pooling layer and fully connected layer. Our network consists of `11 layers` excluding the input layer. The input layer takes in a RGB color image where each color channel is processed separately.
 
@@ -167,7 +167,7 @@ def first_model_summary():
 
 # Summary of `Model 02`
 
-![summary_model_02](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/a39e869c-04f9-4248-b6f0-d47745a6356b)
+![summary_model_02](https://github.com/jzsmoreno/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/a39e869c-04f9-4248-b6f0-d47745a6356b)
 
 - **Input Layer**: The input layer has nothing to learn, at its core, what it does is just provide the input image’s shape. So no learnable parameters here. Thus a number of `parameters = 0`.
 - **CONV layer**: This is where CNN learns, so certainly we’ll have weight matrices. To calculate the learnable parameters here, all we have to do is just multiply the by the shape of width m, height n, previous layer’s filters d and account for all such filters k in the current layer. Don’t forget the bias term for each of the filters. A number of parameters in a CONV layer would be : $((m * n * d)+1)* k)$, added 1 because of the bias term for each filter. The same expression can be written as follows:` ((shape of width

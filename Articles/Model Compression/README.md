@@ -12,7 +12,7 @@ matrix can be approximately decomposed into a product of $2NÃ—1$ matrices. Thatâ
 - Knowledge distillation is about transferring knowledge from one model to another. Typically from a large model to a smaller one. When the student model learns to produce similar output responses, that is response-based distillation. When the student model learns to reproduce similar intermediate layers, it is called feature-based distillation. When the student model learns to reproduce the interaction between layers, it is called relation-based distillation.
 - Lightweight model design is about using knowledge from empirical results to design more efficient architectures. That is probably one of the most used methods in LLM research.
 - The image below ([source](https://newsletter.theaiedge.io/p/the-aiedge-model-compression-techniques)) provides a concise and visually appealing overview of some of the methods 
-![Compression Techniques](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/c08149ee-c578-4043-9af6-e1da902bd930)
+![Compression Techniques](https://github.com/jzsmoreno/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/c08149ee-c578-4043-9af6-e1da902bd930)
 
 # References
 - [PyTorch official documentation: Introduction to Quantization on PyTorch](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/)

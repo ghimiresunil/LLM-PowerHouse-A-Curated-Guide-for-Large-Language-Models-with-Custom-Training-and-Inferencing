@@ -47,7 +47,7 @@ If you are working on an NLP task that requires a large language model, PEFT is 
 
 <hr/>
 
-![PromptTuning](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/fba637df-f99e-4399-858a-288cecc562cb)
+![PromptTuning](https://github.com/jzsmoreno/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/fba637df-f99e-4399-858a-288cecc562cb)
 
 <hr/>
 
@@ -82,7 +82,7 @@ Let's look the implementation of the adapter module within the transformer archi
 - The original paper found that the performance of the model is consistent across different adapter sizes m. Therefore, a fixed adapter size can be used for all downstream tasks.
 <hr/>
 
-![adapter](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/4bddef4a-4a2e-46e1-9de3-3d833d8d8551)
+![adapter](https://github.com/jzsmoreno/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/4bddef4a-4a2e-46e1-9de3-3d833d8d8551)
 
 <hr/>
 
@@ -104,7 +104,7 @@ Heavily Parameterized Large Language Models + Basic Linear Algebra Theorem = Sav
     - A matrix is rank-deficient if it has a rank less than the lesser of its number of rows and columns. For more, reference [Wikipedia: Rank](https://en.wikipedia.org/wiki/Rank_(linear_algebra))
 <hr/>
 
-![1683516728965](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/834d8d79-83f0-41eb-8c8b-97dbf2b52609)
+![1683516728965](https://github.com/jzsmoreno/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/834d8d79-83f0-41eb-8c8b-97dbf2b52609)
 
 <hr/>
 
@@ -161,7 +161,7 @@ Note: “Low intrinsic rank” is inspired by the idea of “low intrinsic dimen
 
 <hr/>
 
-![peft](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/9a23575d-0e30-4168-8154-7cf1a9d01f77)
+![peft](https://github.com/jzsmoreno/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/9a23575d-0e30-4168-8154-7cf1a9d01f77)
 
 <hr/>
 
