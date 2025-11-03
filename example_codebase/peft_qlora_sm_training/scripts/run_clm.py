@@ -69,10 +69,10 @@ def create_peft_config(model, gradient_checkpointing=True):
         r=64,
         lora_alpha=16,
         target_modules=[
-                'q_proj',
-                'k_proj',
-                'v_proj',
-                'o_proj',
+            "q_proj",
+            "k_proj",
+            "v_proj",
+            "o_proj",
         ],
         lora_dropout=0.1,
         bias="none",
@@ -103,7 +103,9 @@ def training_function(args):
 
     model = AutoModelForCausalLM.from_pretrained(
         args.model_id,
-        use_cache=False if args.gradient_checkpointing else True,  # this is needed for gradient checkpointing
+        use_cache=(
+            False if args.gradient_checkpointing else True
+        ),  # this is needed for gradient checkpointing
         trust_remote_code=True,  # ATTENTION: This allows remote code execution
         device_map="auto",
         quantization_config=bnb_config,
@@ -145,29 +147,29 @@ def training_function(args):
     # Start training
     trainer.train()
 
-#     if args.merge_weights:
-#         # merge adapter weights with base model and save
-#         # save int 4 model
-#         trainer.model.save_pretrained(output_dir, safe_serialization=False)
-#         # clear memory
-#         del model
-#         del trainer
-#         torch.cuda.empty_cache()
+    #     if args.merge_weights:
+    #         # merge adapter weights with base model and save
+    #         # save int 4 model
+    #         trainer.model.save_pretrained(output_dir, safe_serialization=False)
+    #         # clear memory
+    #         del model
+    #         del trainer
+    #         torch.cuda.empty_cache()
 
-#         from peft import AutoPeftModelForCausalLM
+    #         from peft import AutoPeftModelForCausalLM
 
-#         # load PEFT model in fp16
-#         offload_folder = "/tmp/offload"
-#         model = AutoPeftModelForCausalLM.from_pretrained(
-#             output_dir,
-#             torch_dtype=torch.float16,
-#             low_cpu_mem_usage=True,
-#             trust_remote_code=True,  # ATTENTION: This allows remote code execution
-#         )  
-#         # Merge LoRA and base model and save
-#         merged_model = model.merge_and_unload()
-#         merged_model.save_pretrained("/opt/ml/model/",safe_serialization=True)
-#     else:
+    #         # load PEFT model in fp16
+    #         offload_folder = "/tmp/offload"
+    #         model = AutoPeftModelForCausalLM.from_pretrained(
+    #             output_dir,
+    #             torch_dtype=torch.float16,
+    #             low_cpu_mem_usage=True,
+    #             trust_remote_code=True,  # ATTENTION: This allows remote code execution
+    #         )
+    #         # Merge LoRA and base model and save
+    #         merged_model = model.merge_and_unload()
+    #         merged_model.save_pretrained("/opt/ml/model/",safe_serialization=True)
+    #     else:
     trainer.model.save_pretrained("/opt/ml/model/", safe_serialization=True)
 
     # save tokenizer for easy inference
@@ -178,6 +180,7 @@ def training_function(args):
 def main():
     args, _ = parse_arge()
     training_function(args)
+
 
 if __name__ == "__main__":
     main()

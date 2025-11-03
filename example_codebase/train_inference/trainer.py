@@ -51,9 +51,7 @@ class DataCollatorForCompletionOnlyLM(DataCollatorForLanguageModeling):
             if response_token_ids_start_idx is None:
                 raise RuntimeError("Could not find response key token IDs")
 
-            response_token_ids_end_idx = response_token_ids_start_idx + len(
-                response_token_ids
-            )
+            response_token_ids_end_idx = response_token_ids_start_idx + len(response_token_ids)
 
             labels[i, :response_token_ids_end_idx] = -100
 
@@ -71,9 +69,7 @@ def load_training_dataset(training_data_id=data):
 
     dataset = training_data_id
     # Remove the response key from the text
-    dataset = dataset.filter(
-        lambda rec: not rec["text"].strip().startswith(" ### Response:")
-    )
+    dataset = dataset.filter(lambda rec: not rec["text"].strip().startswith(" ### Response:"))
 
     def _func(rec):
         rec["text"] += "\n\n### End"
@@ -84,9 +80,7 @@ def load_training_dataset(training_data_id=data):
 
 
 def load_tokenizer(pretrained_model_name_or_path: str = DEFAULT_INPUT_MODEL):
-    tokenizer = AutoTokenizer.from_pretrained(
-        pretrained_model_name_or_path, use_fast=True
-    )
+    tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path, use_fast=True)
     # print(tokenizer)
     tokenizer.pad_token = tokenizer.eos_token
     return tokenizer
@@ -111,20 +105,14 @@ def get_model_tokenizer(
     gradient_checkpointing: bool = False
 ):
     tokenizer = load_tokenizer(pretrained_model_name_or_path)
-    model = load_model(
-        pretrained_model_name_or_path, gradient_checkpointing=gradient_checkpointing
-    )
+    model = load_model(pretrained_model_name_or_path, gradient_checkpointing=gradient_checkpointing)
     return model, tokenizer
 
 
-def preprocess_dataset(
-    tokenizer: AutoTokenizer, max_length: int = MAX_LENGTH, seed=seed
-):
+def preprocess_dataset(tokenizer: AutoTokenizer, max_length: int = MAX_LENGTH, seed=seed):
     dataset = load_training_dataset()
 
-    _preprocessing_function = partial(
-        preprocess_batch, max_length=max_length, tokenizer=tokenizer
-    )
+    _preprocessing_function = partial(preprocess_batch, max_length=max_length, tokenizer=tokenizer)
     dataset = dataset.map(
         _preprocessing_function,
         batched=True,

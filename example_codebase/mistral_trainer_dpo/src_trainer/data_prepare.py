@@ -3,7 +3,7 @@ import pandas as pd
 
 
 def clean_csv(file_path):
-    json_df = pd.read_json('dataset/med_doc_patient.json')[['input', 'output']]
+    json_df = pd.read_json("dataset/med_doc_patient.json")[["input", "output"]]
     df = pd.read_csv(file_path)
     df = df[~df.duplicated()]
     df = df.dropna(subset=["focus_area", "answer"])
@@ -11,9 +11,9 @@ def clean_csv(file_path):
     df = df.drop(columns=["source", "focus_area"])
     df = df.rename(columns={"question": "input", "answer": "output"})
     df = pd.concat([json_df, df])
-    df[
-        "instruction"
-    ] = "If you are a doctor, please answer the medical questions based on the patient's description"
+    df["instruction"] = (
+        "If you are a doctor, please answer the medical questions based on the patient's description"
+    )
     df = df.reset_index(drop=True)
     return df
 

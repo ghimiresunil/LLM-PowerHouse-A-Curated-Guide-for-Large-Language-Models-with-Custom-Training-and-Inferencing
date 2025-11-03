@@ -11,6 +11,7 @@ def get_overlap_list(strings):
     overlaps = [get_overlap_length(strings[i], strings[i + 1]) for i in range(len(strings) - 1)]
     return overlaps
 
+
 def unoverlap_list(strings):
     overlaps = get_overlap_list(strings)
     new_list = []
@@ -21,10 +22,9 @@ def unoverlap_list(strings):
         left_overlap_length = 0 if index == 0 else overlaps[index - 1][0]
         right_overlap_length = 0 if index == len(strings) - 1 else overlaps[index][0]
 
-        new_list.append(
-            (string[left_overlap_length: len(string) - right_overlap_length], False)
-        )
+        new_list.append((string[left_overlap_length : len(string) - right_overlap_length], False))
     return new_list
+
 
 def main():
     strings = ["abcde", "defgh", "ghijkl"]

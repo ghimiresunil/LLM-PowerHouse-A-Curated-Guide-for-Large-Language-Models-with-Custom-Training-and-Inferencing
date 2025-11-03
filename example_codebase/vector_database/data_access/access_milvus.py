@@ -11,9 +11,7 @@ class MilvusDBConnection(object):
         self.connetion = None
 
     def _build(self):
-        self.connetion = connections.connect(
-            alias=self.alias, host=self.host, port=self.port
-        )
+        self.connetion = connections.connect(alias=self.alias, host=self.host, port=self.port)
 
     def get_connections(self):
         if self.connetion is None:

@@ -16,6 +16,7 @@ from tokenizers.implementations import ByteLevelBPETokenizer
 
 logger = logging.getLogger(__name__)
 
+
 def preprocess_batch_for_hf_dataset(dataset, tokenizer, args):
     if args.preprocess_inputs:
         model_inputs = tokenizer(
@@ -69,9 +70,9 @@ def load_hf_dataset(data, tokenizer, args):
             "csv",
             data_files=data,
             delimiter="\t",
-            download_mode="force_redownload"
-            if args.reprocess_input_data
-            else "reuse_dataset_if_exists",
+            download_mode=(
+                "force_redownload" if args.reprocess_input_data else "reuse_dataset_if_exists"
+            ),
         )
     else:
         dataset = HFDataset.from_pandas(data)
@@ -178,14 +179,10 @@ class T5Dataset(Dataset):
                         )
                     )
             else:
-                self.examples = [
-                    preprocess_data(d) for d in tqdm(data, disable=args.silent)
-                ]
+                self.examples = [preprocess_data(d) for d in tqdm(data, disable=args.silent)]
 
             if not args.no_cache:
-                logger.info(
-                    " Saving features into cached file %s", cached_features_file
-                )
+                logger.info(" Saving features into cached file %s", cached_features_file)
                 with open(cached_features_file, "wb") as handle:
                     pickle.dump(self.examples, handle, protocol=pickle.HIGHEST_PROTOCOL)
 

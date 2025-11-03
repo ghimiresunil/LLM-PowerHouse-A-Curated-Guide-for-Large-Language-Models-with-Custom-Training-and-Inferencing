@@ -39,6 +39,7 @@ quantization_config = BitsAndBytesConfig(
 
 seed = 42
 
+
 class DataCollatorForCompletionOnlyLM(DataCollatorForLanguageModeling):
     def torch_call(self, examples):
         batch = super().torch_call(examples)
@@ -57,18 +58,18 @@ class DataCollatorForCompletionOnlyLM(DataCollatorForLanguageModeling):
             if response_token_ids_start_idx is None:
                 breakpoint()
                 raise RuntimeError("Could not find response key token IDs")
-            response_token_ids_end_idx = response_token_ids_start_idx + len(
-                response_token_ids
-            )
+            response_token_ids_end_idx = response_token_ids_start_idx + len(response_token_ids)
             labels[i, :response_token_ids_end_idx] = -100
         batch["labels"] = labels
         return batch
+
 
 def preprocess_batch(batch, tokenizer: AutoTokenizer, max_length: int):
     """Preprocess a batch of inputs for the language model."""
 
     batch["input_ids"] = tokenizer(batch["text"], max_length=max_length, truncation=True).input_ids
     return batch
+
 
 def load_training_dataset(data):
     data = data.filter(lambda rec: not rec["text"].strip().startswith(" ### Response:"))
@@ -80,10 +81,9 @@ def load_training_dataset(data):
     data = data.map(_func)
     return data
 
+
 def preprocess_dataset(dataset, tokenizer: AutoTokenizer, max_length: int, seed=seed):
-    _preprocessing_function = partial(
-        preprocess_batch, max_length=max_length, tokenizer=tokenizer
-    )
+    _preprocessing_function = partial(preprocess_batch, max_length=max_length, tokenizer=tokenizer)
     dataset = dataset.map(
         _preprocessing_function,
         batched=True,
@@ -96,10 +96,12 @@ def preprocess_dataset(dataset, tokenizer: AutoTokenizer, max_length: int, seed=
 
     return dataset
 
+
 def load_tokenizer(pretrained_model_name_or_path: str = DEFAULT_INPUT_MODEL):
     tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path)
     tokenizer.pad_token = tokenizer.eos_token
     return tokenizer
+
 
 def print_trainable_parameters(model):
     """
@@ -114,17 +116,18 @@ def print_trainable_parameters(model):
     print(
         f"Trainable Parameters: {trainable_params} || All Parameters: {all_param} || Trainable %: {100 * trainable_params / all_param}"
     )
-    
+
+
 def load_model(
-    pretrained_model_name_or_path: str = DEFAULT_INPUT_MODEL,
-    gradient_checkpointing: bool = False):
+    pretrained_model_name_or_path: str = DEFAULT_INPUT_MODEL, gradient_checkpointing: bool = False
+):
     model = AutoModelForCausalLM.from_pretrained(
-        pretrained_model_name_or_path, 
+        pretrained_model_name_or_path,
         device_map="auto",
         quantization_config=quantization_config,
         trust_remote_code=True,
-        use_cache=False if gradient_checkpointing else True
-        )
+        use_cache=False if gradient_checkpointing else True,
+    )
     model = prepare_model_for_kbit_training(model)
     peft_config = LoraConfig(
         r=LORA_R,
@@ -132,20 +135,20 @@ def load_model(
         lora_dropout=0.05,
         bias="none",
         task_type="CAUSAL_LM",
-        target_modules=["q_proj", "k_proj", "v_proj", "o_proj","gate_proj"]
+        target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj"],
     )
-    model = get_peft_model(model, peft_config)  
+    model = get_peft_model(model, peft_config)
     print_trainable_parameters(model)
     return model
 
+
 def get_tokenizer_model(
-    pretrained_model_name_or_path: str = DEFAULT_INPUT_MODEL,
-    gradient_checkpointing: bool = False
+    pretrained_model_name_or_path: str = DEFAULT_INPUT_MODEL, gradient_checkpointing: bool = False
 ):
     tokenizer = load_tokenizer(pretrained_model_name_or_path)
-    model = load_model(
-        pretrained_model_name_or_path, gradient_checkpointing=gradient_checkpointing)
+    model = load_model(pretrained_model_name_or_path, gradient_checkpointing=gradient_checkpointing)
     return tokenizer, model
+
 
 def train(
     local_output_dir,
@@ -165,10 +168,12 @@ def train(
             break
     if not max_length:
         max_length = 1024
-    
+
     data = load_dataset_from_file("dataset/final_df.csv")
     dataset = load_training_dataset(data)
-    processed_dataset = preprocess_dataset(dataset, tokenizer=tokenizer, max_length=max_length, seed=seed)
+    processed_dataset = preprocess_dataset(
+        dataset, tokenizer=tokenizer, max_length=max_length, seed=seed
+    )
     split_dataset = processed_dataset.train_test_split(test_size=26000, seed=seed)
     data_collator = DataCollatorForCompletionOnlyLM(
         tokenizer=tokenizer, mlm=False, return_tensors="pt", pad_to_multiple_of=8
@@ -192,7 +197,7 @@ def train(
         evaluation_strategy="epoch",
         logging_strategy="epoch",
     )
-    print('Trainer Initialize')
+    print("Trainer Initialize")
     trainer = Trainer(
         model=model,
         args=training_args,
@@ -206,9 +211,11 @@ def train(
     trainer.save_model(output_dir=local_output_dir)
     torch.cuda.empty_cache()
 
+
 def main(**kwargs):
     train(**kwargs)
-    
+
+
 if __name__ == "__main__":
     try:
         med_tune = {

@@ -11,17 +11,13 @@ from transformers import (
 )
 
 INTRO = "Below is an instruction that describes a task. Write a response that appropriately completes the request."
-INSTRUCTION_FORMAT = (
-    """{intro} ### Instruction: {instruction} ### Input: {input} ### Response: """
-)
+INSTRUCTION_FORMAT = """{intro} ### Instruction: {instruction} ### Input: {input} ### Response: """
 
 
 def load_model_tokenizer_for_generate(
     pretrained_model_name_or_path: str,
 ):
-    tokenizer = AutoTokenizer.from_pretrained(
-        pretrained_model_name_or_path, padding_side="left"
-    )
+    tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path, padding_side="left")
     model = AutoModelForCausalLM.from_pretrained(pretrained_model_name_or_path)
     return model, tokenizer
 
@@ -39,9 +35,7 @@ def generate_response(
     **kwargs,
 ) -> str:
     input_ids = tokenizer(
-        INSTRUCTION_FORMAT.format(
-            intro=INTRO, instruction=instruction, input=input_text
-        ),
+        INSTRUCTION_FORMAT.format(intro=INTRO, instruction=instruction, input=input_text),
         return_tensors="pt",
     ).input_ids
 
@@ -75,9 +69,7 @@ def generate_response(
 
 
 if __name__ == "__main__":
-    trained_model, trained_tokenizer = load_model_tokenizer_for_generate(
-        "output_peft_lora"
-    )
+    trained_model, trained_tokenizer = load_model_tokenizer_for_generate("output_peft_lora")
     response = generate_response(
         instruction="Your are best question asker bot.",
         input_text="In supervised learning, we have a labeled dataset, which means we have both input features and output labels. The goal is to learn a mapping from the input features to the output labels so that it can make accurate predictions on unseen data.",

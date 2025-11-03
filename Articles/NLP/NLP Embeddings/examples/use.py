@@ -79,17 +79,13 @@ def visualize_embeddings(embeddings, sentences, dimensions=2):
     elif dimensions == 3:
         fig = plt.figure(figsize=(8, 6))
         ax = fig.add_subplot(111, projection="3d")
-        ax.scatter(
-            reduced_embeddings[:, 0],
-            reduced_embeddings[:, 1],
-            reduced_embeddings[:, 2]
-        )
+        ax.scatter(reduced_embeddings[:, 0], reduced_embeddings[:, 1], reduced_embeddings[:, 2])
         for i, sentence in enumerate(sentences):
             ax.text(
                 reduced_embeddings[i, 0],
                 reduced_embeddings[i, 1],
                 reduced_embeddings[i, 2],
-                sentence
+                sentence,
             )
         ax.set_xlabel("Principal Component 1")
         ax.set_ylabel("Principal Component 2")
@@ -100,13 +96,13 @@ def visualize_embeddings(embeddings, sentences, dimensions=2):
     plt.show()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     use = UniversalSentenceEncoder()
 
     input_sentences = [
         "This is an example sentence.",
         "Machine learning is fascinating.",
-        "Natural language processing is challenging."
+        "Natural language processing is challenging.",
     ]
 
     embeddings = use.compute_embeddings(input_sentences)

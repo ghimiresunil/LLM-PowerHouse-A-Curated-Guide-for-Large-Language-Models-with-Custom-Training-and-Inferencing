@@ -5,6 +5,7 @@ from vllm import LLM, SamplingParams
 from huggingface_hub import snapshot_download
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
+
 def create_prompt(sample):
     """
     Formats a given sample into the prompt format used by the mistral-7B-instruct model.
@@ -18,7 +19,12 @@ def create_prompt(sample):
     bos_token = "<s>"
     original_system_message = "Below is an instruction that describes a task. Write a response that appropriately completes the request."
     system_message = "Use the provided input to create an instruction that could have been used to generate the response with an LLM."
-    response = sample.replace(original_system_message, "").replace("\n\n### Instruction\n", "").replace("\n### Response\n", "").strip()
+    response = (
+        sample.replace(original_system_message, "")
+        .replace("\n\n### Instruction\n", "")
+        .replace("\n### Response\n", "")
+        .strip()
+    )
     eos_token = "</s>"
 
     full_prompt = ""
@@ -33,6 +39,7 @@ def create_prompt(sample):
 
     return full_prompt
 
+
 def download_vllm_model():
     """
     Downloads a Very Large Language Model (VLLM) from the Hugging Face Model Hub.
@@ -40,10 +47,15 @@ def download_vllm_model():
     Returns:
         str: The path to the directory where the model is stored.
     """
-    MODEL_DIR = '/model'
+    MODEL_DIR = "/model"
     os.makedirs(MODEL_DIR, exist_ok=True)
-    snapshot_download('mistralai/Mistral-7B-Instruct-v0.1', local_dir=MODEL_DIR, token="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")
+    snapshot_download(
+        "mistralai/Mistral-7B-Instruct-v0.1",
+        local_dir=MODEL_DIR,
+        token="YOUR_TOKEN_HERE",
+    )
     return MODEL_DIR
+
 
 def generate_vllm_outputs(instructions, model_dir):
     """
@@ -56,14 +68,17 @@ def generate_vllm_outputs(instructions, model_dir):
     Returns:
         List[str]: A list of generated outputs corresponding to the input instructions.
     """
-    sampling_params = SamplingParams(temperature=0.75,
-            top_p=1,
-            max_tokens=8000,
-            presence_penalty=1.15,)
+    sampling_params = SamplingParams(
+        temperature=0.75,
+        top_p=1,
+        max_tokens=8000,
+        presence_penalty=1.15,
+    )
     llm = LLM(model=model_dir, dtype=torch.float16)
     prompts = [instruction for instruction in instructions]
     outputs = llm.generate(prompts, sampling_params)
     return outputs
+
 
 def calculate_vllm_num_of_words(outputs):
     """
@@ -83,6 +98,7 @@ def calculate_vllm_num_of_words(outputs):
 
     return num_of_words
 
+
 def calculate_throughput(num_of_words, total_time_taken):
     """
     Calculates the throughput of a process in words per second.
@@ -96,6 +112,7 @@ def calculate_throughput(num_of_words, total_time_taken):
     """
     throughput = num_of_words / total_time_taken
     return throughput
+
 
 def prompt_latency(num_of_words, time_taken_for_a_query):
     """
@@ -111,6 +128,7 @@ def prompt_latency(num_of_words, time_taken_for_a_query):
     latency = num_of_words / time_taken_for_a_query
     return latency
 
+
 def load_model(model_name):
     """
     Loads a pre-trained causal language model from the Hugging Face Model Hub.
@@ -121,13 +139,11 @@ def load_model(model_name):
     Returns:
         AutoModelForCausalLM: The loaded pre-trained language model.
     """
-    model = AutoModelForCausalLM.from_pretrained(
-        model_name,
-        use_cache=False
-        )
-    model = model.to(dtype=torch.float16, device='cuda')
+    model = AutoModelForCausalLM.from_pretrained(model_name, use_cache=False)
+    model = model.to(dtype=torch.float16, device="cuda")
     model.to("cuda")
     return model
+
 
 def load_tokenizer(model_name):
     """
@@ -144,6 +160,7 @@ def load_tokenizer(model_name):
     tokenizer.padding_side = "right"
     return tokenizer
 
+
 def generate_llm_response(prompt, model, tokenizer):
     """
     Generates a response from a language model (LLM) based on a given prompt.
@@ -156,11 +173,14 @@ def generate_llm_response(prompt, model, tokenizer):
     Returns:
        str: The generated response from the language model.
     """
-    encoded_input = tokenizer(prompt,  return_tensors="pt", add_special_tokens=True)
-    model_inputs = encoded_input.to('cuda')
-    generated_ids = model.generate(**model_inputs, max_new_tokens=8000, do_sample=True, pad_token_id=tokenizer.eos_token_id)
+    encoded_input = tokenizer(prompt, return_tensors="pt", add_special_tokens=True)
+    model_inputs = encoded_input.to("cuda")
+    generated_ids = model.generate(
+        **model_inputs, max_new_tokens=8000, do_sample=True, pad_token_id=tokenizer.eos_token_id
+    )
     decoded_output = tokenizer.batch_decode(generated_ids)
     return decoded_output[0].replace(prompt, "")
+
 
 def calculate_llm_num_words(instructions, model, tokenizer):
     """
@@ -171,7 +191,7 @@ def calculate_llm_num_words(instructions, model, tokenizer):
         instructions (List[str]): A list of input instructions to generate responses.
         model (transformers.AutoModelForCausalLM): The pre-trained language model.
         tokenizer (transformers.AutoTokenizer): The associated pre-trained tokenizer.
-        
+
     Returns:
         int: The total number of words in all the generated responses.
     """
@@ -181,9 +201,10 @@ def calculate_llm_num_words(instructions, model, tokenizer):
         num_of_words += len(output.split(" "))
     return num_of_words
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     MODEL_DIR = download_vllm_model()
-    default_model_name = 'mistralai/Mistral-7B-v0.1'
+    default_model_name = "mistralai/Mistral-7B-v0.1"
     instructions = [
         "Elaborate on the cultural heritage of Nepal.",
         "How did the Industrial Revolution impact European societies?",
@@ -198,9 +219,9 @@ if __name__ == '__main__':
         "Who was Ada Lovelace, and what role did she play in the development of computer programming?",
         "Examine the impact of the Silk Road on cultural exchange between East and West.",
         "What is dark matter, and why is it important in our understanding of the universe?",
-        "Explore the history and significance of the Rosetta Stone in deciphering ancient languages."
+        "Explore the history and significance of the Rosetta Stone in deciphering ancient languages.",
     ]
-    
+
     # Measure time taken for vLLM generation
     start_time_vllm = perf_counter()
     vllm_outputs = generate_vllm_outputs(instructions, MODEL_DIR)

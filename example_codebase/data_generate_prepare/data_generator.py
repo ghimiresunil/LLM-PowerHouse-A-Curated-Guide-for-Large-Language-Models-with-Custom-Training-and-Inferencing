@@ -33,9 +33,7 @@ class DataBot:
     def filter_json(self, text):
         start_pos = text.find("{")
         end_pos = text.rfind("}") + 1
-        json_string = text[
-            start_pos:end_pos
-        ]  # if doesnot find the json_string will be empty
+        json_string = text[start_pos:end_pos]  # if doesnot find the json_string will be empty
         return json_string
 
     def streaming_response(self, message_log):
@@ -56,9 +54,7 @@ class DataBot:
             "stream": True,
         }
         print(f"The model {self.model} successfully")
-        request = requests.post(
-            req_url, stream=True, headers=req_headers, json=req_data
-        )
+        request = requests.post(req_url, stream=True, headers=req_headers, json=req_data)
         client = sseclient.SSEClient(request)
 
         for event in client.events():
@@ -69,9 +65,7 @@ class DataBot:
                         end="",
                         flush=True,
                     )
-                    responses += json.loads(event.data)["choices"][0]["delta"][
-                        "content"
-                    ]
+                    responses += json.loads(event.data)["choices"][0]["delta"]["content"]
         print()
         return responses
 
@@ -107,8 +101,7 @@ class DataBot:
 
         with ThreadPoolExecutor() as executor:
             future_to_response = {
-                executor.submit(self.send_message, message_log): message_log
-                for _ in range(count)
+                executor.submit(self.send_message, message_log): message_log for _ in range(count)
             }
             with tqdm(total=count, desc="Generating Responses") as pbar:
                 for future in concurrent.futures.as_completed(future_to_response):
@@ -134,7 +127,8 @@ class DataBot:
 
         return responses
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     max_data = 7000
     data_bot = DataBot()
     start_time = perf_counter()

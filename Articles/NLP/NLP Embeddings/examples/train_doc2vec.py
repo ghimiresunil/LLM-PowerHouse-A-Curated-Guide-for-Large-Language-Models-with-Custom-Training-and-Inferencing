@@ -2,14 +2,15 @@ import os
 from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 from nltk.tokenize import word_tokenize
 
+
 def train_doc2vec_model(clean_resume_dir: str, model_save_path: str) -> None:
     """
     Trains a Doc2Vec model on tokenized resumes and saves the model to the specified path.
-    
+
     Args:
         clean_resume_dir (str): Path to the directory containing clean resume files.
         model_save_path (str): Path to save the trained model.
-    
+
     Returns:
         None
     """
@@ -27,14 +28,14 @@ def train_doc2vec_model(clean_resume_dir: str, model_save_path: str) -> None:
 
     # Define and train the Doc2Vec model
     model = Doc2Vec(
-        vector_size=20,     # Dimensionality of the feature vectors
-        window=2,            # Maximum distance between the current and predicted word within a sentence
-        min_count=10,        # Ignores all words with total frequency lower than this
-        dm=1,                # Distributed Memory (PV-DM) architecture
-        dm_mean=1,           # Use mean of context vectors for PV-DM
-        epochs=100,          # Number of iterations (epochs) over the corpus
-        seed=42,             # Seed for reproducibility
-        workers=6            # Number of worker threads for training
+        vector_size=20,  # Dimensionality of the feature vectors
+        window=2,  # Maximum distance between the current and predicted word within a sentence
+        min_count=10,  # Ignores all words with total frequency lower than this
+        dm=1,  # Distributed Memory (PV-DM) architecture
+        dm_mean=1,  # Use mean of context vectors for PV-DM
+        epochs=100,  # Number of iterations (epochs) over the corpus
+        seed=42,  # Seed for reproducibility
+        workers=6,  # Number of worker threads for training
     )
 
     # Build vocabulary and train the model
@@ -43,6 +44,7 @@ def train_doc2vec_model(clean_resume_dir: str, model_save_path: str) -> None:
 
     # Save the trained model
     model.save(model_save_path)
+
 
 # Specify the paths and call the function
 clean_resume_dir = "../data/clean_resume/"

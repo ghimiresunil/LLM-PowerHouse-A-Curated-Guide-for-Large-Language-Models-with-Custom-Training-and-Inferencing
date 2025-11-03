@@ -3,6 +3,7 @@ import pandas as pd
 from collections import Counter
 from typing import List, Dict
 
+
 def tokenize(sentence: str) -> List[str]:
     """
     Tokenizes a given sentence into a list of lowercase tokens.
@@ -14,6 +15,7 @@ def tokenize(sentence: str) -> List[str]:
         list: A list of lowercase tokens extracted from the sentence.
     """
     return sentence.lower().split()
+
 
 def calculate_idf(sentences: List[str]) -> Dict[str, float]:
     """
@@ -37,6 +39,7 @@ def calculate_idf(sentences: List[str]) -> Dict[str, float]:
 
     return idf_dict
 
+
 def calculate_tfidf(tf: Dict[str, float], idf: Dict[str, float]) -> Dict[str, float]:
     """
     Calculates the TF-IDF values for tokens using given TF and IDF values.
@@ -51,6 +54,7 @@ def calculate_tfidf(tf: Dict[str, float], idf: Dict[str, float]) -> Dict[str, fl
     tfidf = {token: tf_value * idf.get(token, 0) for token, tf_value in tf.items()}
     return tfidf
 
+
 def main(sentences: List[str]) -> List[Dict[str, float]]:
     """
     Calculates the TF-IDF values for a list of sentences.
@@ -64,7 +68,7 @@ def main(sentences: List[str]) -> List[Dict[str, float]]:
     idf_dict = calculate_idf(sentences)
     tfidf_list = []
 
-    index_labels = [f'Sentence {i + 1}' for i in range(len(sentences))]
+    index_labels = [f"Sentence {i + 1}" for i in range(len(sentences))]
 
     for sentence in sentences:
         tokens = tokenize(sentence)
@@ -77,7 +81,8 @@ def main(sentences: List[str]) -> List[Dict[str, float]]:
     df.fillna(0, inplace=True)
     return df
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     sent_one = "This movie is very scary and long"
     sent_two = "This movie is not scary and is slow"
     sent_three = "This movie is spooky and good"

@@ -90,13 +90,11 @@ class EmbeddingService:
         if len(query) > 1:
             query_embeddings = self.embedding_processor.get_embeddings(list(query))
 
-            search_result_content_name = (
-                self.ticket_classification_collection.hybrid_search(
-                    embeddings=query_embeddings,
-                    anns_field="ticket_description_embeddings",
-                    product_purchased=product_purchased,
-                    ticket_subject=ticket_subject,
-                )
+            search_result_content_name = self.ticket_classification_collection.hybrid_search(
+                embeddings=query_embeddings,
+                anns_field="ticket_description_embeddings",
+                product_purchased=product_purchased,
+                ticket_subject=ticket_subject,
             )
             final_search_result = self.filter_search_results(
                 results=search_result_content_name, thresh=thresh
