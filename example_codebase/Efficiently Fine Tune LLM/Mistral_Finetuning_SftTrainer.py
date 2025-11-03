@@ -1,4 +1,4 @@
-# This is a modified version of TRL's `SFTTrainer` example (https://github.com/huggingface/trl/blob/main/examples/scripts/sft_trainer.py), 
+# This is a modified version of TRL's `SFTTrainer` example (https://github.com/huggingface/trl/blob/main/examples/scripts/sft_trainer.py),
 # adapted to run with DeepSpeed ZeRO-3 and Mistral-7B-V1.0. The settings below were run on 1 node of 8 x A100 (80GB) GPUs.
 #
 # Usage:
@@ -7,7 +7,7 @@
 #   - Install TRL from main: pip install git+https://github.com/huggingface/trl.git
 #   - Clone the repo: git clone github.com/huggingface/trl.git
 #   - Copy this Gist into trl/examples/scripts
-#   - Run from root of trl repo with: accelerate launch --config_file=examples/accelerate_configs/deepspeed_zero3.yaml --gradient_accumulation_steps 8 examples/scripts/sft_trainer.py  
+#   - Run from root of trl repo with: accelerate launch --config_file=examples/accelerate_configs/deepspeed_zero3.yaml --gradient_accumulation_steps 8 examples/scripts/sft_trainer.py
 
 from dataclasses import dataclass, field
 from typing import Optional
@@ -17,7 +17,13 @@ from accelerate import Accelerator
 from datasets import load_dataset
 from peft import LoraConfig
 from tqdm import tqdm
-from transformers import AutoModelForCausalLM, BitsAndBytesConfig, HfArgumentParser, TrainingArguments, AutoTokenizer
+from transformers import (
+    AutoModelForCausalLM,
+    BitsAndBytesConfig,
+    HfArgumentParser,
+    TrainingArguments,
+    AutoTokenizer,
+)
 
 from trl import SFTTrainer
 
@@ -32,35 +38,64 @@ class ScriptArguments:
     The name of the Casual LM model we wish to fine with SFTTrainer
     """
 
-    model_name: Optional[str] = field(default="mistralai/Mistral-7B-v0.1", metadata={"help": "the model name"})
+    model_name: Optional[str] = field(
+        default="mistralai/Mistral-7B-v0.1", metadata={"help": "the model name"}
+    )
     dataset_name: Optional[str] = field(
         default="stingning/ultrachat", metadata={"help": "the dataset name"}
     )
-    dataset_text_field: Optional[str] = field(default="text", metadata={"help": "the text field of the dataset"})
-    log_with: Optional[str] = field(default="wandb", metadata={"help": "use 'wandb' to log with wandb"})
+    dataset_text_field: Optional[str] = field(
+        default="text", metadata={"help": "the text field of the dataset"}
+    )
+    log_with: Optional[str] = field(
+        default="wandb", metadata={"help": "use 'wandb' to log with wandb"}
+    )
     learning_rate: Optional[float] = field(default=2.0e-5, metadata={"help": "the learning rate"})
     batch_size: Optional[int] = field(default=8, metadata={"help": "the batch size"})
     seq_length: Optional[int] = field(default=1024, metadata={"help": "Input sequence length"})
     gradient_accumulation_steps: Optional[int] = field(
         default=8, metadata={"help": "the number of gradient accumulation steps"}
     )
-    load_in_8bit: Optional[bool] = field(default=False, metadata={"help": "load the model in 8 bits precision"})
-    load_in_4bit: Optional[bool] = field(default=False, metadata={"help": "load the model in 4 bits precision"})
-    use_peft: Optional[bool] = field(default=False, metadata={"help": "Wether to use PEFT or not to train adapters"})
-    trust_remote_code: Optional[bool] = field(default=False, metadata={"help": "Enable `trust_remote_code`"})
+    load_in_8bit: Optional[bool] = field(
+        default=False, metadata={"help": "load the model in 8 bits precision"}
+    )
+    load_in_4bit: Optional[bool] = field(
+        default=False, metadata={"help": "load the model in 4 bits precision"}
+    )
+    use_peft: Optional[bool] = field(
+        default=False, metadata={"help": "Wether to use PEFT or not to train adapters"}
+    )
+    trust_remote_code: Optional[bool] = field(
+        default=False, metadata={"help": "Enable `trust_remote_code`"}
+    )
     output_dir: Optional[str] = field(default="output", metadata={"help": "the output directory"})
-    peft_lora_r: Optional[int] = field(default=64, metadata={"help": "the r parameter of the LoRA adapters"})
-    peft_lora_alpha: Optional[int] = field(default=16, metadata={"help": "the alpha parameter of the LoRA adapters"})
-    logging_steps: Optional[int] = field(default=5, metadata={"help": "the number of logging steps"})
-    use_auth_token: Optional[bool] = field(default=True, metadata={"help": "Use HF auth token to access the model"})
-    num_train_epochs: Optional[int] = field(default=3, metadata={"help": "the number of training epochs"})
+    peft_lora_r: Optional[int] = field(
+        default=64, metadata={"help": "the r parameter of the LoRA adapters"}
+    )
+    peft_lora_alpha: Optional[int] = field(
+        default=16, metadata={"help": "the alpha parameter of the LoRA adapters"}
+    )
+    logging_steps: Optional[int] = field(
+        default=5, metadata={"help": "the number of logging steps"}
+    )
+    use_auth_token: Optional[bool] = field(
+        default=True, metadata={"help": "Use HF auth token to access the model"}
+    )
+    num_train_epochs: Optional[int] = field(
+        default=3, metadata={"help": "the number of training epochs"}
+    )
     max_steps: Optional[int] = field(default=-1, metadata={"help": "the number of training steps"})
     save_steps: Optional[int] = field(
         default=1000, metadata={"help": "Number of updates steps before two checkpoint saves"}
     )
-    save_total_limit: Optional[int] = field(default=10, metadata={"help": "Limits total number of checkpoints."})
+    save_total_limit: Optional[int] = field(
+        default=10, metadata={"help": "Limits total number of checkpoints."}
+    )
     push_to_hub: Optional[bool] = field(default=True, metadata={"help": "Push the model to HF Hub"})
-    hub_model_id: Optional[str] = field(default="mistral-7b-finetuned-ultrachat", metadata={"help": "The name of the model on HF Hub"})
+    hub_model_id: Optional[str] = field(
+        default="mistral-7b-finetuned-ultrachat",
+        metadata={"help": "The name of the model on HF Hub"},
+    )
 
 
 parser = HfArgumentParser(ScriptArguments)
@@ -71,6 +106,7 @@ tokenizer = AutoTokenizer.from_pretrained(script_args.model_name)
 dataset = load_dataset(script_args.dataset_name, split="train[:20000]")
 dataset = dataset.train_test_split(test_size=0.1)
 
+
 def prepare_dialogue(example):
     text = ""
     for idx, msg in enumerate(example["data"]):
@@ -80,6 +116,7 @@ def prepare_dialogue(example):
             text += f"<|assistant|>\n{msg}{tokenizer.eos_token}\n"
     example["text"] = text
     return example
+
 
 dataset = dataset.map(prepare_dialogue, num_proc=4, remove_columns=["id", "data"])
 
@@ -128,7 +165,6 @@ training_args = TrainingArguments(
     warmup_ratio=0.1,
     evaluation_strategy="epoch",
     logging_first_step=True,
-
 )
 
 # Step 4: Define the LoraConfig

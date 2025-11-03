@@ -26,7 +26,7 @@ The usual approach involves removing the last layer (softmax layer) of the pre-t
 
 # Can the user fine-tune an LLM (Language Model) to enhance performance on a predictive task such as classification or regression?
 
-![finetune_an_LLMs](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/a7babace-c277-49a7-8915-41c238f106ed)
+![finetune_an_LLMs](https://github.com/jzsmoreno/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/a7babace-c277-49a7-8915-41c238f106ed)
 
 By now, it might be well-known that fine-tuning serves the purpose of teaching "style" rather than imparting "facts." This is particularly applicable to tasks like question answering and other generative tasks, but it may not hold true for predictive tasks.
 

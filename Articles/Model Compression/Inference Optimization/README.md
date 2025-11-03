@@ -6,7 +6,7 @@
     - Loop tiling
     - Operator fusion
     - Quantization
-![Inference Optimizations](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/ccd14769-1652-410b-8862-ffce67e8dde6)
+![Inference Optimizations](https://github.com/jzsmoreno/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/ccd14769-1652-410b-8862-ffce67e8dde6)
 
 # On-Device Privacy
 | Aspect | Description |

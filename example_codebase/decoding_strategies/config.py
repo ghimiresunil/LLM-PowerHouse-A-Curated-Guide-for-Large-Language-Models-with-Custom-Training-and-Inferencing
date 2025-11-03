@@ -1,1 +1,1 @@
-MODEL_NAME="microsoft/DialoGPT-small"
+MODEL_NAME = "microsoft/DialoGPT-small"

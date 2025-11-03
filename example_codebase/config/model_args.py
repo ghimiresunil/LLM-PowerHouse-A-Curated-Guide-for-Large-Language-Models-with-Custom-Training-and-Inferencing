@@ -3,12 +3,14 @@ from torch.utils.data import Dataset
 from multiprocessing import cpu_count
 from dataclasses import asdict, dataclass, field, fields
 
+
 def get_default_process_count():
     process_count = cpu_count() - 2 if cpu_count() > 2 else 1
     if sys.platform == "win32":
         process_count = min(process_count, 61)
 
     return process_count
+
 
 @dataclass
 class ModelArgs:
@@ -93,6 +95,7 @@ class ModelArgs:
     warmup_steps: int = 0
     weight_decay: float = 0.0
 
+
 @dataclass
 class T5Args(ModelArgs):
     """
@@ -121,4 +124,3 @@ class T5Args(ModelArgs):
     top_k: float = None
     top_p: float = None
     use_multiprocessed_decoding: bool = True
-

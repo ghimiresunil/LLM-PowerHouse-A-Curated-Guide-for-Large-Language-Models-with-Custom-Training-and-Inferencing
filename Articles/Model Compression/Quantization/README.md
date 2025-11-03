@@ -179,21 +179,21 @@ torch.backends.quantized.engine=backend
     - **Operator/Backend support**: There are backends that only work with fully quantized operators.
 - The number of quantized operators available in PyTorch is currently limited, which may impact the choices you can make from the table below. This table, from [PyTorch: Introduction to Quantization on PyTorch](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/), provides some guidance.
   
-![choosing_an_approach](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/6fb70bc1-8315-4b61-9cfa-cc66a688c7c8)
+![choosing_an_approach](https://github.com/jzsmoreno/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/6fb70bc1-8315-4b61-9cfa-cc66a688c7c8)
 
 ## Performance Reults
 - Quantization can reduce the model size by 4x and speed up inference by 2x to 3x, depending on the hardware platform and the model being benchmarked. The table below from the [PyTorch documentation on quantization on PyTorch](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/) provides some sample results of the technique.
 
-![performance_result](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/cafd2132-0f7b-47e7-8425-2e56ae8cdabb)
+![performance_result](https://github.com/jzsmoreno/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/cafd2132-0f7b-47e7-8425-2e56ae8cdabb)
 
 ## Accuracy Results
 - The tables in [PyTorch's Introduction to Quantization on PyTorch](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/) document compare the accuracy of quantized models to floating-point models on the ImageNet, as well as we compared the F1 score of BERT on the GLUE benchmark for MRPC.
 
 ### Computer Vision Model Accuracy
-![computer_vision_model_accuracy](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/bc12512e-3537-46b1-b946-812e99994934)
+![computer_vision_model_accuracy](https://github.com/jzsmoreno/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/bc12512e-3537-46b1-b946-812e99994934)
 
 ### Speech and NLP Model Accuracy
-![speech_and_nlp_model_accuracy](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/7af7f87e-da68-46e5-84a5-f9286249b771)
+![speech_and_nlp_model_accuracy](https://github.com/jzsmoreno/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/7af7f87e-da68-46e5-84a5-f9286249b771)
 
 ## Quantization in Other Frameworks: TensorFlow and CoreML
 - PyTorch quantization may not work in all production environments, such as when converting a model to Apple's CoreML format, which requires 16-bit quantization. When deploying a model to an edge device, it is important to check that the device supports quantization. On Apple devices, the hardware already computes everything in `fp16`, so quantization is only useful for reducing the memory footprint of the model.

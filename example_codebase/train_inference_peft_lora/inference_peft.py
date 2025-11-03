@@ -12,17 +12,13 @@ from transformers import (
 )
 
 INTRO = "Below is an instruction that describes a task. Write a response that appropriately completes the request."
-INSTRUCTION_FORMAT = (
-    """{intro} ### Instruction: {instruction} ### Input: {input} ### Response: """
-)
+INSTRUCTION_FORMAT = """{intro} ### Instruction: {instruction} ### Input: {input} ### Response: """
 
 
 def load_model_tokenizer_for_generate(
     pretrained_model_name_or_path: str,
 ):
-    tokenizer = AutoTokenizer.from_pretrained(
-        pretrained_model_name_or_path, padding_side="left"
-    )
+    tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path, padding_side="left")
     model = AutoModelForCausalLM.from_pretrained(pretrained_model_name_or_path)
     return model, tokenizer
 
@@ -40,9 +36,7 @@ def generate_response(
     **kwargs,
 ) -> str:
     input_ids = tokenizer(
-        INSTRUCTION_FORMAT.format(
-            intro=INTRO, instruction=instruction, input=input_text
-        ),
+        INSTRUCTION_FORMAT.format(intro=INTRO, instruction=instruction, input=input_text),
         return_tensors="pt",
     ).input_ids
     gen_tokens = model.generate(

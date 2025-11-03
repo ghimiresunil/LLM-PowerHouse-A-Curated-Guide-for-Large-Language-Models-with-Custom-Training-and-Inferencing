@@ -1,6 +1,7 @@
 import re
-import pandas as pd 
+import pandas as pd
 from typing import List
+
 
 def preprocess_text(text: str) -> str:
     """
@@ -13,8 +14,9 @@ def preprocess_text(text: str) -> str:
         str: The preprocessed text.
     """
     text = text.lower()
-    text = re.sub(r'[^\w\s]','', text)
+    text = re.sub(r"[^\w\s]", "", text)
     return text
+
 
 def tokenize(text: str) -> List[str]:
     """
@@ -28,10 +30,11 @@ def tokenize(text: str) -> List[str]:
     """
     return text.split()
 
+
 def create_vocab(tokenized_texts: List[List[str]]) -> List[str]:
     """
     Creates a vocabulary set from a list of tokenized texts.
-    
+
     Args:
         tokenized_texts (list): A list of tokenized texts.
 
@@ -42,6 +45,7 @@ def create_vocab(tokenized_texts: List[List[str]]) -> List[str]:
     for tokens in tokenized_texts:
         vocab.update(tokens)
     return sorted(vocab)
+
 
 def create_bow(text: str, vocab: List[str]) -> List[int]:
     """
@@ -62,7 +66,8 @@ def create_bow(text: str, vocab: List[str]) -> List[int]:
             bow[index] += 1
     return bow
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     texts = [
         "This is a simple example.",
         "Another example for demonstration.",

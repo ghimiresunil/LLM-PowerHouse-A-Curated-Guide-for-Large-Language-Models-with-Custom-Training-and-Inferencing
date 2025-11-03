@@ -10,7 +10,7 @@
 
 Tokenization is the process of splitting a text into smaller units, called tokens, which can be words, subwords, or characters. It is one of the first steps in an NLP pipeline.
 
-![tokenization](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/9a5b49b1-4adf-4bdb-8a7f-856cb525235a)
+![tokenization](https://github.com/jzsmoreno/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/assets/40186859/9a5b49b1-4adf-4bdb-8a7f-856cb525235a)
 
 | Tokenization Type | Description | Advantages | Disadvantages | Example |
 | ----------------- | ----------- | ----------- | ------------ | -------- |

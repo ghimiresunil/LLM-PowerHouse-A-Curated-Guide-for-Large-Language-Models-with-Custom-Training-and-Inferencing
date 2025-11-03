@@ -221,7 +221,7 @@ The model is able to predict the surrounding words of each word in the sentence,
 
 Word2Vec is a powerful tool that can be used to understand and analyze text. It is used in a variety of applications, such as machine translation, question answering, and sentiment analysis.
 
-### Difference bwetween BOW, TF-IDF and Word2vec
+### Difference between BOW, TF-IDF and Word2vec
 Let's discuss the differences between Bag of Words (BOW), Term Frequency-Inverse Document Frequency (TF-IDF), and Word2Vec. In BOW, we obtain a sparse matrix with either 0 or 1 values, while in TF-IDF, we may get decimal values ranging from 0 to 1. However, Word2Vec works differently. To illustrate this, let's consider a vocabulary comprising the unique words in a given corpus.
 
 For example, let's say our vocabulary consists of the words BOY, GIRL, KING, QUEEN, APPLE, and MANGO. And let's say our corpus consists of the following two sentences:

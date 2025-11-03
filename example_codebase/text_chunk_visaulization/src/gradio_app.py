@@ -9,9 +9,7 @@ from src.utils.gradio_utils import (
 
 def create_gradio_interface(example_text):
     with gr.Blocks(
-        theme=gr.themes.Soft(
-            text_size="lg", font=["monospace"], primary_hue=gr.themes.colors.green
-        )
+        theme=gr.themes.Soft(text_size="lg", font=["monospace"], primary_hue=gr.themes.colors.green)
     ) as demo:
         text = gr.Textbox(label="Your text 🪶", value=example_text)
         with gr.Row():
@@ -78,10 +76,10 @@ def create_gradio_interface(example_text):
         )
 
         separator_preset_selection.change(
-        fn=change_preset_separators,
-        inputs=separator_preset_selection,
-        outputs=separators_selection,
-    )
+            fn=change_preset_separators,
+            inputs=separator_preset_selection,
+            outputs=separators_selection,
+        )
         gr.on(
             [
                 text.change,
@@ -102,9 +100,22 @@ def create_gradio_interface(example_text):
             ],
             outputs=out,
         )
-        demo.load(chunk, inputs=[text, slider_count, split_selection, separators_selection, length_unit_selection, chunk_overlap], outputs=out)
+        demo.load(
+            chunk,
+            inputs=[
+                text,
+                slider_count,
+                split_selection,
+                separators_selection,
+                length_unit_selection,
+                chunk_overlap,
+            ],
+            outputs=out,
+        )
         return demo
 
+
 from config.constant import EXAMPLE_TEXT
+
 interface = create_gradio_interface(EXAMPLE_TEXT)
 interface.launch()

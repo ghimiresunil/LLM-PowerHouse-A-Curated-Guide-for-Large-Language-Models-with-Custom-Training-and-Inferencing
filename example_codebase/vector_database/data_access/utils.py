@@ -3,6 +3,7 @@ from pymilvus import utility
 from pymilvus import Collection, DataType, CollectionSchema, FieldSchema
 from data_access.collection_base import MilvusCollectionBase
 
+
 class ClassificationCollection(MilvusCollectionBase):
     def __init__(self):
         self.collection_name = "TicketClassification"
@@ -24,9 +25,7 @@ class ClassificationCollection(MilvusCollectionBase):
             "metric_type": "IP",
             "params": {"nlist": 1024},
         }
-        id_field = FieldSchema(
-            name="id", dtype=DataType.INT64, is_primary=True, auto_id=True
-        )
+        id_field = FieldSchema(name="id", dtype=DataType.INT64, is_primary=True, auto_id=True)
 
         product_purchased_field = FieldSchema(
             name="product_purchased", dtype=DataType.VARCHAR, max_length=100
