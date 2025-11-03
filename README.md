@@ -358,8 +358,8 @@ Quantization involves converting the weights (and activations) of a model to low
 | Model merging | Model merging has gained popularity as a method for creating high-performance models without additional fine-tuning. The widely-used [mergekit](https://github.com/arcee-ai/mergekit) library incorporates various merging methods including SLERP, [DARE](https://arxiv.org/abs/2311.03099), and [TIES](https://arxiv.org/abs/2311.03099). |
 | Mixture of Experts | The resurgence of the MoE architecture, exemplified by [Mixtral](https://arxiv.org/abs/2401.04088), has led to the emergence of alternative approaches like frankenMoE, seen in community-developed models such as [Phixtral](https://huggingface.co/mlabonne/phixtral-2x2_8), offering cost-effective and high-performance alternatives. |
 | Multimodal models | These models, such as [CLIP](https://openai.com/index/clip/), [Stable Diffusion](https://stability.ai/stable-image), or [LLaVA](https://llava-vl.github.io/), process diverse inputs (text, images, audio, etc.) within a unified embedding space, enabling versatile applications like text-to-image generation. |
-| [glaive-function-calling-v2](https://huggingface.co/datasets/glaiveai/glaive-function-calling-v2) | 113k  | Sahil Chaudhary | Sep 2023 | High-quality dataset with pairs of instructions and answers in different languages. <br>See [Locutusque/function-calling-chatml](https://huggingface.co/datasets/Locutusque/function-calling-chatml) for a variant without conversation tags. | Agent & Function calling |
-| [Agent-FLAN](https://huggingface.co/datasets/internlm/Agent-FLAN)                                 | 34.4k | internlm        | Mar 2024 | Mix of AgentInstruct, ToolBench, and ShareGPT datasets.                                                                   | Agent & Function calling |
+| [glaive-function-calling-v2](https://huggingface.co/datasets/glaiveai/glaive-function-calling-v2) | High-quality dataset with pairs of instructions and answers in different languages. <br>See [Locutusque/function-calling-chatml](https://huggingface.co/datasets/Locutusque/function-calling-chatml) for a variant without conversation tags. | Agent & Function calling |
+| [Agent-FLAN](https://huggingface.co/datasets/internlm/Agent-FLAN)| Mix of AgentInstruct, ToolBench, and ShareGPT datasets.                                                                   | Agent & Function calling |
 
 #### Further Exploration
 
@@ -681,6 +681,9 @@ Along with the usual security concerns of software, LLMs face distinct vulnerabi
 | 4 bit LLM Quantization with GPTQ | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/blob/main/example_codebase/Efficiently%20Fine%20Tune%20LLM/4_bit_LLM_Quantization_with_GPTQ.ipynb)|
 | Model Family Tree | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/blob/main/example_codebase/Efficiently%20Fine%20Tune%20LLM/Model_Family_Tree.ipynb)|
 | Create MoEs with MergeKit | [🔗](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/blob/main/example_codebase/Efficiently%20Fine%20Tune%20LLM/merge_model_mergekit.ipynb)|
+| Finetune Llama 3.1 on AWS, GCP or Azure | [🔗](https://www.zenml.io/blog/how-to-finetune-llama-3-1-with-zenml)|
+| Finetune Phi 3.5 on AWS, GCP or Azure | [🔗](https://www.zenml.io/blog/how-to-finetune-phi-3-5-with-zenml)|
+
 
 # LLM PlayLab
 | LLM Projects  |Respository|
@@ -800,6 +803,14 @@ In theory, it is as simple as that. However, implementation isn’t that easy - 
 
 # Data Generation
 
+## Data Filtering 
+
+| Datasets | Descriptions | Link | 
+| --------- | -------- | :-----: |
+| Rule-based filtering | Remove samples based on a list of unwanted words, like refusals and "As an AI assistant" | [🔗](https://huggingface.co/datasets/cognitivecomputations/WizardLM_alpaca_evol_instruct_70k_unfiltered/blob/main/wizardlm_clean.py) |
+| SemHash | Fuzzy deduplication based on fast embedding generation with a distilled model. | [🔗](https://github.com/MinishLab/semhash) |
+ 
+
 ## SFT Datasets
 
 | Datasets | Descriptions | Link | 
@@ -825,6 +836,21 @@ In theory, it is as simple as that. However, implementation isn’t that easy - 
 | --------- | -------- | :-----: |
 | sentence-transformers | A python module for working with popular language embedding models. | [🔗](https://sbert.net/)|
 | Lilac | Tool to curate better data for LLMs, used by NousResearch, databricks, cohere, Alignment Lab AI. It can also apply filters.| [🔗](https://github.com/lilacai/lilac)|
+| Nomic Atlas | Interact with instructed data to find insights and store embeddings. | [🔗](https://github.com/nomic-ai/nomic)|
+| text-clustering) | Easily embed, cluster and semantically label text datasets | [🔗](https://github.com/huggingface/text-clustering)|
+
+## Data scraping
+| Datasets | Descriptions | Link | 
+| --------- | -------- | :-----: |
+| Trafilatura | Python and command-line tool to gather text and metadata on the web. Used for the creation of RefinedWeb(https://arxiv.org/abs/2306.01116). | [🔗](https://arxiv.org/abs/2306.01116)|
+| marker | Convert PDF to markdown + JSON quickly with high accuracy | [🔗](https://github.com/VikParuchuri/marker)|
+
+## Understand LLM
+| Resources |  Link | 
+| --------- |  :-----: |
+| Brown, Tom B. "Language models are few-shot learners." arXiv preprint arXiv:2005.14165 (2020). | [🔗](https://rosanneliu.com/dlctfs/dlct_200724.pdf) |
+| Kambhampati, Subbarao, et al. "LLMs can't plan, but can help planning in LLM-modulo frameworks." arXiv preprint arXiv:2402.01817 (2024). | [🔗](https://arxiv.org/abs/2402.01817) | 
+
 
 # What I am learning
 
@@ -877,11 +903,11 @@ This project is licensed under the [MIT License](https://github.com/ghimiresunil
 # About The Author
 [Sunil Ghimire](https://sunilghimire.com.np/) is a NLP Engineer passionate about literature. He believes that words and data are the two most powerful tools to change the world. 
 
-Created with ❤️ by [Sunil Ghimire](https://sunilghimire.com.np/)
-
 ---
 <p align="center">
   <a href="https://star-history.com/#ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing&Date">
     <img src="https://api.star-history.com/svg?repos=ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing&type=Date" alt="Star History Chart">
   </a>
 </p>
+
+Created with ❤️ by [Sunil Ghimire](https://sunilghimire.com.np/)
