@@ -5,7 +5,7 @@
     - Precision: The proportion of positive predictions that are actually positive.
     - Recall: The proportion of actual positives that are correctly predicted.
     - F1 score: A harmonic mean of precision and recall.
-    - Please refer the section on [Evaluation Metrics for the Classification Problem](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/articles/Articles/Evaluation%20Metrics/Classification).
+    - Please refer the section on [Evaluation Metrics for the Classification Problem](https://github.com/ghimiresunil/LLM-PowerHouse-A-Curated-Guide-for-Large-Language-Models-with-Custom-Training-and-Inferencing/tree/main/Articles/Evaluation%20Metrics/Classification).
 
 - **Generative Language Models**
     - [Perplexity](https://en.wikipedia.org/wiki/Perplexity): A measure of how well a language model predicts a sequence of words.
